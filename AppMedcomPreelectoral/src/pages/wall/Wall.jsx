@@ -14,7 +14,7 @@ export const Wall = () => {
       <div className="h-screen flex flex-col justify-center">
         <div className="flex justify-center">
           <div className="w-full px-10">
-            <Table admin={false} />
+            <Table admin={false} data={[]} />
             {role === "presentador" ? (
               <div className="flex w-fit mx-auto mt-5">
                 <Button type="Principal" name="Click Aqui" rute="" />
