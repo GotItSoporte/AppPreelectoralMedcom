@@ -49,8 +49,8 @@ export const Navbar = ({
     "NGÖBE BUGLÉ": {},
   };
 
-  console.log({openProvincia})
- console.log({openCircuito})
+  console.log({ openProvincia });
+  console.log({ openCircuito });
 
   return (
     <>
@@ -117,7 +117,7 @@ export const Navbar = ({
                                   corporación === "DIPUTADOS"
                                     ? toggleOpenCircuito(el.provincia)
                                     : null;
-                                  console.log({corporación})
+                                  console.log({ corporación });
                                 }}
                               >
                                 <span>{el.provincia}</span>
@@ -139,7 +139,7 @@ export const Navbar = ({
                                 )}
                               </a>
                               {/*ALCALDES*/}
-                              
+
                               {openProvincia[el.provincia] &&
                                 data[corporación]
                                   .filter(
