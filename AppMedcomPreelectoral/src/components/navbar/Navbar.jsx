@@ -140,7 +140,7 @@ export const Navbar = ({
                               </a>
                               {/*ALCALDES*/}
 
-                              {openProvincia[el.provincia] &&
+                              {openProvincia[el.provincia] && corporación==="ALCALDES" &&
                                 data[corporación]
                                   .filter(
                                     (item) => item.provincia === el.provincia
@@ -173,7 +173,7 @@ export const Navbar = ({
                                     }
                                   })}
                               {/*DIPUTADOS*/}
-                              {openCircuito[el.provincia] &&
+                              {openCircuito[el.provincia] && corporación==="DIPUTADOS" &&
                                 data[corporación]
                                   .filter(
                                     (item) => item.provincia === el.provincia
