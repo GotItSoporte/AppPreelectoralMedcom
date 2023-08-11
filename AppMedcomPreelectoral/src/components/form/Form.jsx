@@ -233,6 +233,6 @@ Form.propTypes = {
   setSelectedDistrito: PropTypes.func.isRequired,
   selectedCircuito: PropTypes.string.isRequired,
   setSelectedCircuito: PropTypes.func.isRequired,
-  listCircuito: PropTypes.array.isRequired,
+  listCircuito: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
