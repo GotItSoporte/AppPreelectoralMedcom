@@ -14,6 +14,7 @@ router.post("/", (req, res) => {
   const selectedName = req.body.selectedName;
   const selectedId = req.body.selectedId;
   const selectedPartido = req.body.selectedPartido;
+  const selectedPartidoSec = req.body.selectedPartidoSec;
   const selectedProvincia = req.body.selectedProvincia;
   const selectedDistrito = req.body.selectedDistrito;
   const selectedCircuito = req.body.selectedCircuito;
@@ -65,7 +66,7 @@ router.post("/", (req, res) => {
     );
   } else if (selectedCorporacion === "DIPUTADOS") {
     const query =
-      "INSERT INTO diputados (posición,nombre,id,partido,idpartido,provincia,circuito,curules,corporación) VALUES (?,?,?,?,?,?,?,?,?)";
+      "INSERT INTO diputados (posición,nombre,id,partido,idpartido,partidosec,idpartidosec,provincia,circuito,curules,corporación) VALUES (?,?,?,?,?,?,?,?,?)";
     db.query(
       query,
       [
@@ -73,6 +74,8 @@ router.post("/", (req, res) => {
         selectedName,
         selectedId,
         selectedPartido,
+        1,
+        selectedPartidoSec,
         1,
         selectedProvincia,
         selectedCircuito,
