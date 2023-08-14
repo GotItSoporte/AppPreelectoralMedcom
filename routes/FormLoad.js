@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
 
   if (selectedCorporacion === "PRESIDENTES") {
     const query =
-      "INSERT INTO presidentes (posición,nombre,id,partido,idpartido,provincia,corporación) VALUES (?,?,?,?,?,?,?)";
+      "INSERT INTO presidentes (posicion,nombre,id,partido,idpartido,provincia,corporacion) VALUES (?,?,?,?,?,?,?)";
     db.query(
       query,
       [
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
     );
   } else if (selectedCorporacion === "ALCALDES") {
     const query =
-      "INSERT INTO alcaldes (posición,nombre,id,partido,idpartido,provincia,distrito,corporación) VALUES (?,?,?,?,?,?,?,?)";
+      "INSERT INTO alcaldes (posicion,nombre,id,partido,idpartido,provincia,distrito,corporacion) VALUES (?,?,?,?,?,?,?,?)";
     db.query(
       query,
       [
@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
     );
   } else if (selectedCorporacion === "DIPUTADOS") {
     const query =
-      "INSERT INTO diputados (posición,nombre,id,partido,idpartido,partidosec,idpartidosec,provincia,circuito,corporación) VALUES (?,?,?,?,?,?,?,?,?,?)";
+      "INSERT INTO diputados (posicion,nombre,id,partido,idpartido,partidosec,idpartidosec,provincia,circuito,corporacion) VALUES (?,?,?,?,?,?,?,?,?,?)";
     db.query(
       query,
       [

@@ -13,7 +13,7 @@ router.get("/PRESIDENTES", async function (req, res) {
   try {
     // Ejecutar la consulta y obtener los resultados
     const [rows, fields] = await mysqlRead.query(
-      "SELECT * FROM presidentes ORDER BY provincia, posición ASC"
+      "SELECT * FROM presidentes ORDER BY provincia, posicion ASC"
     );
 
     res.json(rows);
@@ -27,7 +27,7 @@ router.get("/ALCALDES", async function (req, res) {
   try {
     // Ejecutar la consulta y obtener los resultados
     const [rows, fields] = await mysqlRead.query(
-      "SELECT * FROM alcaldes ORDER BY provincia, posición ASC"
+      "SELECT * FROM alcaldes ORDER BY provincia, posicion ASC"
     );
 
     res.json(rows);
@@ -41,7 +41,7 @@ router.get("/DIPUTADOS", async function (req, res) {
   try {
     // Ejecutar la consulta y obtener los resultados
     const [rows, fields] = await mysqlRead.query(
-      "SELECT * FROM diputados ORDER BY provincia, posición ASC"
+      "SELECT * FROM diputados ORDER BY provincia, posicion ASC"
     );
 
     res.json(rows);

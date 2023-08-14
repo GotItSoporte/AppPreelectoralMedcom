@@ -3,15 +3,17 @@ import logoMedcom from "../../assets/logoMedcom.svg";
 import PropTypes from "prop-types";
 
 export const Navbar = ({
-  nameCorporación,
+  nameCorporacion,
   toggleOpen,
   open,
   toggleOpenProvincia,
   openProvincia,
   toggleOpenCircuito,
   openCircuito,
+  openPartido,
+  toggleOpenPartido,
   data,
-  handleSelectInfo,
+  dataSelect,
 }) => {
   const provinciaRepetida = {
     PRESIDENTES: {},
@@ -49,6 +51,45 @@ export const Navbar = ({
     "NGÖBE BUGLÉ": {},
   };
 
+  const PartidoRepetido = {
+    "1-1": {},
+    "2-1": {},
+    "2-2": {},
+    "2-3": {},
+    "2-4": {},
+    "3-1": {},
+    "3-2": {},
+    "4-1": {},
+    "4-2": {},
+    "4-3": {},
+    "4-4": {},
+    "4-5": {},
+    "4-6": {},
+    "5-1": {},
+    "5-2": {},
+    "6-1": {},
+    "6-2": {},
+    "6-3": {},
+    "7-1": {},
+    "7-2": {},
+    "8-1": {},
+    "8-2": {},
+    "8-3": {},
+    "8-4": {},
+    "8-5": {},
+    "8-6": {},
+    "9-1": {},
+    "9-2": {},
+    "9-3": {},
+    "9-4": {},
+    "12-1": {},
+    "12-2": {},
+    "12-3": {},
+    "13-1": {},
+    "13-2": {},
+    "13-3": {},
+    "13-4": {},
+  };
 
   return (
     <>
@@ -67,15 +108,15 @@ export const Navbar = ({
               INFORMACION PRE-ELECTORAL
             </h3>
             <ul className="mb-8 text-sm font-medium">
-              {nameCorporación.map((corporación, idx) => {
+              {nameCorporacion.map((corporacion, idx) => {
                 return (
                   <li key={idx}>
                     <a
                       className="flex items-center pl-3 py-3 pr-4 text-gray-50 bg-gray-900 hover:bg-blue-500 rounded"
                       href="#"
-                      onClick={() => toggleOpen(corporación)}
+                      onClick={() => toggleOpen(corporacion)}
                     >
-                      <span>{corporación}</span>
+                      <span>{corporacion}</span>
                       <span className="inline-block ml-auto">
                         <svg
                           className="text-gray-400 w-3 h-3"
@@ -89,36 +130,38 @@ export const Navbar = ({
                         </svg>
                       </span>
                     </a>
-                    {open[corporación] &&
-                      data[corporación]?.map((el, idx) => {
-                        if (!provinciaRepetida[corporación][el.provincia]) {
-                          provinciaRepetida[corporación][el.provincia] = true;
+                    {open[corporacion] &&
+                      data[corporacion]?.map((el, idx) => {
+                        if (!provinciaRepetida[corporacion][el.provincia]) {
+                          provinciaRepetida[corporacion][el.provincia] = true;
                           return (
                             <div key={idx}>
                               <a
                                 className={`flex items-center pl-3 py-3 pr-4 text-gray-50 ${
-                                  corporación === "PRESIDENTES"
-                                    ? "bg-gray-700"
+                                  corporacion === "PRESIDENTES"
+                                    ? "bg-gray-600"
                                     : "bg-gray-800"
                                 }  hover:bg-blue-500 `}
                                 href="#"
                                 onClick={() => {
-                                  corporación === "PRESIDENTES"
-                                    ? handleSelectInfo(
-                                        corporación,
-                                        el.provincia
+                                  corporacion === "PRESIDENTES"
+                                    ? dataSelect(
+                                        data[corporacion].filter(
+                                          (item) =>
+                                            item.corporacion === "PRESIDENTES"
+                                        )
                                       )
                                     : null;
-                                  corporación === "ALCALDES"
+                                  corporacion === "ALCALDES"
                                     ? toggleOpenProvincia(el.provincia)
                                     : null;
-                                  corporación === "DIPUTADOS"
+                                  corporacion === "DIPUTADOS"
                                     ? toggleOpenCircuito(el.provincia)
                                     : null;
                                 }}
                               >
                                 <span>{el.provincia}</span>
-                                {corporación !== "PRESIDENTES" ? (
+                                {corporacion !== "PRESIDENTES" ? (
                                   <span className="inline-block ml-auto">
                                     <svg
                                       className="text-gray-400 w-3 h-3"
@@ -138,10 +181,13 @@ export const Navbar = ({
                               {/*ALCALDES*/}
 
                               {openProvincia[el.provincia] &&
-                                corporación === "ALCALDES" &&
-                                data[corporación]
+                                corporacion === "ALCALDES" &&
+                                data[corporacion]
                                   .filter(
                                     (item) => item.provincia === el.provincia
+                                  )
+                                  .sort((a, b) =>
+                                    a.distrito.localeCompare(b.distrito)
                                   )
                                   ?.map((el2, idx2) => {
                                     if (
@@ -155,14 +201,19 @@ export const Navbar = ({
                                       return (
                                         <div key={idx2}>
                                           <a
-                                            className="flex items-center pl-3 py-3 pr-4 text-gray-50 bg-gray-700 hover:bg-blue-500 "
+                                            className="flex items-center pl-3 py-3 pr-4 text-gray-50 bg-gray-600 hover:bg-blue-500 "
                                             href="#"
-                                            onClick={() =>
-                                              handleSelectInfo(
-                                                corporación,
-                                                el2.distrito
-                                              )
-                                            }
+                                            onClick={() => {
+                                              dataSelect(
+                                                data[corporacion].filter(
+                                                  (item) =>
+                                                    item.provincia ===
+                                                      el.provincia &&
+                                                    item.distrito ===
+                                                      el2.distrito
+                                                )
+                                              );
+                                            }}
                                           >
                                             <span>{el2.distrito}</span>
                                           </a>
@@ -172,10 +223,13 @@ export const Navbar = ({
                                   })}
                               {/*DIPUTADOS*/}
                               {openCircuito[el.provincia] &&
-                                corporación === "DIPUTADOS" &&
-                                data[corporación]
+                                corporacion === "DIPUTADOS" &&
+                                data[corporacion]
                                   .filter(
                                     (item) => item.provincia === el.provincia
+                                  )
+                                  .sort((a, b) =>
+                                    a.circuito.localeCompare(b.circuito)
                                   )
                                   ?.map((el3, idx3) => {
                                     if (
@@ -186,26 +240,77 @@ export const Navbar = ({
                                       CircuitoRepetido[el.provincia][
                                         el3.circuito
                                       ] = true;
-                                      console.log(
-                                        data[corporación].filter(
-                                          (item) =>
-                                            item.provincia === el.provincia
-                                        )
-                                      );
                                       return (
                                         <div key={idx3}>
                                           <a
                                             className="flex items-center pl-3 py-3 pr-4 text-gray-50 bg-gray-700 hover:bg-blue-500 "
                                             href="#"
-                                            onClick={() =>
-                                              handleSelectInfo(
-                                                corporación,
-                                                el3.circuito
-                                              )
-                                            }
+                                            onClick={() => {
+                                              toggleOpenPartido(el3.circuito);
+                                            }}
                                           >
                                             <span>CIRCUITO {el3.circuito}</span>
+                                            <span className="inline-block ml-auto">
+                                              <svg
+                                                className="text-gray-400 w-3 h-3"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                              >
+                                                <path
+                                                  d="M9.08329 0.666626C8.74996 0.333293 8.24996 0.333293 7.91663 0.666626L4.99996 3.58329L2.08329 0.666626C1.74996 0.333293 1.24996 0.333293 0.916626 0.666626C0.583293 0.999959 0.583293 1.49996 0.916626 1.83329L4.41663 5.33329C4.58329 5.49996 4.74996 5.58329 4.99996 5.58329C5.24996 5.58329 5.41663 5.49996 5.58329 5.33329L9.08329 1.83329C9.41663 1.49996 9.41663 0.999959 9.08329 0.666626Z"
+                                                  fill="currentColor"
+                                                ></path>
+                                              </svg>
+                                            </span>
                                           </a>
+                                          {/*PARTIDOS CIRCUITOS*/}
+                                          {openPartido[el3.circuito] &&
+                                            data[corporacion]
+                                              .filter(
+                                                (item) =>
+                                                  item.circuito === el3.circuito
+                                              )
+                                              .sort((a, b) =>
+                                                a.partido.localeCompare(
+                                                  b.partido
+                                                )
+                                              )
+                                              .map((el4, idx4) => {
+                                                if (
+                                                  !PartidoRepetido[
+                                                    el3.circuito
+                                                  ][el4.partido]
+                                                ) {
+                                                  PartidoRepetido[el3.circuito][
+                                                    el4.partido
+                                                  ] = true;
+                                                  return (
+                                                    <div key={idx4}>
+                                                      <a
+                                                        className="flex items-center pl-3 py-3 pr-4 text-gray-50 bg-gray-600 hover:bg-blue-500 "
+                                                        href="#"
+                                                        onClick={() => {
+                                                          dataSelect(
+                                                            data[
+                                                              corporacion
+                                                            ].filter(
+                                                              (item) =>
+                                                                item.circuito ===
+                                                                  el3.circuito &&
+                                                                item.partido ===
+                                                                  el4.partido
+                                                            )
+                                                          );
+                                                        }}
+                                                      >
+                                                        <span>
+                                                          {el4.partido}
+                                                        </span>
+                                                      </a>
+                                                    </div>
+                                                  );
+                                                }
+                                              })}
                                         </div>
                                       );
                                     }
@@ -228,13 +333,15 @@ export const Navbar = ({
 };
 
 Navbar.propTypes = {
-  nameCorporación: PropTypes.array.isRequired,
+  nameCorporacion: PropTypes.array.isRequired,
   toggleOpen: PropTypes.func.isRequired,
   open: PropTypes.object.isRequired,
   toggleOpenProvincia: PropTypes.func.isRequired,
   openProvincia: PropTypes.object.isRequired,
   toggleOpenCircuito: PropTypes.func.isRequired,
   openCircuito: PropTypes.object.isRequired,
+  toggleOpenPartido: PropTypes.func.isRequired,
+  openPartido: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  handleSelectInfo: PropTypes.func.isRequired,
+  dataSelect: PropTypes.func.isRequired,
 };

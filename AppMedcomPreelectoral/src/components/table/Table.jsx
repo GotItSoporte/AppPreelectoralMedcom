@@ -21,6 +21,18 @@ export const Table = ({ admin, data }) => {
                 <th scope="col" className="px-6 py-3">
                   Provincia
                 </th>
+                {data ? (
+                  data[0].corporacion === "ALCALDES" ? (
+                    <th scope="col" className="px-6 py-3">
+                      Distrito
+                    </th>
+                  ) : data[0].corporacion === "DIPUTADOS" ? (
+                    <th scope="col" className="px-6 py-3">
+                      Circuito
+                    </th>
+                  ) : null
+                ) : null}
+
                 <th scope="col" className="px-6 py-3">
                   Corporación
                 </th>
@@ -47,12 +59,17 @@ export const Table = ({ admin, data }) => {
                     className="bg-gray-700 border-b border-gray-700 hover:bg-gray-600 font-medium  whitespace-nowrap hover:text-white "
                   >
                     <th scope="row" className="px-6 py-4 ">
-                      {data.posición}
+                      {data.posicion}
                     </th>
                     <td className="px-6 py-4">{data.nombre}</td>
                     <td className="px-6 py-4">{data.partido}</td>
                     <td className="px-6 py-4">{data.provincia}</td>
-                    <td className="px-6 py-4">{data.corporación}</td>
+                    {data.corporacion === "ALCALDES" ? (
+                      <td className="px-6 py-4">{data.distrito}</td>
+                    ) : data.corporacion === "DIPUTADOS" ? (
+                      <td className="px-6 py-4">{data.circuito}</td>
+                    ) : null}
+                    <td className="px-6 py-4">{data.corporacion}</td>
                     {admin ? (
                       <td className="px-6 py-4 text-right">
                         <a

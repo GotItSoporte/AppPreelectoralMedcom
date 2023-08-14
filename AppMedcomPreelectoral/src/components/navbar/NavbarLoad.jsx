@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Navbar } from "./navbar";
 import fetchApiData from "../../apis/ReadDataSql";
 
-export const NavbarLoad = () => {
-  const [nameCorporación] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
+export const NavbarLoad = ({ dataSelect }) => {
+  const [nameCorporacion] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
   const [open, setOpen] = useState({});
   const [openProvincia, setOpenProvincia] = useState({});
   const [openCircuito, setOpenCircuito] = useState({});
+  const [openPartido, setOpenPartido] = useState({});
   const [data, setData] = useState({});
-  const [infoSelect, setInfoSelect] = useState({});
-
-  
 
   const toggleOpen = (el) => {
     setOpen({
@@ -27,29 +26,26 @@ export const NavbarLoad = () => {
   };
 
   const toggleOpenCircuito = (el) => {
-    setOpenCircuito ({
+    setOpenCircuito({
       ...openCircuito,
       [el]: !openCircuito[el],
     });
   };
 
-  const handleSelectInfo = (partido, provincia) => {
-    setInfoSelect({
-      [partido]: {
-        [provincia]: true,
-      },
+  const toggleOpenPartido = (el) => {
+    setOpenPartido({
+      ...openPartido,
+      [el]: !openPartido[el],
     });
   };
-
-  console.log({infoSelect})
 
   useEffect(() => {
     const fetchMultipleData = async () => {
       const newData = {};
-      for (const corporación in open) {
-        if (open[corporación]) {
-          const apiData = await fetchApiData(corporación);
-          newData[corporación] = apiData;
+      for (const corporacion in open) {
+        if (open[corporacion]) {
+          const apiData = await fetchApiData(corporacion);
+          newData[corporacion] = apiData;
         }
       }
       setData(newData);
@@ -57,19 +53,23 @@ export const NavbarLoad = () => {
     fetchMultipleData();
   }, [open]);
 
-
-
   return (
     <Navbar
-      nameCorporación={nameCorporación}
+      nameCorporacion={nameCorporacion}
       toggleOpen={toggleOpen}
       openProvincia={openProvincia}
       toggleOpenProvincia={toggleOpenProvincia}
       openCircuito={openCircuito}
       toggleOpenCircuito={toggleOpenCircuito}
+      openPartido={openPartido}
+      toggleOpenPartido={toggleOpenPartido}
       open={open}
       data={data}
-      handleSelectInfo={handleSelectInfo}
+      dataSelect={dataSelect}
     />
   );
+};
+
+NavbarLoad.propTypes = {
+  dataSelect: PropTypes.func.isRequired,
 };
