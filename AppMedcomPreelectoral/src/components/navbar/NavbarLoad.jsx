@@ -57,7 +57,7 @@ export const NavbarLoad = () => {
     fetchMultipleData();
   }, [open]);
 
-  console.log({data})
+
 
   return (
     <Navbar

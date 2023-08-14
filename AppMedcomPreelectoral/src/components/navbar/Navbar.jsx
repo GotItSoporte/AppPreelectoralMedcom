@@ -49,8 +49,6 @@ export const Navbar = ({
     "NGÖBE BUGLÉ": {},
   };
 
-  console.log({ openProvincia });
-  console.log({ openCircuito });
 
   return (
     <>
@@ -117,7 +115,6 @@ export const Navbar = ({
                                   corporación === "DIPUTADOS"
                                     ? toggleOpenCircuito(el.provincia)
                                     : null;
-                                  console.log({ corporación });
                                 }}
                               >
                                 <span>{el.provincia}</span>
@@ -140,7 +137,8 @@ export const Navbar = ({
                               </a>
                               {/*ALCALDES*/}
 
-                              {openProvincia[el.provincia] && corporación==="ALCALDES" &&
+                              {openProvincia[el.provincia] &&
+                                corporación === "ALCALDES" &&
                                 data[corporación]
                                   .filter(
                                     (item) => item.provincia === el.provincia
@@ -173,7 +171,8 @@ export const Navbar = ({
                                     }
                                   })}
                               {/*DIPUTADOS*/}
-                              {openCircuito[el.provincia] && corporación==="DIPUTADOS" &&
+                              {openCircuito[el.provincia] &&
+                                corporación === "DIPUTADOS" &&
                                 data[corporación]
                                   .filter(
                                     (item) => item.provincia === el.provincia
@@ -187,6 +186,12 @@ export const Navbar = ({
                                       CircuitoRepetido[el.provincia][
                                         el3.circuito
                                       ] = true;
+                                      console.log(
+                                        data[corporación].filter(
+                                          (item) =>
+                                            item.provincia === el.provincia
+                                        )
+                                      );
                                       return (
                                         <div key={idx3}>
                                           <a
@@ -199,7 +204,7 @@ export const Navbar = ({
                                               )
                                             }
                                           >
-                                            <span>{el3.circuito}</span>
+                                            <span>CIRCUITO {el3.circuito}</span>
                                           </a>
                                         </div>
                                       );
