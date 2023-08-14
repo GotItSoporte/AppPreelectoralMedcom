@@ -30,7 +30,7 @@ export const Register = ({
               setSelectedOption={setSelectedOption}
               setList={listCorporacion}
             />
-          <div className="hidden">
+          <div >
           <Dropdown
               selectedOption={selectedProvincia}
               setSelectedOption={setSelectedProvincia}

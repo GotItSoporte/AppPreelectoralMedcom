@@ -24,15 +24,14 @@ export const RegisterLoad = () => {
     fetchData();
   }, [selectedOption]);
 
+
   useEffect(() => {
     if (selectedDistrito !== "Distrito...") {
       setDataSend(data.filter((item) => item.distrito === selectedDistrito));
     }
-    if (selectedProvincia !== "Provincia...") {
-      setDataSend(data.filter((item) => item.provincia === selectedProvincia));
-    }
 
-  }, [selectedProvincia, selectedDistrito]);
+
+  }, [selectedProvincia]);
 
   return (
     <Register
