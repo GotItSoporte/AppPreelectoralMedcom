@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "./Form";
 import PropTypes from "prop-types";
 import { SendInfo } from "../../apis/SendFileForm";
@@ -11,10 +11,12 @@ export const FormLoad = ({ setMostrar }) => {
   const [selectedCorporacion, setSelectedCorporacion] =
     useState("Corporacion...");
   const [selectedPartido, setSelectedPartido] = useState("Partido...");
+  const [selectedPartidoSec, setSelectedPartidoSec] = useState(
+    "Partido Secundario..."
+  );
   const [selectedProvincia, setSelectedProvincia] = useState("Provincia...");
   const [selectedDistrito, setSelectedDistrito] = useState("Distrito...");
   const [selectedCircuito, setSelectedCircuito] = useState("Circuito...");
-  const [selectedCurules, setSelectedCurules] = useState("Curules...");
 
   //Listas
   const [listPosicion] = useState([
@@ -27,24 +29,138 @@ export const FormLoad = ({ setMostrar }) => {
     "7",
     "8",
     "9",
+    "10",
+    "11",
+    "12",
   ]);
   const [listCorporacion] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
-  const [listPartido] = useState(["RM", "PRD", "CD", "PAM"]);
-  const [listProvincia] = useState(["NACIONAL", "BOCAS DEL TORO", "COCLÉ"]);
-  const [listDistrito] = useState(["PENONOMÉ", "COLÓN", "DAVID"]);
-  const [listCircuito] = useState(["4-1", "4-2", "4-3"]);
-  const [listCurules] = useState([
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
+  const [listPartido] = useState([
+    "CD",
+    "LIBRE POST.",
+    "MOL",
+    "MOCA",
+    "PA",
+    "PAIS",
+    "PAN",
+    "PP",
+    "PRD",
+    "RM",
   ]);
+  const [listProvincia] = useState([
+    "NACIONAL",
+    "BOCAS DEL TORO",
+    "COCLÉ",
+    "COLÓN",
+    "CHIRIQUÍ",
+    "DARIÉN",
+    "EMBERÁ WOUNAAN",
+    "HERRERA",
+    "LOS SANTOS",
+    "PANAMÁ",
+    "PANAMÁ OESTE",
+    "VERAGUAS",
+    "NGÖBE BUGLÉ",
+  ]);
+  const [listDistrito] = useState({
+    "BOCAS DEL TORO": [
+      "BOCAS DEL TORO",
+      "CHANGUINOLA",
+      "CHIRIQUÍ GRANDE",
+      "ALMIRANTE",
+    ],
+    COCLÉ: ["PENONOMÉ", "ANTÓN", "LA PINTADA", "NATÁ", "OLÁ", "AGUADULCE"],
+    COLÓN: [
+      "COLÓN",
+      "CHAGRES",
+      "DONOSO",
+      "OMAR TORRIJOS HERRERA",
+      "PORTOBELO",
+      "SANTA ISABEL",
+    ],
+    CHIRIQUÍ: [
+      "DAVID",
+      "BARÚ",
+      "BUGABA",
+      "TIERRAS ALTAS",
+      "ALANJE",
+      "BOQUERÓN",
+      "RENACIMIENTO",
+      "BOQUETE",
+      "DOLEGA",
+      "GUALACA",
+      "SAN FELIX",
+      "SAN LORENZO",
+      "REMEDIOS",
+      "TOLÉ",
+    ],
+    DARIÉN: ["CHEPIGANA", "SANTA FE DE DARIEN", "PINOGANA"],
+    "EMBERÁ WOUNAAN": ["SAMBÚ", "CÉMACO"],
+    HERRERA: [
+      "CHITRÉ",
+      "LOS POZOS",
+      "PARITA",
+      "PESÉ",
+      "LAS MINAS",
+      "OCÚ",
+      "SANTA MARÍA",
+    ],
+    "LOS SANTOS": [
+      "GUARARÉ",
+      "LAS TABLAS",
+      "PEDASÍ",
+      "POCRÍ",
+      "LOS SANTOS",
+      "MACARACAS",
+      "TONOSÍ",
+    ],
+    PANAMÁ: ["BALBOA", "CHEPO", "CHIMÁN", "TABOGA", "SAN MIGUELITO", "PANAMÁ"],
+    "PANAMÁ OESTE": [
+      "ARRAIJÁN",
+      "CAPIRA",
+      "CHAME",
+      "LA CHORRERA",
+      "SAN CARLOS",
+    ],
+    VERAGUAS: [
+      "ATALAYA",
+      "CALOBRE",
+      "CAÑAZAS",
+      "LA MESA",
+      "LAS PALMAS",
+      "MARIATO",
+      "MONTIJO",
+      "RÍO DE JESÚS",
+      "SAN FRANCISCO",
+      "SANTA FE",
+      "SANTIAGO",
+      "SONÁ",
+    ],
+    "NGÖBE BUGLÉ": [
+      "BESIKÓ",
+      "JIRONDAI",
+      "KANKINTÚ",
+      "KUSAPÍN",
+      "MIRONÓ",
+      "MÜNA",
+      "NOLE DUIMA",
+      "ÑÜRÜM",
+      "CALOVÉBORA",
+    ],
+  });
+  const [listCircuito] = useState({
+    "BOCAS DEL TORO": ["1-1"],
+    COCLÉ: ["2-1", "2-2", "2-3", "2-4"],
+    COLÓN: ["3-1", "3-2"],
+    CHIRIQUÍ: ["4-1", "4-2", "4-3", "4-4", "4-5", "4-6"],
+    DARIÉN: ["5-1", "5-2"],
+    //"EMBERÁ WOUNAAN": ["6-1,6-2,6-3"],
+    HERRERA: ["6-1","6-2", "6-3"],
+    "LOS SANTOS": ["7-1", "7-2"],
+    PANAMÁ: ["8-1", "8-2", "8-3", "8-4", "8-5", "8-6"],
+    VERAGUAS: ["9-1", "9-2", "9-3", "9-4"],
+    "NGÖBE BUGLÉ": ["12-1", "12-2", "12-3"],
+    "PANAMÁ OESTE": ["13-1", "13-2", "13-3", "13-4"],
+  });
 
   const handleSubmit = async () => {
     //e.preventDefault(); // Evita que la página se recargue
@@ -65,12 +181,18 @@ export const FormLoad = ({ setMostrar }) => {
       selectedProvincia: selectedProvincia,
       selectedDistrito: selectedDistrito,
       selectedCircuito: selectedCircuito,
-      selectedCurules: parseInt(selectedCurules),
+      selectedPartidoSec: selectedPartidoSec,
       selectedCorporacion: selectedCorporacion,
     };
 
     await SendInfo(data);
   };
+
+  useEffect(() => {
+    setSelectedProvincia("Provincia...");
+    setSelectedDistrito("Distrito...");
+    setSelectedCircuito("Circuito...");
+  }, [selectedCorporacion]);
 
   return (
     <Form
@@ -86,6 +208,9 @@ export const FormLoad = ({ setMostrar }) => {
       listCorporacion={listCorporacion}
       selectedPartido={selectedPartido}
       setSelectedPartido={setSelectedPartido}
+      selectedPartidoSec={selectedPartidoSec}
+      setSelectedPartidoSec={setSelectedPartidoSec}
+      listPartido={listPartido}
       selectedProvincia={selectedProvincia}
       setSelectedProvincia={setSelectedProvincia}
       listProvincia={listProvincia}
@@ -95,10 +220,6 @@ export const FormLoad = ({ setMostrar }) => {
       selectedCircuito={selectedCircuito}
       setSelectedCircuito={setSelectedCircuito}
       listCircuito={listCircuito}
-      listPartido={listPartido}
-      selectedCurules={selectedCurules}
-      setSelectedCurules={setSelectedCurules}
-      listCurules={listCurules}
       setMostrarFormulario={setMostrar}
       handleSubmit={handleSubmit}
     />

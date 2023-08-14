@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 
 
 app.use('/SendInfoForm', require('./routes/FormLoad'))
+app.use('/ReadDataSql', require('./routes/ReadSql'))
 
 
 app.listen(port, () => {

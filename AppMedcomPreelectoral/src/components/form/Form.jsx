@@ -18,6 +18,8 @@ export const Form = ({
   listCorporacion,
   selectedPartido,
   setSelectedPartido,
+  selectedPartidoSec,
+  setSelectedPartidoSec,
   listPartido,
   selectedProvincia,
   setSelectedProvincia,
@@ -28,11 +30,9 @@ export const Form = ({
   selectedCircuito,
   setSelectedCircuito,
   listCircuito,
-  selectedCurules,
-  setSelectedCurules,
-  listCurules,
   handleSubmit,
 }) => {
+  console.log([listProvincia[0]]);
   return (
     <div
       className="p-10 w-full sm:w-3/4 lg:w-2/3  bg-gray-900 border-4 border-red-500 rounded-xl mx-auto overflow-auto h-2/3 sm:h-fit"
@@ -49,7 +49,63 @@ export const Form = ({
         REGISTRAR CANDIDATO
       </h1>
       <form onSubmit={handleSubmit} className="lg:mx-36">
-        <div className="grid lg:grid-cols-3 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 md:gap-6 my-5 mx-auto w-fit gap-4 text-center  ">
+          <Dropdown
+            selectedOption={selectedCorporacion}
+            setSelectedOption={setSelectedCorporacion}
+            setList={listCorporacion}
+          />
+          {selectedCorporacion !== "Corporacion..." ? (
+            <>
+              <Dropdown
+                selectedOption={selectedPartido}
+                setSelectedOption={setSelectedPartido}
+                setList={listPartido}
+              />
+              <Dropdown
+                selectedOption={selectedProvincia}
+                setSelectedOption={setSelectedProvincia}
+                setList={
+                  selectedCorporacion !== "PRESIDENTES"
+                    ? listProvincia.slice(1)
+                    : [listProvincia[0]]
+                }
+              />
+            </>
+          ) : (
+            <></>
+          )}
+          {selectedCorporacion === "ALCALDES" ? (
+            <Dropdown
+              selectedOption={selectedDistrito}
+              setSelectedOption={setSelectedDistrito}
+              setList={
+                listDistrito[selectedProvincia]
+                  ? listDistrito[selectedProvincia]
+                  : []
+              }
+            />
+          ) : (
+            <></>
+          )}
+          {selectedCorporacion === "DIPUTADOS" ? (
+            <Dropdown
+              selectedOption={selectedCircuito}
+              setSelectedOption={setSelectedCircuito}
+              setList={
+                listCircuito[selectedProvincia]
+                  ? listCircuito[selectedProvincia]
+                  : []
+              }
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+        <h1 className="text-3xl font-bold tracking-tight text-white text-center my-10 lg:mx-0">
+          DATOS DEL CANDIDATO
+        </h1>
+        <div className="grid lg:grid-cols-3 md:gap-6 items-center">
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
@@ -92,58 +148,18 @@ export const Form = ({
               setSelectedOption={setSelectedPosicion}
               setList={listPosicion}
             />
-            <Dropdown
-              selectedOption={selectedPartido}
-              setSelectedOption={setSelectedPartido}
-              setList={listPartido}
-            />
+            {selectedCorporacion === "DIPUTADOS" ? (
+              <Dropdown
+                selectedOption={selectedPartidoSec}
+                setSelectedOption={setSelectedPartidoSec}
+                setList={listPartido}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
 
-        <h1 className="text-3xl font-bold tracking-tight text-white text-center mt-10 lg:mx-0">
-          DATOS COMPLEMENTARIOS
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 md:gap-6 mt-5 mx-auto w-fit gap-4 text-center  ">
-          <Dropdown
-            selectedOption={selectedCorporacion}
-            setSelectedOption={setSelectedCorporacion}
-            setList={listCorporacion}
-          />
-          {selectedCorporacion !== "Corporacion..." ? (
-            <Dropdown
-              selectedOption={selectedProvincia}
-              setSelectedOption={setSelectedProvincia}
-              setList={listProvincia}
-            />
-          ) : (
-            <></>
-          )}
-          {selectedCorporacion === "ALCALDES" ? (
-            <Dropdown
-              selectedOption={selectedDistrito}
-              setSelectedOption={setSelectedDistrito}
-              setList={listDistrito}
-            />
-          ) : (
-            <></>
-          )}
-          {selectedCorporacion === "DIPUTADOS" ? (
-            <>
-              <Dropdown
-                selectedOption={selectedCircuito}
-                setSelectedOption={setSelectedCircuito}
-                setList={listCircuito}
-              />
-              <Dropdown
-                selectedOption={selectedCurules}
-                setSelectedOption={setSelectedCurules}
-                setList={listCurules}
-              />
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
         <div className="flex justify-center mt-10 cursor-pointer">
           <button
             className={`flex ${
@@ -163,7 +179,7 @@ export const Form = ({
               (selectedCorporacion === "DIPUTADOS" &&
                 selectedCircuito === "Circuito...") ||
               (selectedCorporacion === "DIPUTADOS" &&
-                selectedCurules === "Curules...")
+                selectedPartidoSec === "Partido Secundario...")
                 ? "opacity-30"
                 : ""
             } `}
@@ -180,7 +196,7 @@ export const Form = ({
                 : "" || selectedCorporacion === "DIPUTADOS"
                 ? selectedProvincia === "Provincia..." ||
                   selectedCircuito === "Circuito..." ||
-                  selectedCurules === "Curules..."
+                  selectedPartidoSec === "Partido Secundario..."
                 : ""
             }
           >
@@ -206,18 +222,17 @@ Form.propTypes = {
   listCorporacion: PropTypes.array.isRequired,
   selectedPartido: PropTypes.string.isRequired,
   setSelectedPartido: PropTypes.func.isRequired,
+  selectedPartidoSec: PropTypes.string.isRequired,
+  setSelectedPartidoSec: PropTypes.func.isRequired,
   listPartido: PropTypes.array.isRequired,
   selectedProvincia: PropTypes.string.isRequired,
   setSelectedProvincia: PropTypes.func.isRequired,
   listProvincia: PropTypes.array.isRequired,
   selectedDistrito: PropTypes.string.isRequired,
-  listDistrito: PropTypes.array.isRequired,
+  listDistrito: PropTypes.object.isRequired,
   setSelectedDistrito: PropTypes.func.isRequired,
   selectedCircuito: PropTypes.string.isRequired,
   setSelectedCircuito: PropTypes.func.isRequired,
-  listCircuito: PropTypes.array.isRequired,
-  selectedCurules: PropTypes.string.isRequired,
-  setSelectedCurules: PropTypes.func.isRequired,
-  listCurules: PropTypes.array.isRequired,
+  listCircuito: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };

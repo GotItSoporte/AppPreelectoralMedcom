@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -14,15 +14,15 @@ router.post("/", (req, res) => {
   const selectedName = req.body.selectedName;
   const selectedId = req.body.selectedId;
   const selectedPartido = req.body.selectedPartido;
+  const selectedPartidoSec = req.body.selectedPartidoSec;
   const selectedProvincia = req.body.selectedProvincia;
   const selectedDistrito = req.body.selectedDistrito;
   const selectedCircuito = req.body.selectedCircuito;
-  const selectedCurules = req.body.selectedCurules;
   const selectedCorporacion = req.body.selectedCorporacion;
 
   if (selectedCorporacion === "PRESIDENTES") {
     const query =
-      "INSERT INTO presidentes (posición,nombre,id,partido,idpartido,provincia,corporación) VALUES (?,?,?,?,?,?,?)";
+      "INSERT INTO presidentes (posicion,nombre,id,partido,idpartido,provincia,corporacion) VALUES (?,?,?,?,?,?,?)";
     db.query(
       query,
       [
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
     );
   } else if (selectedCorporacion === "ALCALDES") {
     const query =
-      "INSERT INTO alcaldes (posición,nombre,id,partido,idpartido,provincia,distrito,corporación) VALUES (?,?,?,?,?,?,?,?)";
+      "INSERT INTO alcaldes (posicion,nombre,id,partido,idpartido,provincia,distrito,corporacion) VALUES (?,?,?,?,?,?,?,?)";
     db.query(
       query,
       [
@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
     );
   } else if (selectedCorporacion === "DIPUTADOS") {
     const query =
-      "INSERT INTO diputados (posición,nombre,id,partido,idpartido,provincia,circuito,curules,corporación) VALUES (?,?,?,?,?,?,?,?,?)";
+      "INSERT INTO diputados (posicion,nombre,id,partido,idpartido,partidosec,idpartidosec,provincia,circuito,corporacion) VALUES (?,?,?,?,?,?,?,?,?,?)";
     db.query(
       query,
       [
@@ -74,9 +74,10 @@ router.post("/", (req, res) => {
         selectedId,
         selectedPartido,
         1,
+        selectedPartidoSec,
+        1,
         selectedProvincia,
         selectedCircuito,
-        selectedCurules,
         selectedCorporacion,
       ],
       (err, result) => {
