@@ -8,21 +8,19 @@ app.use(cors());
 app.use(express.json());
 
 app.use(
-    express.urlencoded({
-      extended: true,
-    })
-  );
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-
-app.use('/SendInfoForm', require('./routes/FormLoad'))
-app.use('/ReadDataSql', require('./routes/ReadSql'))
-
+app.use("/SendInfoForm", require("./routes/FormLoad"));
+app.use("/ReadDataSql", require("./routes/ReadSql"));
+app.use("/Createxml", require("./routes/Createxml"));
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
-
+  console.log(`Example app listening on port ${port}`);
+});

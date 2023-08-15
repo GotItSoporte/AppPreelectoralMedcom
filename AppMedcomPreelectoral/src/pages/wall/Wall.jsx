@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Navbar, Table, Button } from "../../components";
+import { Navbar, Table, Createxml } from "../../components";
 
 export const Wall = () => {
   const { role } = useParams();
@@ -8,7 +8,7 @@ export const Wall = () => {
   return (
     <div>
       <div className="w-fit float-left">
-        <Navbar dataSelect={SetdataSelect} />
+        <Navbar dataSelect={SetdataSelect}  />
       </div>
 
       <div className="h-screen flex flex-col justify-center">
@@ -17,9 +17,9 @@ export const Wall = () => {
             {dataSelect.length > 0 ? (
               <>
                 <Table admin={false} data={dataSelect} />
-                {role === "presentador" ? (
-                  <div className="flex w-fit mx-auto mt-5">
-                    <Button type="Principal" name="Click Aqui" rute="" />
+                {role === "fullscreen" ? (
+                  <div className="flex w-fit mx-auto mt-5 text-red">
+                    <Createxml data={dataSelect} />
                   </div>
                 ) : (
                   <></>
