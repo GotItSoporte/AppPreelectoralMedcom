@@ -30,33 +30,35 @@ export const Register = ({
               setSelectedOption={setSelectedOption}
               setList={listCorporacion}
             />
-          <div >
+        {selectedOption !=="PRESIDENTES" &&
           <Dropdown
               selectedOption={selectedProvincia}
               setSelectedOption={setSelectedProvincia}
-              setList={[...new Set(data.map((item) => item.provincia))]}
+              setList={['Todas las provincias',...new Set(data.map((item) => item.provincia))]} // const provincias = ['Todas', ...new Set(data.map((item) => item.provincia))];
+
             />
-          </div>
+        }
 
 
             {selectedOption === "ALCALDES" ? (
               <Dropdown
                 selectedOption={selectedDistrito}
                 setSelectedOption={setSelectedDistrito}
-                setList={[...new Set(data.map((item) => item.distrito))]}
+                setList={['Todos los distritos',...new Set(data.filter((item)=>item.provincia === selectedProvincia).map((item) => item.distrito))]}
               />
             ) : selectedOption === "DIPUTADOS" ? (
               <Dropdown
                 selectedOption={selectedCircuito}
                 setSelectedOption={setSelectedCircuito}
-                setList={[...new Set(data.map((item) => item.circuito))]}
+                setList={['Todos los circuitos',...new Set(data.filter((item)=>item.provincia === selectedProvincia).map((item) => item.circuito))]}
               />
             ) : null}
 
             <Dropdown
               selectedOption={selectedPartido}
               setSelectedOption={setSelectedPartido}
-              setList={[...new Set(data.map((item) => item.partido))]}
+              
+              setList={selectedOption!=="PRESIDENTES"?['Todos los partidos',...new Set(data.filter((item)=>item.distrito?item.distrito === selectedDistrito:item.circuito?item.circuito===selectedCircuito:null).map((item) => item.partido))]:['Todos los partidos',...new Set(data.map((item) => item.partido))]}
             />
           </div>
           <div className="flex" onClick={() => setMostrarFormulario(true)}>

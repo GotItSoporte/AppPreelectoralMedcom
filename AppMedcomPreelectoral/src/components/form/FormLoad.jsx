@@ -192,7 +192,16 @@ export const FormLoad = ({ setMostrar }) => {
     setSelectedProvincia("Provincia...");
     setSelectedDistrito("Distrito...");
     setSelectedCircuito("Circuito...");
+
+    if(selectedCorporacion==="PRESIDENTES"){
+        setSelectedProvincia("NACIONAL")
+    }
   }, [selectedCorporacion]);
+
+  useEffect(() => {
+    setSelectedCircuito("Circuito...");
+    setSelectedDistrito("Distrito...")
+  }, [selectedProvincia]);
 
   return (
     <Form
