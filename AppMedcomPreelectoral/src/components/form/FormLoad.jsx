@@ -14,6 +14,7 @@ export const FormLoad = ({ setMostrar }) => {
   const [selectedPartidoSec, setSelectedPartidoSec] = useState(
     "Partido Secundario..."
   );
+
   const [selectedProvincia, setSelectedProvincia] = useState("Provincia...");
   const [selectedDistrito, setSelectedDistrito] = useState("Distrito...");
   const [selectedCircuito, setSelectedCircuito] = useState("Circuito...");
@@ -46,6 +47,19 @@ export const FormLoad = ({ setMostrar }) => {
     "PRD",
     "RM",
   ]);
+  const partidoIdMap = {
+    CD: 1,
+    "LIBRE POST.": 2,
+    MOL: 3,
+    MOCA: 4,
+    PA: 5,
+    PAIS: 6,
+    PAN: 7,
+    PP: 8,
+    PRD: 9,
+    RM: 10,
+  };
+
   const [listProvincia] = useState([
     "NACIONAL",
     "BOCAS DEL TORO",
@@ -162,6 +176,8 @@ export const FormLoad = ({ setMostrar }) => {
     "PANAMÁ OESTE": ["13-1", "13-2", "13-3", "13-4"],
   });
 
+ 
+
   const handleSubmit = async () => {
     //e.preventDefault(); // Evita que la página se recargue
     console.log({
@@ -178,10 +194,12 @@ export const FormLoad = ({ setMostrar }) => {
       selectedId: selectedId,
       selectedPosicion: parseInt(selectedPosicion),
       selectedPartido: selectedPartido,
+      selectedIdPartido: partidoIdMap[selectedPartido],
       selectedProvincia: selectedProvincia,
       selectedDistrito: selectedDistrito,
       selectedCircuito: selectedCircuito,
       selectedPartidoSec: selectedPartidoSec,
+      selectedIdPartidoSec: partidoIdMap[selectedPartidoSec],
       selectedCorporacion: selectedCorporacion,
     };
 

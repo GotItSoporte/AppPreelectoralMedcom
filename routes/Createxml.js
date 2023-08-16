@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 var fs = require("fs");
+var convert = require("xml-js");
 
 const CreateXMLFullScreen = async (data) => {
   return new Promise((resolve, reject) => {
-    //C:\Users\zilve\Desktop\PreelectoralMedcom
     fs.writeFile(
-      "C:/Users/zilve/Desktop/PreelectoralMedcom/fullScreen.xml",
-      data,
+      "W:/PreelectoralMedcom/XML/fullScreen.xml",
+      data.data,
       function (err) {
         if (err) {
           reject(err);
@@ -21,7 +21,6 @@ const CreateXMLFullScreen = async (data) => {
 
 router.post("/", async function (req, res) {
   const candidatos = req.body;
-  console.log(candidatos);
   try {
     res.json(await CreateXMLFullScreen(candidatos));
   } catch (error) {
