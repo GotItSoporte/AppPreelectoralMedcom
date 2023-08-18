@@ -13,7 +13,7 @@ export const WallLoad = () => {
       setDataXml(xmlData);
     };
     fetchData();
-  }, []);
+  }, [dataSelect]);
 
   return (
     <Wall
