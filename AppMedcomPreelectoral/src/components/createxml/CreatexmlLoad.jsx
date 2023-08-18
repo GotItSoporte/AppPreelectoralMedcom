@@ -8,6 +8,7 @@ export const CreatexmlLoad = ({ data }) => {
   const [aviso, setAviso] = useState(false);
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+
   async function CreateFileXml() {
     const tickerfeed = xmlbuilder.create("data");
     data.forEach((dataSelect) => {
@@ -26,7 +27,7 @@ export const CreatexmlLoad = ({ data }) => {
         element.ele("distrito", dataSelect.distrito);
       }
       if (dataSelect.circuito) {
-        element.ele("circuito", dataSelect.circuito);
+        element.ele("circuito","CIRCUITO "+dataSelect.circuito);
       }
       element.ele("corporacion", dataSelect.corporacion);
     });

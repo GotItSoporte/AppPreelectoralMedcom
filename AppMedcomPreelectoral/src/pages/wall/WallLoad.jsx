@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Wall } from "./Wall";
+import fetchXmlData from "../../apis/Readxml";
 //import fetchApiData from "../../apis/ReadDataSql";
 
 export const WallLoad = () => {
-
- /* const [data, setData] = useState([]);
+  const [dataSelect, SetdataSelect] = useState([]);
+  const [dataXml, setDataXml] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiData = await fetchApiData(selectedOption);
-      setData(apiData);
+      const xmlData = await fetchXmlData();
+      setDataXml(xmlData);
     };
     fetchData();
-  }, [selectedOption]);*/
+  }, []);
 
-
-  return <Wall />;
+  return (
+    <Wall
+      dataSelect={dataSelect}
+      SetdataSelect={SetdataSelect}
+      dataXml={dataXml}
+    />
+  );
 };

@@ -9,7 +9,7 @@ const mysqlRead = mysql.createPool({
   database: "informacionpreelectoral",
 });
 
-router.get("/PRESIDENTES", async function (req, res) {
+router.get("/PRESIDENTE", async function (req, res) {
   try {
     // Ejecutar la consulta y obtener los resultados
     const [rows, fields] = await mysqlRead.query(

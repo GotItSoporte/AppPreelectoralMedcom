@@ -3,7 +3,7 @@ import { Register } from "./Register";
 import fetchApiData from "../../apis/ReadDataSql";
 
 export const RegisterLoad = () => {
-  const [selectedOption, setSelectedOption] = useState("PRESIDENTES");
+  const [selectedOption, setSelectedOption] = useState("PRESIDENTE");
   const [selectedProvincia, setSelectedProvincia] = useState(
     "Todas las provincias"
   );
@@ -14,7 +14,7 @@ export const RegisterLoad = () => {
     "Todos los circuitos"
   );
   const [selectedPartido, setSelectedPartido] = useState("Todos los partidos");
-  const [listCorporacion] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
+  const [listCorporacion] = useState(["PRESIDENTE", "ALCALDES", "DIPUTADOS"]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [mostrarDelete, setMostrarDelete] = useState(false);
   const [selectIdDelete, setSelectIdDelete] = useState(0);

@@ -66,7 +66,7 @@ export const Form = ({
                 selectedOption={selectedProvincia}
                 setSelectedOption={setSelectedProvincia}
                 setList={
-                  selectedCorporacion !== "PRESIDENTES"
+                  selectedCorporacion !== "PRESIDENTE"
                     ? listProvincia.slice(1)
                     : [listProvincia[0]]
                 }
@@ -168,7 +168,7 @@ export const Form = ({
               selectedPosicion === "posición..." ||
               selectedPartido === "Partido..." ||
               selectedCorporacion === "Corporacion..." ||
-              (selectedCorporacion === "PRESIDENTES" &&
+              (selectedCorporacion === "PRESIDENTE" &&
                 selectedProvincia === "Provincia...") ||
               (selectedCorporacion === "ALCALDES" &&
                 selectedProvincia === "Provincia...") ||
@@ -188,7 +188,7 @@ export const Form = ({
               selectedPosicion === "posición..." ||
               selectedPartido === "Partido..." ||
               selectedCorporacion === "Corporacion..." ||
-              selectedCorporacion === "PRESIDENTES"
+              selectedCorporacion === "PRESIDENTE"
                 ? selectedProvincia === "Provincia..."
                 : "" || selectedCorporacion === "ALCALDES"
                 ? selectedProvincia === "Provincia..." ||

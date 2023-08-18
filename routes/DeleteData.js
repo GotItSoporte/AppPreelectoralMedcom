@@ -11,11 +11,11 @@ const db = mysql.createConnection({
 
 router.delete("/", (req, res) => {
     
-    console.log('entrro')
+
     const candidatoId = req.body.selectId;
     const corporacion = req.body.corporacion;
   
-    const sql = `DELETE FROM ${corporacion} WHERE idgeneral = ?`;
+    const sql = `DELETE FROM ${corporacion==='presidente'?'presidentes':corporacion} WHERE idgeneral = ?`;
   
     db.query(sql, [candidatoId], (err, result) => {
         if (err) {

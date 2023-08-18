@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
   const selectedCircuito = req.body.selectedCircuito;
   const selectedCorporacion = req.body.selectedCorporacion;
 
-  if (selectedCorporacion === "PRESIDENTES") {
+  if (selectedCorporacion === "PRESIDENTE") {
     const query =
       "INSERT INTO presidentes (posicion,nombre,id,partido,idpartido,provincia,corporacion) VALUES (?,?,?,?,?,?,?)";
     db.query(

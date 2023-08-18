@@ -34,7 +34,7 @@ export const FormLoad = ({ setMostrar }) => {
     "11",
     "12",
   ]);
-  const [listCorporacion] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
+  const [listCorporacion] = useState(["PRESIDENTE", "ALCALDES", "DIPUTADOS"]);
   const [listPartido] = useState([
     "CD",
     "LIBRE POST.",
@@ -203,7 +203,7 @@ export const FormLoad = ({ setMostrar }) => {
     setSelectedDistrito("Distrito...");
     setSelectedCircuito("Circuito...");
 
-    if(selectedCorporacion==="PRESIDENTES"){
+    if(selectedCorporacion==="PRESIDENTE"){
         setSelectedProvincia("NACIONAL")
     }
   }, [selectedCorporacion]);

@@ -36,7 +36,7 @@ export const Register = ({
               setSelectedOption={setSelectedOption}
               setList={listCorporacion}
             />
-            {selectedOption !== "PRESIDENTES" && (
+            {selectedOption !== "PRESIDENTE" && (
               <Dropdown
                 selectedOption={selectedProvincia}
                 setSelectedOption={setSelectedProvincia}
@@ -79,7 +79,7 @@ export const Register = ({
               selectedOption={selectedPartido}
               setSelectedOption={setSelectedPartido}
               setList={
-                selectedOption !== "PRESIDENTES"
+                selectedOption !== "PRESIDENTE"
                   ? [
                       "Todos los partidos",
                       ...new Set(

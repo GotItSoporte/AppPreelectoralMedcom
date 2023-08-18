@@ -14,9 +14,10 @@ export const Navbar = ({
   toggleOpenPartido,
   data,
   dataSelect,
+  role
 }) => {
   const provinciaRepetida = {
-    PRESIDENTES: {},
+    PRESIDENTE: {},
     ALCALDES: {},
     DIPUTADOS: {},
   };
@@ -107,6 +108,14 @@ export const Navbar = ({
             <h3 className="mb-2 text-xs uppercase text-gray-500 font-medium">
               INFORMACION PRE-ELECTORAL
             </h3>
+            {role==="fullscreen"?(
+            <a
+              className="flex items-center pl-3 py-3 pr-4 text-sm text-gray-50 bg-red-900 hover:bg-blue-500 rounded mb-5 w-fit mx-auto"
+              href="#"
+              onClick={()=>dataSelect([])}
+            >
+              <span>ULTIMO XML GENERADO</span>
+            </a>):<></>}
             <ul className="mb-8 text-sm font-medium">
               {nameCorporacion.map((corporacion, idx) => {
                 return (
@@ -138,17 +147,17 @@ export const Navbar = ({
                             <div key={idx}>
                               <a
                                 className={`flex items-center pl-3 py-3 pr-4 text-gray-50 ${
-                                  corporacion === "PRESIDENTES"
+                                  corporacion === "PRESIDENTE"
                                     ? "bg-gray-600"
                                     : "bg-gray-800"
                                 }  hover:bg-blue-500 `}
                                 href="#"
                                 onClick={() => {
-                                  corporacion === "PRESIDENTES"
+                                  corporacion === "PRESIDENTE"
                                     ? dataSelect(
                                         data[corporacion].filter(
                                           (item) =>
-                                            item.corporacion === "PRESIDENTES"
+                                            item.corporacion === "PRESIDENTE"
                                         )
                                       )
                                     : null;
@@ -161,7 +170,7 @@ export const Navbar = ({
                                 }}
                               >
                                 <span>{el.provincia}</span>
-                                {corporacion !== "PRESIDENTES" ? (
+                                {corporacion !== "PRESIDENTE" ? (
                                   <span className="inline-block ml-auto">
                                     <svg
                                       className="text-gray-400 w-3 h-3"
@@ -344,4 +353,5 @@ Navbar.propTypes = {
   openPartido: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   dataSelect: PropTypes.func.isRequired,
+  role: PropTypes.string.isRequired,
 };
