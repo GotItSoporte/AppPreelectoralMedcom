@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Dropdown, Button, Form } from "../../components";
+import { Table, Dropdown, Button, Form, WindowDelete } from "../../components";
 
 export const Register = ({
   selectedOption,
@@ -18,8 +18,14 @@ export const Register = ({
   setSelectedCircuito,
   selectedPartido,
   setSelectedPartido,
+
+  //Delete
+  mostrarDelete,
+  setMostrarDelete,
+  selectIdDelete,
+  setSelectIdDelete,
 }) => {
-  console.log({ data });
+
   return (
     <>
       <div className="m-5">
@@ -30,35 +36,69 @@ export const Register = ({
               setSelectedOption={setSelectedOption}
               setList={listCorporacion}
             />
-        {selectedOption !=="PRESIDENTES" &&
-          <Dropdown
-              selectedOption={selectedProvincia}
-              setSelectedOption={setSelectedProvincia}
-              setList={['Todas las provincias',...new Set(data.map((item) => item.provincia))]} // const provincias = ['Todas', ...new Set(data.map((item) => item.provincia))];
-
-            />
-        }
-
+            {selectedOption !== "PRESIDENTES" && (
+              <Dropdown
+                selectedOption={selectedProvincia}
+                setSelectedOption={setSelectedProvincia}
+                setList={[
+                  "Todas las provincias",
+                  ...new Set(data.map((item) => item.provincia)),
+                ]} // const provincias = ['Todas', ...new Set(data.map((item) => item.provincia))];
+              />
+            )}
 
             {selectedOption === "ALCALDES" ? (
               <Dropdown
                 selectedOption={selectedDistrito}
                 setSelectedOption={setSelectedDistrito}
-                setList={['Todos los distritos',...new Set(data.filter((item)=>item.provincia === selectedProvincia).map((item) => item.distrito))]}
+                setList={[
+                  "Todos los distritos",
+                  ...new Set(
+                    data
+                      .filter((item) => item.provincia === selectedProvincia)
+                      .map((item) => item.distrito)
+                  ),
+                ]}
               />
             ) : selectedOption === "DIPUTADOS" ? (
               <Dropdown
                 selectedOption={selectedCircuito}
                 setSelectedOption={setSelectedCircuito}
-                setList={['Todos los circuitos',...new Set(data.filter((item)=>item.provincia === selectedProvincia).map((item) => item.circuito))]}
+                setList={[
+                  "Todos los circuitos",
+                  ...new Set(
+                    data
+                      .filter((item) => item.provincia === selectedProvincia)
+                      .map((item) => item.circuito)
+                  ),
+                ]}
               />
             ) : null}
 
             <Dropdown
               selectedOption={selectedPartido}
               setSelectedOption={setSelectedPartido}
-              
-              setList={selectedOption!=="PRESIDENTES"?['Todos los partidos',...new Set(data.filter((item)=>item.distrito?item.distrito === selectedDistrito:item.circuito?item.circuito===selectedCircuito:null).map((item) => item.partido))]:['Todos los partidos',...new Set(data.map((item) => item.partido))]}
+              setList={
+                selectedOption !== "PRESIDENTES"
+                  ? [
+                      "Todos los partidos",
+                      ...new Set(
+                        data
+                          .filter((item) =>
+                            item.distrito
+                              ? item.distrito === selectedDistrito
+                              : item.circuito
+                              ? item.circuito === selectedCircuito
+                              : null
+                          )
+                          .map((item) => item.partido)
+                      ),
+                    ]
+                  : [
+                      "Todos los partidos",
+                      ...new Set(data.map((item) => item.partido)),
+                    ]
+              }
             />
           </div>
           <div className="flex" onClick={() => setMostrarFormulario(true)}>
@@ -66,7 +106,7 @@ export const Register = ({
           </div>
         </div>
 
-        <Table admin={true} data={dataSend} />
+        <Table admin={true} data={dataSend} setSelectIdDelete={setSelectIdDelete} setMostrarDelete={setMostrarDelete}  />
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center ${
@@ -74,6 +114,10 @@ export const Register = ({
         }`}
       >
         <Form setMostrar={setMostrarFormulario} />
+      </div>
+
+      <div className={`fixed inset-0 flex items-center justify-center ${mostrarDelete?'':'hidden'}`}>
+        <WindowDelete selectIdDelete={selectIdDelete} data={data} setMostrarDelete={setMostrarDelete}/>
       </div>
     </>
   );
@@ -95,4 +139,11 @@ Register.propTypes = {
   setMostrarFormulario: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   dataSend: PropTypes.array.isRequired,
+
+  //Delete
+
+  mostrarDelete: PropTypes.bool.isRequired,
+  setMostrarDelete: PropTypes.func.isRequired,
+  selectIdDelete: PropTypes.number.isRequired,
+  setSelectIdDelete: PropTypes.func.isRequired,
 };

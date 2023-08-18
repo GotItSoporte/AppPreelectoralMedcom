@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 app.use("/SendInfoForm", require("./routes/FormLoad"));
 app.use("/ReadDataSql", require("./routes/ReadSql"));
 app.use("/Createxml", require("./routes/Createxml"));
+app.use("/SendDeleteData", require("./routes/DeleteData"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

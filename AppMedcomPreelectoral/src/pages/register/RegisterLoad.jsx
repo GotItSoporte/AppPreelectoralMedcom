@@ -16,6 +16,8 @@ export const RegisterLoad = () => {
   const [selectedPartido, setSelectedPartido] = useState("Todos los partidos");
   const [listCorporacion] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [mostrarDelete, setMostrarDelete] = useState(false);
+  const [selectIdDelete, setSelectIdDelete] = useState(0);
 
   const [data, setData] = useState([]);
   const [dataSend, setDataSend] = useState([]);
@@ -50,7 +52,7 @@ export const RegisterLoad = () => {
     if (selectedDistrito !== "Todos los distritos") {
       setDataSend(data.filter((item) => item.distrito === selectedDistrito));
     } else {
-      setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
+      //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
     }
 
     setSelectedPartido("Todos los partidos")
@@ -60,7 +62,7 @@ export const RegisterLoad = () => {
     if (selectedCircuito !== "Todos los circuitos") {
       setDataSend(data.filter((item) => item.circuito === selectedCircuito));
     } else {
-      setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
+      //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
     }
 
   }, [selectedCircuito]);
@@ -76,7 +78,7 @@ export const RegisterLoad = () => {
 
       }
     } else {
-      setDataSend(data.filter((item)=> item.circuito?item.circuito===selectedCircuito:item.distrito?item.distrito===selectedDistrito:item));
+      //setDataSend(data.filter((item)=> item.circuito?item.circuito===selectedCircuito:item.distrito?item.distrito===selectedDistrito:item));
     }
   }, [selectedPartido,selectedOption]);
 
@@ -97,6 +99,12 @@ export const RegisterLoad = () => {
       setMostrarFormulario={setMostrarFormulario}
       data={data}
       dataSend={dataSend}
+
+      //Delete
+      mostrarDelete={mostrarDelete}
+      setMostrarDelete={setMostrarDelete}
+      selectIdDelete={selectIdDelete}
+      setSelectIdDelete={setSelectIdDelete}
     />
   );
 };

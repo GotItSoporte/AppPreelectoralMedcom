@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Table = ({ admin, data }) => {
+export const Table = ({ admin, data, setSelectIdDelete, setMostrarDelete }) => {
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -81,6 +81,7 @@ export const Table = ({ admin, data }) => {
                         <a
                           href="#"
                           className="font-medium text-base text-red-500 hover:underline px-5"
+                          onClick={()=>{setMostrarDelete(true);setSelectIdDelete(data.idgeneral)}}
                         >
                           Eliminar
                         </a>
@@ -108,4 +109,6 @@ export const Table = ({ admin, data }) => {
 Table.propTypes = {
   admin: PropTypes.bool.isRequired,
   data: PropTypes.array.isRequired,
+  setSelectIdDelete: PropTypes.func.isRequired,
+  setMostrarDelete: PropTypes.func.isRequired,
 };

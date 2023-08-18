@@ -180,14 +180,6 @@ export const FormLoad = ({ setMostrar }) => {
 
   const handleSubmit = async () => {
     //e.preventDefault(); // Evita que la página se recargue
-    console.log({
-      selectedName,
-      selectedId,
-      selectedPosicion,
-      selectedPartido,
-      selectedCorporacion,
-      selectedCircuito,
-    });
 
     const data = {
       selectedName: selectedName.toUpperCase(),
