@@ -15,7 +15,7 @@ router.delete("/", (req, res) => {
     const candidatoId = req.body.selectId;
     const corporacion = req.body.corporacion;
   
-    const sql = `DELETE FROM ${corporacion==='presidente'?'presidentes':corporacion} WHERE idgeneral = ?`;
+    const sql = `DELETE FROM ${corporacion==='PRESIDENTE'?'presidentes':corporacion} WHERE idgeneral = ?`;
   
     db.query(sql, [candidatoId], (err, result) => {
         if (err) {

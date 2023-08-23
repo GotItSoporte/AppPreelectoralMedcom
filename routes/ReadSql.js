@@ -13,7 +13,7 @@ router.get("/PRESIDENTE", async function (req, res) {
   try {
     // Ejecutar la consulta y obtener los resultados
     const [rows, fields] = await mysqlRead.query(
-      "SELECT * FROM presidentes ORDER BY provincia,partido,posicion ASC"
+      "SELECT * FROM presidentes ORDER BY provincia,posicion ASC,partido"
     );
 
     res.json(rows);
