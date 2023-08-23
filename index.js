@@ -22,6 +22,7 @@ app.use("/ReadDataSql", require("./routes/ReadSql"));
 app.use("/Createxml", require("./routes/Createxml"));
 app.use("/SendDeleteData", require("./routes/DeleteData"));
 app.use("/Readxml", require("./routes/ReadXmlFile"));
+app.use("/SendInfoWall", require("./routes/WallVizrt"));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

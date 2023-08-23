@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Navbar } from "./navbar";
 import fetchApiData from "../../apis/ReadDataSql";
 
-export const NavbarLoad = ({ dataSelect,role}) => {
+export const NavbarLoad = ({ dataSelect,role,setMostrarNavbar,
+  mostrarNavbar}) => {
   const [nameCorporacion] = useState(["PRESIDENTE", "ALCALDES", "DIPUTADOS"]);
   const [open, setOpen] = useState({});
   const [openProvincia, setOpenProvincia] = useState({});
@@ -67,6 +68,8 @@ export const NavbarLoad = ({ dataSelect,role}) => {
       data={data}
       dataSelect={dataSelect}
       role={role}
+      setMostrarNavbar={setMostrarNavbar}
+      mostrarNavbar={mostrarNavbar}
     />
   );
 };
@@ -74,4 +77,6 @@ export const NavbarLoad = ({ dataSelect,role}) => {
 NavbarLoad.propTypes = {
   dataSelect: PropTypes.func.isRequired,
   role: PropTypes.string.isRequired,
+  setMostrarNavbar: PropTypes.func.isRequired,
+  mostrarNavbar: PropTypes.bool.isRequired,
 };

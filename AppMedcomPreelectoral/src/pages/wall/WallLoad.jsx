@@ -5,7 +5,8 @@ import fetchXmlData from "../../apis/Readxml";
 
 export const WallLoad = () => {
   const [dataSelect, SetdataSelect] = useState([]);
-  const [dataXml, setDataXml] = useState(null);
+  const [dataXml, setDataXml] = useState([]);
+  const [mostrarNavbar,setMostrarNavbar] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +21,8 @@ export const WallLoad = () => {
       dataSelect={dataSelect}
       SetdataSelect={SetdataSelect}
       dataXml={dataXml}
+      setMostrarNavbar={setMostrarNavbar}
+      mostrarNavbar={mostrarNavbar}
     />
   );
 };
