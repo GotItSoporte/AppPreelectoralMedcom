@@ -9,6 +9,7 @@ export const WindowDeleteLoad = ({
   setMostrarDelete,
 }) => {
   const eliminarCandidato = async () => {
+    //e.preventDefault(); // Evita que la página se recargue
     const deleteCandidatos = data
       .filter((candidato) => candidato.idgeneral === selectIdDelete)
       .map((item) => item.corporacion)
@@ -20,7 +21,7 @@ export const WindowDeleteLoad = ({
       selectId: selectIdDelete,
     };
     await DeleteData(deleteData);
-    window.location.reload();
+    //window.location.reload();
   };
 
   return (

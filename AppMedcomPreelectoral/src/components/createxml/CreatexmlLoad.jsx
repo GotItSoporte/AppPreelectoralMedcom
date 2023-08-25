@@ -9,45 +9,45 @@ export const CreatexmlLoad = ({ data }) => {
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const curules = {
-    "1-1": "CURULES 2",
-    "2-1": "CURULES 2",
-    "2-2": "CURULES 1",
-    "2-3": "CURULES 1",
-    "2-4": "CURULES 1",
-    "3-1": "CURULES 4",
-    "3-2": "CURULES 1",
-    "4-1": "CURULES 3",
-    "4-2": "CURULES 1",
-    "4-3": "CURULES 2",
-    "4-4": "CURULES 1",
-    "4-5": "CURULES 1",
-    "4-6": "CURULES 1",
-    "5-1": "CURULES 1",
-    "5-2": "CURULES 1",
-    "6-1": "CURULES 1",
-    "6-2": "CURULES 1",
-    "6-3": "CURULES 1",
-    "7-1": "CURULES 1",
-    "7-2": "CURULES 1",
-    "8-1": "CURULES 1",
-    "8-2": "CURULES 7",
-    "8-3": "CURULES 5",
-    "8-4": "CURULES 5",
-    "8-5": "CURULES 3",
-    "8-6": "CURULES 4",
-    "9-1": "CURULES 2",
-    "9-2": "CURULES 1",
-    "9-3": "CURULES 1",
-    "9-4": "CURULES 1",
-    "10-1": "CURULES 1",
-    "10-2": "CURULES 1",
-    "12-1": "CURULES 1",
-    "12-2": "CURULES 1",
-    "12-3": "CURULES 1",
-    "13-1": "CURULES 3",
-    "13-2": "CURULES 1",
-    "13-3": "CURULES 1",
-    "13-4": "CURULES 3",
+    "1-1": "CURULES: 2",
+    "2-1": "CURULES: 2",
+    "2-2": "CURULES: 1",
+    "2-3": "CURULES: 1",
+    "2-4": "CURULES: 1",
+    "3-1": "CURULES: 4",
+    "3-2": "CURULES: 1",
+    "4-1": "CURULES: 3",
+    "4-2": "CURULES: 1",
+    "4-3": "CURULES: 2",
+    "4-4": "CURULES: 1",
+    "4-5": "CURULES: 1",
+    "4-6": "CURULES: 1",
+    "5-1": "CURULES: 1",
+    "5-2": "CURULES: 1",
+    "6-1": "CURULES: 1",
+    "6-2": "CURULES: 1",
+    "6-3": "CURULES: 1",
+    "7-1": "CURULES: 1",
+    "7-2": "CURULES: 1",
+    "8-1": "CURULES: 1",
+    "8-2": "CURULES: 7",
+    "8-3": "CURULES: 5",
+    "8-4": "CURULES: 5",
+    "8-5": "CURULES: 3",
+    "8-6": "CURULES: 4",
+    "9-1": "CURULES: 2",
+    "9-2": "CURULES: 1",
+    "9-3": "CURULES: 1",
+    "9-4": "CURULES: 1",
+    "10-1": "CURULES: 1",
+    "10-2": "CURULES: 1",
+    "12-1": "CURULES: 1",
+    "12-2": "CURULES: 1",
+    "12-3": "CURULES: 1",
+    "13-1": "CURULES: 3",
+    "13-2": "CURULES: 1",
+    "13-3": "CURULES: 1",
+    "13-4": "CURULES: 3",
   };
 
   const partidoCompleto = {
@@ -62,6 +62,7 @@ export const CreatexmlLoad = ({ data }) => {
     "PRD": "PARTIDO REVOLUCIONARIO DEMOCRATICO",
     "RM": "REALIZANDO METAS",
   };
+  console.log({data})
 
   async function CreateFileXml() {
     const tickerfeed = xmlbuilder.create("data");
@@ -71,8 +72,8 @@ export const CreatexmlLoad = ({ data }) => {
       element.ele("nombre", dataSelect.nombre);
       element.ele("id", dataSelect.id);
       element.ele("partido", dataSelect.partido);
-      element.ele("idpartido", dataSelect.idpartido);
-      if (dataSelect.partidosec && dataSelect.idpartidosec) {
+      element.ele("idpartido",dataSelect.corporacion==="DIPUTADOS"?dataSelect.idpartidosec:dataSelect.idpartido);
+      if (dataSelect.corporacion==="DIPUTADOS") {
         element.ele("partidosec", dataSelect.partidosec);
         element.ele("idpartidosec", dataSelect.idpartidosec);
       }

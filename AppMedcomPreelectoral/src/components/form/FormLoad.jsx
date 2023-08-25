@@ -180,7 +180,7 @@ export const FormLoad = ({ setMostrar }) => {
 
   const handleSubmit = async () => {
     //e.preventDefault(); // Evita que la página se recargue
-
+    
     const data = {
       selectedName: selectedName.toUpperCase(),
       selectedId: selectedId,
@@ -194,7 +194,7 @@ export const FormLoad = ({ setMostrar }) => {
       selectedIdPartidoSec: partidoIdMap[selectedPartidoSec],
       selectedCorporacion: selectedCorporacion,
     };
-
+    console.log({data})
     await SendInfo(data);
   };
 

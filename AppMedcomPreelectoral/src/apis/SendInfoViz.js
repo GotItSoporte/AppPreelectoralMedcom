@@ -5,7 +5,7 @@ export const SendInfoWall = async (data) => {
         return;
       }
   
-      const response = await fetch("http://localhost:5000/SendInfoWall", {
+      const response = await fetch("http://192.168.0.19:5000/SendInfoWall", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

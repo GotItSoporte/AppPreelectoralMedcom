@@ -100,8 +100,8 @@ export const Navbar = ({
         <nav
           className={`fixed lg:static h-screen top-0 left-0 bottom-0 flex flex-col w-72 lg:w-80 sm:max-w-xs pt-2 pb-8   ${
             mostrarNavbar
-              ? "overflow-y-auto bg-gray-900"
-              : "-translate-x-56 h-24 overflow-hidden"
+              ? "overflow-y-auto bg-gray-900 "
+              : "-translate-x-56 h-20 overflow-hidden"
           }`}
         >
           {role==="videowall"?(

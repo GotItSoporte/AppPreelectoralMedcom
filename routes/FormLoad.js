@@ -16,12 +16,12 @@ router.post("/", (req, res) => {
   const selectedPartido = req.body.selectedPartido;
   const selectedIdPartido = req.body.selectedIdPartido;
   const selectedPartidoSec = req.body.selectedPartidoSec;
-  const selectedIdPartidoSec = req.body.selectedPartidoSec;
+  const selectedIdPartidoSec = req.body.selectedIdPartidoSec;
   const selectedProvincia = req.body.selectedProvincia;
   const selectedDistrito = req.body.selectedDistrito;
   const selectedCircuito = req.body.selectedCircuito;
   const selectedCorporacion = req.body.selectedCorporacion;
-
+  console.log({selectedIdPartidoSec})
   if (selectedCorporacion === "PRESIDENTE") {
     const query =
       "INSERT INTO presidentes (posicion,nombre,id,partido,idpartido,provincia,corporacion) VALUES (?,?,?,?,?,?,?)";
