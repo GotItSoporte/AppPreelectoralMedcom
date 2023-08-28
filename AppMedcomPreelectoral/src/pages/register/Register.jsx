@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Dropdown, Button, Form, WindowDelete } from "../../components";
+import { Table, Dropdown, Button, Form, WindowDelete, WindowEdit } from "../../components";
 
 export const Register = ({
   selectedOption,
@@ -24,6 +24,10 @@ export const Register = ({
   setMostrarDelete,
   selectIdDelete,
   setSelectIdDelete,
+
+  //Edit
+  mostrarEdit,
+  setMostrarEdit
 }) => {
 
   return (
@@ -106,7 +110,7 @@ export const Register = ({
           </div>
         </div>
 
-        <Table admin={true} data={dataSend} setSelectIdDelete={setSelectIdDelete} setMostrarDelete={setMostrarDelete}  />
+        <Table admin={true} data={dataSend} setSelectIdDelete={setSelectIdDelete} setMostrarDelete={setMostrarDelete} setMostrarEdit={setMostrarEdit}  />
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center ${
@@ -118,6 +122,10 @@ export const Register = ({
 
       <div className={`fixed inset-0 flex items-center justify-center ${mostrarDelete?'':'hidden'}`}>
         <WindowDelete selectIdDelete={selectIdDelete} data={data} setMostrarDelete={setMostrarDelete}/>
+      </div>
+
+      <div className={`fixed inset-0 flex items-center justify-center ${mostrarEdit?'':'hidden'}`}>
+        <WindowEdit selectIdDelete={selectIdDelete} data={data} setMostrarEdit={setMostrarEdit} mostrarEdit={mostrarEdit}/>
       </div>
     </>
   );
@@ -141,9 +149,12 @@ Register.propTypes = {
   dataSend: PropTypes.array.isRequired,
 
   //Delete
-
   mostrarDelete: PropTypes.bool.isRequired,
   setMostrarDelete: PropTypes.func.isRequired,
   selectIdDelete: PropTypes.number.isRequired,
   setSelectIdDelete: PropTypes.func.isRequired,
+
+  //Edit
+  mostrarEdit: PropTypes.bool.isRequired,
+  setMostrarEdit: PropTypes.func.isRequired,
 };

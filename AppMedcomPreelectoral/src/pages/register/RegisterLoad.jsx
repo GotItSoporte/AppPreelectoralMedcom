@@ -18,6 +18,7 @@ export const RegisterLoad = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [mostrarDelete, setMostrarDelete] = useState(false);
   const [selectIdDelete, setSelectIdDelete] = useState(0);
+  const [mostrarEdit, setMostrarEdit] = useState(false);
 
   const [data, setData] = useState([]);
   const [dataSend, setDataSend] = useState([]);
@@ -34,7 +35,7 @@ export const RegisterLoad = () => {
     setSelectedDistrito("Todos los distritos");
     setSelectedCircuito("Todos los circuitos");
     setSelectedPartido("Todos los partidos");
-  }, [selectedOption,mostrarDelete]);
+  }, [selectedOption,mostrarDelete,mostrarEdit]);
 
   useEffect(() => {
     if (selectedProvincia !== "Todas las provincias") {
@@ -105,6 +106,10 @@ export const RegisterLoad = () => {
       setMostrarDelete={setMostrarDelete}
       selectIdDelete={selectIdDelete}
       setSelectIdDelete={setSelectIdDelete}
+
+      //Edit 
+      mostrarEdit={mostrarEdit}
+      setMostrarEdit={setMostrarEdit}
     />
   );
 };

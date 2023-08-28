@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Table = ({ admin, data, setSelectIdDelete, setMostrarDelete }) => {
+export const Table = ({ admin, data, setSelectIdDelete, setMostrarDelete,setMostrarEdit }) => {
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -75,6 +75,7 @@ export const Table = ({ admin, data, setSelectIdDelete, setMostrarDelete }) => {
                         <a
                           href="#"
                           className="font-medium text-base text-blue-500 hover:underline px-5"
+                          onClick={()=>{setMostrarEdit(true);setSelectIdDelete(data.idgeneral)}}
                         >
                           Editar
                         </a>
@@ -111,4 +112,5 @@ Table.propTypes = {
   data: PropTypes.array.isRequired,
   setSelectIdDelete: PropTypes.func.isRequired,
   setMostrarDelete: PropTypes.func.isRequired,
+  setMostrarEdit: PropTypes.func.isRequired,
 };

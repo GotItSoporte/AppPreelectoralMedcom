@@ -10,6 +10,51 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+  const curules = {
+    "1-1": "CURULES: 2",
+    "2-1": "CURULES: 2",
+    "2-2": "CURULES: 1",
+    "2-3": "CURULES: 1",
+    "2-4": "CURULES: 1",
+    "3-1": "CURULES: 4",
+    "3-2": "CURULES: 1",
+    "4-1": "CURULES: 3",
+    "4-2": "CURULES: 1",
+    "4-3": "CURULES: 2",
+    "4-4": "CURULES: 1",
+    "4-5": "CURULES: 1",
+    "4-6": "CURULES: 1",
+    "5-1": "CURULES: 1",
+    "5-2": "CURULES: 1",
+    "6-1": "CURULES: 1",
+    "6-2": "CURULES: 1",
+    "6-3": "CURULES: 1",
+    "7-1": "CURULES: 1",
+    "7-2": "CURULES: 1",
+    "8-1": "CURULES: 1",
+    "8-2": "CURULES: 7",
+    "8-3": "CURULES: 5",
+    "8-4": "CURULES: 5",
+    "8-5": "CURULES: 3",
+    "8-6": "CURULES: 4",
+    "9-1": "CURULES: 2",
+    "9-2": "CURULES: 1",
+    "9-3": "CURULES: 1",
+    "9-4": "CURULES: 1",
+    "10-1": "CURULES: 1",
+    "10-2": "CURULES: 1",
+    "12-1": "CURULES: 1",
+    "12-2": "CURULES: 1",
+    "12-3": "CURULES: 1",
+    "13-1": "CURULES: 3",
+    "13-2": "CURULES: 1",
+    "13-3": "CURULES: 1",
+    "13-4": "CURULES: 3",
+  };
+
+
+
+
   const Entrada = async () => {
     console.log({ data });
     setMostrarNavbar(true);
@@ -21,8 +66,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
             .join(";")}}}`
       )
       .join(";");
-
-    const WALLMessage = `${formattedData};corporacion='PRESIDENTE';`;
+    const WALLMessage = `${formattedData};corporacion='PRESIDENTE';EntradaDataWALL=1;Curules=${curules[data[0].circuito]}`;
 
     const WALL_UDPMessage = {
       data: WALLMessage,

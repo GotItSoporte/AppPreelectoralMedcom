@@ -7,6 +7,7 @@ export const TableLoad = ({
   data,
   setSelectIdDelete,
   setMostrarDelete,
+  setMostrarEdit
 }) => {
   return (
     <Table
@@ -14,6 +15,7 @@ export const TableLoad = ({
       data={data ? data : null}
       setSelectIdDelete={setSelectIdDelete}
       setMostrarDelete={setMostrarDelete}
+      setMostrarEdit={setMostrarEdit}
     />
   );
 };
@@ -23,4 +25,5 @@ TableLoad.propTypes = {
   data: PropTypes.array.isRequired,
   setSelectIdDelete: PropTypes.func.isRequired,
   setMostrarDelete: PropTypes.func.isRequired,
+  setMostrarEdit: PropTypes.func.isRequired,
 };
