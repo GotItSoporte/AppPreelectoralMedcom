@@ -51,7 +51,7 @@ export const CreatexmlLoad = ({ data }) => {
   };
 
   const partidoCompleto = {
-    "CD": "CAMBIO DEMOCRATICO",
+    "CD": "CAMBIO DEMOCRÁTICO",
     "LIBRE POST.": "LIBRE POSTULACION",
     "MOL": "MOLINERA",
     "MOCA":"MOVIMIENTO OTRO CAMINO",
@@ -59,7 +59,7 @@ export const CreatexmlLoad = ({ data }) => {
     "PAIS": "PAÍS",
     "PAN": "PARTIDO PANAMEÑISTA",
     "PP": "PARTIDO POPULAR",
-    "PRD": "PARTIDO REVOLUCIONARIO DEMOCRATICO",
+    "PRD": "PARTIDO REVOLUCIONARIO DEMOCRÁTICO",
     "RM": "REALIZANDO METAS",
   };
   console.log({data})
@@ -71,7 +71,7 @@ export const CreatexmlLoad = ({ data }) => {
       element.ele("posicion", dataSelect.posicion);
       element.ele("nombre", dataSelect.nombre);
       element.ele("id", dataSelect.id);
-      element.ele("partido", dataSelect.partido);
+      element.ele("partido", dataSelect.corporacion==="DIPUTADOS"?dataSelect.partidosec:dataSelect.partido);
       element.ele("idpartido",dataSelect.corporacion==="DIPUTADOS"?dataSelect.idpartidosec:dataSelect.idpartido);
       if (dataSelect.corporacion==="DIPUTADOS") {
         element.ele("partidosec", dataSelect.partidosec);

@@ -79,6 +79,7 @@ export const RegisterLoad = () => {
 
       }
     } else {
+      setDataSend(data);
       //setDataSend(data.filter((item)=> item.circuito?item.circuito===selectedCircuito:item.distrito?item.distrito===selectedDistrito:item));
     }
   }, [selectedPartido,selectedOption]);

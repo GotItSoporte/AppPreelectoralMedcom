@@ -17,6 +17,7 @@ export const Navbar = ({
   role,
   setMostrarNavbar,
   mostrarNavbar,
+  navbarActivado
 }) => {
   const provinciaRepetida = {
     PRESIDENTE: {},
@@ -96,16 +97,16 @@ export const Navbar = ({
 
   return (
     <>
-      <div className="block navbar-menu relative z-50  ">
+      <div className="block navbar-menu relative z-50   ">
         <nav
           className={`fixed lg:static h-screen top-0 left-0 bottom-0 flex flex-col w-72 lg:w-80 sm:max-w-xs pt-2 pb-8   ${
             mostrarNavbar
               ? "overflow-y-auto bg-gray-900 "
-              : "-translate-x-56 h-20 overflow-hidden"
+              : "-translate-x-56   overflow-hidden "
           }`}
         >
           {role==="videowall"?(
-          <div className="flex justify-end mr-3 mb-3 cursor-pointer">
+          <div className="flex justify-end mr-3 mb-3 cursor-pointer ">
             {mostrarNavbar ? (
               <svg
                 className="h-12 w-12 text-white"
@@ -124,11 +125,11 @@ export const Navbar = ({
               </svg>
             ) : (
               <svg
-                className="h-12 w-12 text-white"
+                className={`h-12 w-12 text-white ${navbarActivado?'':'opacity-40 cursor-not-allowed'} `}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                onClick={() => setMostrarNavbar(true)}
+                onClick={() => navbarActivado?setMostrarNavbar(true):null}
               >
                 <path
                   strokeLinecap="round"
@@ -140,7 +141,8 @@ export const Navbar = ({
             )}
           </div>
           ):<></>}
-          <div className=" flex w-full items-center px-6 pb-6 mb-6 border-b border-gray-700">
+          <div className={`${mostrarNavbar?'':'w-0'}`}>
+          <div className=" flex w-full items-center px-6 pb-6 mb-6 border-b border-gray-700 ">
             <a
               className="text-xl text-white font-semibold w-fit mx-auto cursor-default"
               href="#"
@@ -207,13 +209,15 @@ export const Navbar = ({
                                             item.corporacion === "PRESIDENTE"
                                         )
                                       )
-                                    : null;
+                                    : null; 
+                                  corporacion==="PRESIDENTE" && setMostrarNavbar(false);
                                   corporacion === "ALCALDES"
                                     ? toggleOpenProvincia(el.provincia)
                                     : null;
                                   corporacion === "DIPUTADOS"
                                     ? toggleOpenCircuito(el.provincia)
                                     : null;
+                                   
                                 }}
                               >
                                 <span>{el.provincia}</span>
@@ -268,7 +272,7 @@ export const Navbar = ({
                                                     item.distrito ===
                                                       el2.distrito
                                                 )
-                                              );
+                                              );setMostrarNavbar(false);
                                             }}
                                           >
                                             <span>{el2.distrito}</span>
@@ -356,7 +360,7 @@ export const Navbar = ({
                                                                 item.partido ===
                                                                   el4.partido
                                                             )
-                                                          );
+                                                          );setMostrarNavbar(false);
                                                         }}
                                                       >
                                                         <span>
@@ -381,6 +385,7 @@ export const Navbar = ({
               })}
             </ul>
           </div>
+          </div>
         </nav>
       </div>
       <div className="mx-auto lg:ml-80"></div>
@@ -403,4 +408,5 @@ Navbar.propTypes = {
   role: PropTypes.string.isRequired,
   setMostrarNavbar: PropTypes.func.isRequired,
   mostrarNavbar: PropTypes.bool.isRequired,
+  navbarActivado: PropTypes.bool.isRequired,
 };

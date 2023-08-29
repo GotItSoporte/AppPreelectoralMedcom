@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Dropdown, Button, Form, WindowDelete, WindowEdit } from "../../components";
+import {
+  Table,
+  Dropdown,
+  Button,
+  Form,
+  WindowDelete,
+  WindowEdit,
+} from "../../components";
 
 export const Register = ({
   selectedOption,
@@ -27,9 +34,8 @@ export const Register = ({
 
   //Edit
   mostrarEdit,
-  setMostrarEdit
+  setMostrarEdit,
 }) => {
-
   return (
     <>
       <div className="m-5">
@@ -105,12 +111,37 @@ export const Register = ({
               }
             />
           </div>
-          <div className="flex" onClick={() => setMostrarFormulario(true)}>
-            <Button name="Añadir Candidato" type="Principal" rute="" />
+          <div className="flex space-x-5" >
+            <div className="flex" onClick={() => setMostrarFormulario(true)}>
+              <Button name="Añadir Candidato" type="Principal" rute="" />
+            </div>
+            <a href="/">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-12 h-12 text-white cursor-pointer opacity-80 hover:opacity-100"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                />
+              </svg>
+            </a>
           </div>
         </div>
-
-        <Table admin={true} data={dataSend} setSelectIdDelete={setSelectIdDelete} setMostrarDelete={setMostrarDelete} setMostrarEdit={setMostrarEdit}  />
+        <div className="lg:mx-32">
+          <Table
+            admin={true}
+            data={dataSend}
+            setSelectIdDelete={setSelectIdDelete}
+            setMostrarDelete={setMostrarDelete}
+            setMostrarEdit={setMostrarEdit}
+          />
+        </div>
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center ${
@@ -120,12 +151,29 @@ export const Register = ({
         <Form setMostrar={setMostrarFormulario} />
       </div>
 
-      <div className={`fixed inset-0 flex items-center justify-center ${mostrarDelete?'':'hidden'}`}>
-        <WindowDelete selectIdDelete={selectIdDelete} data={data} setMostrarDelete={setMostrarDelete}/>
+      <div
+        className={`fixed inset-0 flex items-center justify-center ${
+          mostrarDelete ? "" : "hidden"
+        }`}
+      >
+        <WindowDelete
+          selectIdDelete={selectIdDelete}
+          data={data}
+          setMostrarDelete={setMostrarDelete}
+        />
       </div>
 
-      <div className={`fixed inset-0 flex items-center justify-center ${mostrarEdit?'':'hidden'}`}>
-        <WindowEdit selectIdDelete={selectIdDelete} data={data} setMostrarEdit={setMostrarEdit} mostrarEdit={mostrarEdit}/>
+      <div
+        className={`fixed inset-0 flex items-center justify-center ${
+          mostrarEdit ? "" : "hidden"
+        }`}
+      >
+        <WindowEdit
+          selectIdDelete={selectIdDelete}
+          data={data}
+          setMostrarEdit={setMostrarEdit}
+          mostrarEdit={mostrarEdit}
+        />
       </div>
     </>
   );

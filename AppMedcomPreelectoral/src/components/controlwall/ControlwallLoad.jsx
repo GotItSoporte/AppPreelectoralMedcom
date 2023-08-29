@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ControlWall } from "./Controlwall";
 import { SendInfoWall } from "../../apis/SendInfoViz";
 
-export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
+export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) => {
   const [botonActivado, setBotonActivado] = useState(1);
   const [cantidad, setCantidad] = useState(0);
   const [delayButton, setDelayButton] = useState(true);
@@ -52,12 +52,23 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
     "13-4": "CURULES: 3",
   };
 
-
+  const partidoCompleto = {
+    "CD": "CAMBIO DEMOCRÁTICO",
+    "LIBRE POST.": "LIBRE POSTULACION",
+    "MOL": "MOLINERA",
+    "MOCA":"MOVIMIENTO OTRO CAMINO",
+    "PA":"PARTIDO ALIANZA",
+    "PAIS": "PAÍS",
+    "PAN": "PARTIDO PANAMEÑISTA",
+    "PP": "PARTIDO POPULAR",
+    "PRD": "PARTIDO REVOLUCIONARIO DEMOCRÁTICO",
+    "RM": "REALIZANDO METAS",
+  };
 
 
   const Entrada = async () => {
-    console.log({ data });
-    setMostrarNavbar(true);
+    setMostrarNavbar(false);
+    setNavbarActivado(false);
     const formattedData = data
       .map(
         (entry, index) =>
@@ -66,7 +77,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
             .join(";")}}}`
       )
       .join(";");
-    const WALLMessage = `${formattedData};corporacion='PRESIDENTE';EntradaDataWALL=1;Curules=${curules[data[0].circuito]}`;
+    const WALLMessage = `${formattedData};corporacion='PRESIDENTE';EntradaDataWALL=1;Curules=${curules[data[0].circuito]};PartidoCompleto=${partidoCompleto[data[0].partido]}`;
 
     const WALL_UDPMessage = {
       data: WALLMessage,
@@ -102,9 +113,12 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
     };
     SendInfoWall(WALL_UDPMessage);
     setDelayButton(false);
+    setMostrarNavbar(true);
+    setNavbarActivado(true);
     await delay(1000);
     setDelayButton(true);
     setBotonActivado(1);
+
   };
 
   const SalidaForzada = async () => {
@@ -115,8 +129,11 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
     SendInfoWall(WALL_UDPMessage);
     setDelayButton(false);
     setBotonActivado(1);
+    setMostrarNavbar(true);
+    setNavbarActivado(true);
     await delay(1000);
     setDelayButton(true);
+
   };
 
   return (
@@ -135,4 +152,5 @@ export const ControlWallLoad = ({ data, setMostrarNavbar }) => {
 ControlWallLoad.propTypes = {
   data: PropTypes.array.isRequired,
   setMostrarNavbar: PropTypes.func.isRequired,
+  setNavbarActivado: PropTypes.func.isRequired,
 };
