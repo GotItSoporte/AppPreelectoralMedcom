@@ -53,7 +53,7 @@ export const CreatexmlLoad = ({ data }) => {
   const partidoCompleto = {
     "CD": "CAMBIO DEMOCRÁTICO",
     "LIBRE POST.": "LIBRE POSTULACION",
-    "MOL": "MOLINERA",
+    "MOL": "MOLIRENA",
     "MOCA":"MOVIMIENTO OTRO CAMINO",
     "PA":"PARTIDO ALIANZA",
     "PAIS": "PAÍS",
