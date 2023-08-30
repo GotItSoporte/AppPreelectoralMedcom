@@ -14,6 +14,7 @@ export const FormLoad = ({ setMostrar }) => {
   const [selectedPartidoSec, setSelectedPartidoSec] = useState(
     "Partido Secundario..."
   );
+
   const [selectedProvincia, setSelectedProvincia] = useState("Provincia...");
   const [selectedDistrito, setSelectedDistrito] = useState("Distrito...");
   const [selectedCircuito, setSelectedCircuito] = useState("Circuito...");
@@ -33,7 +34,7 @@ export const FormLoad = ({ setMostrar }) => {
     "11",
     "12",
   ]);
-  const [listCorporacion] = useState(["PRESIDENTES", "ALCALDES", "DIPUTADOS"]);
+  const [listCorporacion] = useState(["PRESIDENTE", "ALCALDES", "DIPUTADOS"]);
   const [listPartido] = useState([
     "CD",
     "LIBRE POST.",
@@ -46,6 +47,19 @@ export const FormLoad = ({ setMostrar }) => {
     "PRD",
     "RM",
   ]);
+  const partidoIdMap = {
+    CD: 1,
+    "LIBRE POST.": 2,
+    MOL: 3,
+    MOCA: 4,
+    PA: 5,
+    PAIS: 6,
+    PAN: 7,
+    PP: 8,
+    PRD: 9,
+    RM: 10,
+  };
+
   const [listProvincia] = useState([
     "NACIONAL",
     "BOCAS DEL TORO",
@@ -162,29 +176,25 @@ export const FormLoad = ({ setMostrar }) => {
     "PANAMÁ OESTE": ["13-1", "13-2", "13-3", "13-4"],
   });
 
+ 
+
   const handleSubmit = async () => {
     //e.preventDefault(); // Evita que la página se recargue
-    console.log({
-      selectedName,
-      selectedId,
-      selectedPosicion,
-      selectedPartido,
-      selectedCorporacion,
-      selectedCircuito,
-    });
-
+    
     const data = {
       selectedName: selectedName.toUpperCase(),
       selectedId: selectedId,
       selectedPosicion: parseInt(selectedPosicion),
       selectedPartido: selectedPartido,
+      selectedIdPartido: partidoIdMap[selectedPartido],
       selectedProvincia: selectedProvincia,
       selectedDistrito: selectedDistrito,
       selectedCircuito: selectedCircuito,
       selectedPartidoSec: selectedPartidoSec,
+      selectedIdPartidoSec: partidoIdMap[selectedPartidoSec],
       selectedCorporacion: selectedCorporacion,
     };
-
+    console.log({data})
     await SendInfo(data);
   };
 
@@ -192,7 +202,16 @@ export const FormLoad = ({ setMostrar }) => {
     setSelectedProvincia("Provincia...");
     setSelectedDistrito("Distrito...");
     setSelectedCircuito("Circuito...");
+
+    if(selectedCorporacion==="PRESIDENTE"){
+        setSelectedProvincia("NACIONAL")
+    }
   }, [selectedCorporacion]);
+
+  useEffect(() => {
+    setSelectedCircuito("Circuito...");
+    setSelectedDistrito("Distrito...")
+  }, [selectedProvincia]);
 
   return (
     <Form

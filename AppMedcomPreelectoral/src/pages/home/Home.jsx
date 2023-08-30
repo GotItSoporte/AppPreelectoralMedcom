@@ -11,14 +11,14 @@ export const Home = () => {
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-fit mx-auto">
             <Card
-              name="CONTROL MASTER"
+              name="CONTROL FULLSCREEN"
               nameButton="Click Aqui"
-              rute="/Wall/master"
+              rute="/Wall/fullscreen"
             />
             <Card
-              name="CONTROL PRESENTADOR"
+              name="CONTROL VIDEOWALL"
               nameButton="Click Aqui"
-              rute="/Wall/presentador"
+              rute="/Wall/videowall"
             />
             <div className="lg:col-span-2 lg:row-start-2 lg:self-center mx-auto">
               <Card

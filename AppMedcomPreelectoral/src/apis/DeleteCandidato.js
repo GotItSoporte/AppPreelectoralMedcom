@@ -1,12 +1,12 @@
-export const SendInfo = async (data) => {
-
+export const DeleteData = async (deleteData) => {
+    console.log({deleteData})
     try {
-      const response = await fetch('http://192.168.0.19:5000/SendInfoForm', {
-        method: 'POST',
+      const response = await fetch('http://192.168.0.19:5000/SendDeleteData', {
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(deleteData),
       });
 
       if (response.ok) {

@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Dropdown, Button, Form } from "../../components";
+import {
+  Table,
+  Dropdown,
+  Button,
+  Form,
+  WindowDelete,
+  WindowEdit,
+} from "../../components";
 
 export const Register = ({
   selectedOption,
@@ -18,8 +25,17 @@ export const Register = ({
   setSelectedCircuito,
   selectedPartido,
   setSelectedPartido,
+
+  //Delete
+  mostrarDelete,
+  setMostrarDelete,
+  selectIdDelete,
+  setSelectIdDelete,
+
+  //Edit
+  mostrarEdit,
+  setMostrarEdit,
 }) => {
-  console.log({ data });
   return (
     <>
       <div className="m-5">
@@ -30,41 +46,102 @@ export const Register = ({
               setSelectedOption={setSelectedOption}
               setList={listCorporacion}
             />
-          <div >
-          <Dropdown
-              selectedOption={selectedProvincia}
-              setSelectedOption={setSelectedProvincia}
-              setList={[...new Set(data.map((item) => item.provincia))]}
-            />
-          </div>
-
+            {selectedOption !== "PRESIDENTE" && (
+              <Dropdown
+                selectedOption={selectedProvincia}
+                setSelectedOption={setSelectedProvincia}
+                setList={[
+                  "Todas las provincias",
+                  ...new Set(data.map((item) => item.provincia)),
+                ]} // const provincias = ['Todas', ...new Set(data.map((item) => item.provincia))];
+              />
+            )}
 
             {selectedOption === "ALCALDES" ? (
               <Dropdown
                 selectedOption={selectedDistrito}
                 setSelectedOption={setSelectedDistrito}
-                setList={[...new Set(data.map((item) => item.distrito))]}
+                setList={[
+                  "Todos los distritos",
+                  ...new Set(
+                    data
+                      .filter((item) => item.provincia === selectedProvincia)
+                      .map((item) => item.distrito)
+                  ),
+                ]}
               />
             ) : selectedOption === "DIPUTADOS" ? (
               <Dropdown
                 selectedOption={selectedCircuito}
                 setSelectedOption={setSelectedCircuito}
-                setList={[...new Set(data.map((item) => item.circuito))]}
+                setList={[
+                  "Todos los circuitos",
+                  ...new Set(
+                    data
+                      .filter((item) => item.provincia === selectedProvincia)
+                      .map((item) => item.circuito)
+                  ),
+                ]}
               />
             ) : null}
 
             <Dropdown
               selectedOption={selectedPartido}
               setSelectedOption={setSelectedPartido}
-              setList={[...new Set(data.map((item) => item.partido))]}
+              setList={
+                selectedOption !== "PRESIDENTE"
+                  ? [
+                      "Todos los partidos",
+                      ...new Set(
+                        data
+                          .filter((item) =>
+                            item.distrito
+                              ? item.distrito === selectedDistrito
+                              : item.circuito
+                              ? item.circuito === selectedCircuito
+                              : null
+                          )
+                          .map((item) => item.partido)
+                      ),
+                    ]
+                  : [
+                      "Todos los partidos",
+                      ...new Set(data.map((item) => item.partido)),
+                    ]
+              }
             />
           </div>
-          <div className="flex" onClick={() => setMostrarFormulario(true)}>
-            <Button name="Añadir Candidato" type="Principal" rute="" />
+          <div className="flex space-x-5" >
+            <div className="flex" onClick={() => setMostrarFormulario(true)}>
+              <Button name="Añadir Candidato" type="Principal" rute="" />
+            </div>
+            <a href="/">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-12 h-12 text-white cursor-pointer opacity-80 hover:opacity-100"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                />
+              </svg>
+            </a>
           </div>
         </div>
-
-        <Table admin={true} data={dataSend} />
+        <div className="lg:mx-32">
+          <Table
+            admin={true}
+            data={dataSend}
+            setSelectIdDelete={setSelectIdDelete}
+            setMostrarDelete={setMostrarDelete}
+            setMostrarEdit={setMostrarEdit}
+          />
+        </div>
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center ${
@@ -72,6 +149,31 @@ export const Register = ({
         }`}
       >
         <Form setMostrar={setMostrarFormulario} />
+      </div>
+
+      <div
+        className={`fixed inset-0 flex items-center justify-center ${
+          mostrarDelete ? "" : "hidden"
+        }`}
+      >
+        <WindowDelete
+          selectIdDelete={selectIdDelete}
+          data={data}
+          setMostrarDelete={setMostrarDelete}
+        />
+      </div>
+
+      <div
+        className={`fixed inset-0 flex items-center justify-center ${
+          mostrarEdit ? "" : "hidden"
+        }`}
+      >
+        <WindowEdit
+          selectIdDelete={selectIdDelete}
+          data={data}
+          setMostrarEdit={setMostrarEdit}
+          mostrarEdit={mostrarEdit}
+        />
       </div>
     </>
   );
@@ -93,4 +195,14 @@ Register.propTypes = {
   setMostrarFormulario: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   dataSend: PropTypes.array.isRequired,
+
+  //Delete
+  mostrarDelete: PropTypes.bool.isRequired,
+  setMostrarDelete: PropTypes.func.isRequired,
+  selectIdDelete: PropTypes.number.isRequired,
+  setSelectIdDelete: PropTypes.func.isRequired,
+
+  //Edit
+  mostrarEdit: PropTypes.bool.isRequired,
+  setMostrarEdit: PropTypes.func.isRequired,
 };

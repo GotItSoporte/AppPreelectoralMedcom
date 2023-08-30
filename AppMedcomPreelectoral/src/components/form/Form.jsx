@@ -32,7 +32,6 @@ export const Form = ({
   listCircuito,
   handleSubmit,
 }) => {
-  console.log([listProvincia[0]]);
   return (
     <div
       className="p-10 w-full sm:w-3/4 lg:w-2/3  bg-gray-900 border-4 border-red-500 rounded-xl mx-auto overflow-auto h-2/3 sm:h-fit"
@@ -66,7 +65,7 @@ export const Form = ({
                 selectedOption={selectedProvincia}
                 setSelectedOption={setSelectedProvincia}
                 setList={
-                  selectedCorporacion !== "PRESIDENTES"
+                  selectedCorporacion !== "PRESIDENTE"
                     ? listProvincia.slice(1)
                     : [listProvincia[0]]
                 }
@@ -168,7 +167,7 @@ export const Form = ({
               selectedPosicion === "posición..." ||
               selectedPartido === "Partido..." ||
               selectedCorporacion === "Corporacion..." ||
-              (selectedCorporacion === "PRESIDENTES" &&
+              (selectedCorporacion === "PRESIDENTE" &&
                 selectedProvincia === "Provincia...") ||
               (selectedCorporacion === "ALCALDES" &&
                 selectedProvincia === "Provincia...") ||
@@ -188,7 +187,7 @@ export const Form = ({
               selectedPosicion === "posición..." ||
               selectedPartido === "Partido..." ||
               selectedCorporacion === "Corporacion..." ||
-              selectedCorporacion === "PRESIDENTES"
+              selectedCorporacion === "PRESIDENTE"
                 ? selectedProvincia === "Provincia..."
                 : "" || selectedCorporacion === "ALCALDES"
                 ? selectedProvincia === "Provincia..." ||
