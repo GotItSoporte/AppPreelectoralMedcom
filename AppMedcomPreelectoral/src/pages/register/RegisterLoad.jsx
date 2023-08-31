@@ -35,7 +35,7 @@ export const RegisterLoad = () => {
     setSelectedDistrito("Todos los distritos");
     setSelectedCircuito("Todos los circuitos");
     setSelectedPartido("Todos los partidos");
-  }, [selectedOption,mostrarDelete,mostrarEdit]);
+  }, [selectedOption, mostrarDelete, mostrarEdit]);
 
   useEffect(() => {
     if (selectedProvincia !== "Todas las provincias") {
@@ -56,7 +56,7 @@ export const RegisterLoad = () => {
       //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
     }
 
-    setSelectedPartido("Todos los partidos")
+    setSelectedPartido("Todos los partidos");
   }, [selectedDistrito]);
 
   useEffect(() => {
@@ -65,24 +65,49 @@ export const RegisterLoad = () => {
     } else {
       //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
     }
-
   }, [selectedCircuito]);
+
+  /*useEffect(() => {
+    if (selectedCircuito !== "Todos los partidos") {
+      setDataSend(data.filter((item) => item.partido === selectedPartido));
+    } else {
+      //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
+    }
+  }, [selectedPartido]);*/
 
   useEffect(() => {
     if (selectedPartido !== "Todos los partidos") {
-      if(selectedOption==="ALCALDES"){
-        setDataSend(data.filter((item) => item.partido === selectedPartido && item.distrito===selectedDistrito ));
-      } else if (selectedOption==="DIPUTADOS"){
-        setDataSend(data.filter((item) => item.partido === selectedPartido && item.circuito===selectedCircuito ));
+      if (selectedOption === "ALCALDES") {
+        setDataSend(
+          data.filter(
+            (item) =>
+              item.partido === selectedPartido &&
+              item.distrito === selectedDistrito
+          )
+        );
+      } else if (selectedOption === "DIPUTADOS") {
+        setDataSend(
+          data.filter(
+            (item) =>
+              item.partido === selectedPartido &&
+              item.circuito === selectedCircuito
+          )
+        );
       } else {
         setDataSend(data.filter((item) => item.partido === selectedPartido));
-
       }
     } else {
-      setDataSend(data);
+      if (selectedOption === "ALCALDES") {
+        setDataSend(data.filter((item) => item.distrito === selectedDistrito));
+      } else if (selectedOption === "DIPUTADOS") {
+        setDataSend(data.filter((item) => item.circuito === selectedCircuito));
+      } else{
+        setDataSend(data);
+      }
+
       //setDataSend(data.filter((item)=> item.circuito?item.circuito===selectedCircuito:item.distrito?item.distrito===selectedDistrito:item));
     }
-  }, [selectedPartido,selectedOption]);
+  }, [selectedPartido, selectedOption]);
 
   return (
     <Register
@@ -101,14 +126,12 @@ export const RegisterLoad = () => {
       setMostrarFormulario={setMostrarFormulario}
       data={data}
       dataSend={dataSend}
-
       //Delete
       mostrarDelete={mostrarDelete}
       setMostrarDelete={setMostrarDelete}
       selectIdDelete={selectIdDelete}
       setSelectIdDelete={setSelectIdDelete}
-
-      //Edit 
+      //Edit
       mostrarEdit={mostrarEdit}
       setMostrarEdit={setMostrarEdit}
     />

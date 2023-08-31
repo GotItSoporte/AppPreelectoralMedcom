@@ -12,14 +12,16 @@ export const Form = ({
   setSelectedId,
   selectedPosicion,
   setSelectedPosicion,
-  listPosicion,
+  selectedListPosicion,
   selectedCorporacion,
   setSelectedCorporacion,
   listCorporacion,
   selectedPartido,
   setSelectedPartido,
-  selectedPartidoSec,
-  setSelectedPartidoSec,
+  selectedPartido2,
+  setSelectedPartido2,
+  selectedPartido3,
+  setSelectedPartido3,
   listPartido,
   selectedProvincia,
   setSelectedProvincia,
@@ -38,29 +40,28 @@ export const Form = ({
       id="ventanaFormulario"
     >
       <div
-        className="flex justify-end"
+        className="flex justify-end mb-5"
         onClick={() => setMostrarFormulario(false)}
       >
         <Button type="Principal" name="Cerrar" rute="" />
       </div>
 
-      <h1 className="text-5xl font-bold tracking-tight text-white text-center mb-10 lg:mx-0">
+      <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white text-center mb-5 md:mb-10 lg:mx-0">
         REGISTRAR CANDIDATO
       </h1>
-      <form onSubmit={handleSubmit} className="lg:mx-36">
-        <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 md:gap-6 my-5 mx-auto w-fit gap-4 text-center  ">
+      <form onSubmit={handleSubmit} className="">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:flex justify-center md:gap-6 my-5 mx-auto w-fit gap-4 text-center  ">
           <Dropdown
             selectedOption={selectedCorporacion}
             setSelectedOption={setSelectedCorporacion}
             setList={listCorporacion}
           />
           {selectedCorporacion !== "Corporacion..." ? (
-            <>
-              <Dropdown
-                selectedOption={selectedPartido}
-                setSelectedOption={setSelectedPartido}
-                setList={listPartido}
-              />
+            <div
+              className={`${
+                selectedCorporacion === "PRESIDENTE" ? "hidden" : ""
+              }`}
+            >
               <Dropdown
                 selectedOption={selectedProvincia}
                 setSelectedOption={setSelectedProvincia}
@@ -70,7 +71,7 @@ export const Form = ({
                     : [listProvincia[0]]
                 }
               />
-            </>
+            </div>
           ) : (
             <></>
           )}
@@ -88,6 +89,7 @@ export const Form = ({
             <></>
           )}
           {selectedCorporacion === "DIPUTADOS" ? (
+            <>
             <Dropdown
               selectedOption={selectedCircuito}
               setSelectedOption={setSelectedCircuito}
@@ -97,6 +99,12 @@ export const Form = ({
                   : []
               }
             />
+            <Dropdown
+            selectedOption={selectedPartido}
+            setSelectedOption={setSelectedPartido}
+            setList={listPartido}
+          />
+          </>
           ) : (
             <></>
           )}
@@ -104,8 +112,8 @@ export const Form = ({
         <h1 className="text-3xl font-bold tracking-tight text-white text-center my-10 lg:mx-0">
           DATOS DEL CANDIDATO
         </h1>
-        <div className="grid lg:grid-cols-3 md:gap-6 items-center">
-          <div className="relative z-0 w-full mb-6 group">
+        <div className="grid grid-cols-2 gap-5  sm:grid-cols-3  lg:grid-cols-6 md:gap-5 items-center w-fit mx-auto bg-gray-800 rounded-lg p-10">
+          <div className="relative z-0 w-full  group">
             <input
               type="text"
               name="nombre"
@@ -123,7 +131,7 @@ export const Form = ({
               Nombre
             </label>
           </div>
-          <div className="relative z-0 w-full mb-6 group">
+          <div className="relative z-0 w-full  group">
             <input
               type="text"
               name="id"
@@ -141,31 +149,45 @@ export const Form = ({
               Id (123-456-7890)
             </label>
           </div>
-          <div className="flex justify-around lg:justify-center sm:space-x-10">
+          <Dropdown
+            selectedOption={selectedPosicion}
+            setSelectedOption={setSelectedPosicion}
+            setList={selectedListPosicion} 
+          />
+          
+          {selectedCorporacion !== "DIPUTADOS"?(
             <Dropdown
-              selectedOption={selectedPosicion}
-              setSelectedOption={setSelectedPosicion}
-              setList={listPosicion}
-            />
-            {selectedCorporacion === "DIPUTADOS" ? (
-              <Dropdown
-                selectedOption={selectedPartidoSec}
-                setSelectedOption={setSelectedPartidoSec}
-                setList={listPartido}
-              />
-            ) : (
-              <></>
-            )}
-          </div>
+            selectedOption={selectedPartido}
+            setSelectedOption={setSelectedPartido}
+            setList={listPartido}
+          />):(<></>)}
+
+          <Dropdown
+            selectedOption={selectedPartido2}
+            setSelectedOption={setSelectedPartido2}
+            setList={[
+              "2º Bandera...",
+              ...new Set(listPartido),
+            ]}
+          />
+          <Dropdown
+            selectedOption={selectedPartido3}
+            setSelectedOption={setSelectedPartido3}
+            setList={[
+              "3º Bandera...",
+              ...new Set(listPartido),
+            ]}
+          />
         </div>
 
-        <div className="flex justify-center mt-10 cursor-pointer">
+        <div className="flex justify-center mt-20 cursor-pointer">
           <button
             className={`flex ${
               selectedName === "" ||
               selectedId === "" ||
-              selectedPosicion === "posición..." ||
-              selectedPartido === "Partido..." ||
+              selectedPosicion === "Posicion" ||
+              selectedPosicion === "No hay posiciones libres" ||
+              selectedPartido === "1º Bandera..." ||
               selectedCorporacion === "Corporacion..." ||
               (selectedCorporacion === "PRESIDENTE" &&
                 selectedProvincia === "Provincia...") ||
@@ -176,16 +198,14 @@ export const Form = ({
               (selectedCorporacion === "DIPUTADOS" &&
                 selectedProvincia === "Provincia...") ||
               (selectedCorporacion === "DIPUTADOS" &&
-                selectedCircuito === "Circuito...") ||
-              (selectedCorporacion === "DIPUTADOS" &&
-                selectedPartidoSec === "Partido Secundario...")
-                ? "opacity-30"
+                selectedCircuito === "Circuito...")   ? "opacity-30"
                 : ""
             } `}
             type="submit"
             disabled={
-              selectedPosicion === "posición..." ||
-              selectedPartido === "Partido..." ||
+              selectedPosicion === "Posicion" ||
+              selectedPosicion === "No hay posiciones libres" ||
+              selectedPartido === "1º Bandera..." ||
               selectedCorporacion === "Corporacion..." ||
               selectedCorporacion === "PRESIDENTE"
                 ? selectedProvincia === "Provincia..."
@@ -194,8 +214,7 @@ export const Form = ({
                   selectedDistrito === "Distrito..."
                 : "" || selectedCorporacion === "DIPUTADOS"
                 ? selectedProvincia === "Provincia..." ||
-                  selectedCircuito === "Circuito..." ||
-                  selectedPartidoSec === "Partido Secundario..."
+                  selectedCircuito === "Circuito..."
                 : ""
             }
           >
@@ -215,14 +234,16 @@ Form.propTypes = {
   setMostrarFormulario: PropTypes.func.isRequired,
   selectedPosicion: PropTypes.string.isRequired,
   setSelectedPosicion: PropTypes.func.isRequired,
-  listPosicion: PropTypes.array.isRequired,
+  selectedListPosicion: PropTypes.array.isRequired,
   selectedCorporacion: PropTypes.string.isRequired,
   setSelectedCorporacion: PropTypes.func.isRequired,
   listCorporacion: PropTypes.array.isRequired,
   selectedPartido: PropTypes.string.isRequired,
   setSelectedPartido: PropTypes.func.isRequired,
-  selectedPartidoSec: PropTypes.string.isRequired,
-  setSelectedPartidoSec: PropTypes.func.isRequired,
+  selectedPartido2: PropTypes.string.isRequired,
+  setSelectedPartido2: PropTypes.func.isRequired,
+  selectedPartido3: PropTypes.string.isRequired,
+  setSelectedPartido3: PropTypes.func.isRequired,
   listPartido: PropTypes.array.isRequired,
   selectedProvincia: PropTypes.string.isRequired,
   setSelectedProvincia: PropTypes.func.isRequired,

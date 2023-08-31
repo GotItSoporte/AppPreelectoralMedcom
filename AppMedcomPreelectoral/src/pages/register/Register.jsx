@@ -36,11 +36,13 @@ export const Register = ({
   mostrarEdit,
   setMostrarEdit,
 }) => {
+
+  console.log({data})
   return (
     <>
       <div className="m-5">
-        <div className="mb-10 flex justify-between">
-          <div className="flex space-x-10">
+        <div className="mb-10 flex justify-between space-x-3 md:space-x-0">
+          <div className="md:flex space-y-5 md:space-y-0 md:space-x-10">
             <Dropdown
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
@@ -111,7 +113,7 @@ export const Register = ({
               }
             />
           </div>
-          <div className="flex space-x-5" >
+          <div className="flex space-x-5 h-fit">
             <div className="flex" onClick={() => setMostrarFormulario(true)}>
               <Button name="Añadir Candidato" type="Principal" rute="" />
             </div>
@@ -148,7 +150,7 @@ export const Register = ({
           mostrarFormulario ? "" : "hidden"
         }`}
       >
-        <Form setMostrar={setMostrarFormulario} />
+        <Form setMostrar={setMostrarFormulario} mostrarFormulario={mostrarFormulario}/>
       </div>
 
       <div

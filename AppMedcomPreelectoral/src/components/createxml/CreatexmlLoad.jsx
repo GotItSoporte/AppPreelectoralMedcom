@@ -71,13 +71,17 @@ export const CreatexmlLoad = ({ data }) => {
       element.ele("posicion", dataSelect.posicion);
       element.ele("nombre", dataSelect.nombre);
       element.ele("id", dataSelect.id);
-      element.ele("partido", dataSelect.corporacion==="DIPUTADOS"?dataSelect.partidosec:dataSelect.partido);
-      element.ele("idpartido",dataSelect.corporacion==="DIPUTADOS"?dataSelect.idpartidosec:dataSelect.idpartido);
-      if (dataSelect.corporacion==="DIPUTADOS") {
-        element.ele("partidosec", dataSelect.partidosec);
-        element.ele("idpartidosec", dataSelect.idpartidosec);
-      }
+      //element.ele("partido", dataSelect.corporacion==="DIPUTADOS"?dataSelect.partidosec:dataSelect.partido);
+      //element.ele("idpartido",dataSelect.corporacion==="DIPUTADOS"?dataSelect.idpartidosec:dataSelect.idpartido);
+      element.ele("partido", dataSelect.partido);
+      element.ele("idpartido",dataSelect.idpartido);
+      element.ele("partido2", dataSelect.partido2);
+      element.ele("idpartido2",dataSelect.idpartido2);
+      element.ele("partido3", dataSelect.partido3);
+      element.ele("idpartido3",dataSelect.idpartido3);
+      if(dataSelect.corporacion!=="PRESIDENTE"){
       element.ele("provincia", dataSelect.provincia);
+      }
       if (dataSelect.distrito) {
         element.ele("distrito", dataSelect.distrito);
       }

@@ -55,6 +55,15 @@ export const NavbarLoad = ({ dataSelect,role,setMostrarNavbar,
   }, [open]);
 
 
+  useEffect(()=>{
+    if('PRESIDENTE' in data){
+      dataSelect(data['PRESIDENTE'])
+      
+    }
+    
+  },[open,data])
+
+
 
   return (
     <Navbar

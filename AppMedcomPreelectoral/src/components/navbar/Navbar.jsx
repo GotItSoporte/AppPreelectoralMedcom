@@ -167,14 +167,16 @@ export const Navbar = ({
             )}
             <ul className="mb-8 text-sm font-medium">
               {nameCorporacion.map((corporacion, idx) => {
+                console.log({data})
                 return (
                   <li key={idx}>
                     <a
-                      className="flex items-center pl-3 py-3 pr-4 text-gray-50 bg-gray-900 hover:bg-blue-500 rounded"
+                      className={`flex items-center pl-3 py-3 pr-4 text-gray-50 ${corporacion==="PRESIDENTE"?'bg-gray-600':'bg-gray-900'} hover:bg-blue-500 rounded`}
                       href="#"
-                      onClick={() => toggleOpen(corporacion)}
+                      onClick={() => {toggleOpen(corporacion);corporacion==="PRESIDENTE"?setMostrarNavbar(false):null}}
                     >
                       <span>{corporacion}</span>
+                      {corporacion!=="PRESIDENTE"?(
                       <span className="inline-block ml-auto">
                         <svg
                           className="text-gray-400 w-3 h-3"
@@ -186,7 +188,7 @@ export const Navbar = ({
                             fill="currentColor"
                           ></path>
                         </svg>
-                      </span>
+                      </span>):(<></>)}
                     </a>
                     {open[corporacion] &&
                       data[corporacion]?.map((el, idx) => {
@@ -197,20 +199,11 @@ export const Navbar = ({
                               <a
                                 className={`flex items-center pl-3 py-3 pr-4 text-gray-50 ${
                                   corporacion === "PRESIDENTE"
-                                    ? "bg-gray-600"
+                                    ? " hidden"
                                     : "bg-gray-800"
                                 }  hover:bg-blue-500 `}
                                 href="#"
                                 onClick={() => {
-                                  corporacion === "PRESIDENTE"
-                                    ? dataSelect(
-                                        data[corporacion].filter(
-                                          (item) =>
-                                            item.corporacion === "PRESIDENTE"
-                                        )
-                                      )
-                                    : null; 
-                                  corporacion==="PRESIDENTE" && setMostrarNavbar(false);
                                   corporacion === "ALCALDES"
                                     ? toggleOpenProvincia(el.provincia)
                                     : null;

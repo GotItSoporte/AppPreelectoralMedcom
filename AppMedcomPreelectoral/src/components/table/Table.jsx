@@ -10,63 +10,59 @@ export const Table = ({
 }) => {
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-fit mx-auto">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full lg:w-fit  mx-auto">
         <table className="  text-sm text-left  text-gray-400">
           <thead className="text-xs uppercase bg-gray-50 dark:bg-blue-500 text-white">
             {data.length > 0 ? (
               <tr>
-                <th scope="col" className="px-10 py-3 text-center">
+                <th scope="col" className="px-6 py-3 text-center">
                   Posición
                 </th>
-                <th scope="col" className="px-10 py-3 text-center">
+                <th scope="col" className="px-6 py-3 text-center">
                   Nombre
                 </th>
                 {admin ? (
-                  <th scope="col" className="px-10 py-3 text-center">
+                  <th scope="col" className="px-6 py-3 text-center">
                     Id
                   </th>
                 ) : (
                   <></>
                 )}
+                <th scope="col" className="px-6 py-3 text-center">
+                  1º Bandera
+                </th>
+                <th scope="col" className="px-6 py-3 text-center">
+                  2º Bandera
+                </th>
+                <th scope="col" className="px-6 py-3 text-center">
+                  3º Bandera
+                </th>
                 {data ? (
-                  data[0].corporacion === "DIPUTADOS" ? (
-                    <th scope="col" className="px-10 py-3 text-center">
-                      Partido (List)
+                  data[0].corporacion !== "PRESIDENTE" ? (
+                    <th scope="col" className="px-6 py-3 text-center">
+                      Provincia
                     </th>
                   ) : (
-                    <th scope="col" className="px-10 py-3 text-center">
-                      Partido
-                    </th>
+                    <></>
                   )
                 ) : null}
                 {data ? (
-                  data[0].corporacion === "DIPUTADOS" ? (
-                    <th scope="col" className="px-10 py-3 text-center">
-                      Partido (Base)
-                    </th>
-                  ) : null
-                ) : null}
-
-                <th scope="col" className="px-10 py-3 text-center">
-                  Provincia
-                </th>
-                {data ? (
                   data[0].corporacion === "ALCALDES" ? (
-                    <th scope="col" className="px-10 py-3 text-center">
+                    <th scope="col" className="px-6 py-3 text-center">
                       Distrito
                     </th>
                   ) : data[0].corporacion === "DIPUTADOS" ? (
-                    <th scope="col" className="px-10 py-3 text-center">
+                    <th scope="col" className="px-6 py-3 text-center">
                       Circuito
                     </th>
                   ) : null
                 ) : null}
 
-                <th scope="col" className="px-10 py-3 text-center">
+                <th scope="col" className="px-6 py-3 text-center">
                   Corporación
                 </th>
                 {admin ? (
-                  <th scope="col" className="px-10 py-3 ">
+                  <th scope="col" className="px-6 py-3 ">
                     <span className="sr-only ">Edit</span>
                   </th>
                 ) : (
@@ -75,7 +71,7 @@ export const Table = ({
               </tr>
             ) : (
               <tr>
-                <th scope="col" className="px-10 py-3 text-center"></th>
+                <th scope="col" className="px-6 py-3 text-center"></th>
               </tr>
             )}
           </thead>
@@ -87,33 +83,31 @@ export const Table = ({
                     key={idx}
                     className="bg-gray-700 border-b border-gray-700 hover:bg-gray-600 font-medium  whitespace-nowrap hover:text-white "
                   >
-                    <th scope="row" className="px-10 py-4 text-center">
+                    <th scope="row" className="px-6 py-4 text-center">
                       {data.posicion}
                     </th>
-                    <td className="px-10 py-4 ">{data.nombre}</td>
-                    {admin ? <td className="px-10 py-4 ">{data.id}</td> : <></>}
-                    <td className="px-10 py-4 text-center">{data.partido}</td>
-                    {data.corporacion === "DIPUTADOS" ? (
-                      <td className="px-10 py-4 text-center">
-                        {data.partidosec}
+                    <td className="px-6 py-4 ">{data.nombre}</td>
+                    {admin ? <td className="px-6 py-4 ">{data.id}</td> : <></>}
+                    <td className="px-6 py-4 text-center">{data.partido}</td>
+                    <td className="px-6 py-4 text-center">{data.partido2}</td>
+                    <td className="px-6 py-4 text-center">{data.partido3}</td>
+                    {data.corporacion !== "PRESIDENTE" ? (
+                      <td className="px-6 py-4 text-center">
+                        {data.provincia}
                       </td>
-                    ) : null}
-
-                    <td className="px-10 py-4 text-center">{data.provincia}</td>
+                    ) : (
+                      <></>
+                    )}
                     {data.corporacion === "ALCALDES" ? (
-                      <td className="px-10 py-4 text-center">
-                        {data.distrito}
-                      </td>
+                      <td className="px-6 py-4 text-center">{data.distrito}</td>
                     ) : data.corporacion === "DIPUTADOS" ? (
-                      <td className="px-10 py-4 text-center">
-                        {data.circuito}
-                      </td>
+                      <td className="px-6 py-4 text-center">{data.circuito}</td>
                     ) : null}
-                    <td className="px-10 py-4 text-center">
+                    <td className="px-6 py-4 text-center">
                       {data.corporacion}
                     </td>
                     {admin ? (
-                      <td className="px-10 py-4 text-center">
+                      <td className="px-6 py-4 text-center">
                         <a
                           href="#"
                           className="font-medium text-base text-blue-500 hover:underline px-5 "
@@ -143,7 +137,7 @@ export const Table = ({
               })
             ) : (
               <tr className="bg-gray-700 border-b border-gray-700 hover:bg-gray-600 font-medium  whitespace-nowrap hover:text-white text-center ">
-                <th scope="row" className="px-10 py-4 ">
+                <th scope="row" className="px-6 py-4 ">
                   NO EXISTEN DATOS
                 </th>
               </tr>

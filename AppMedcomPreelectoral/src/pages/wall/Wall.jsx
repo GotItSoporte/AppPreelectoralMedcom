@@ -13,6 +13,7 @@ export const Wall = ({
   setNavbarActivado,
 }) => {
   const { role } = useParams();
+  console.log({dataSelect})
   return (
     <div>
       <div className="w-fit float-left ">
