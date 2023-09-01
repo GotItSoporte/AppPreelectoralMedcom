@@ -16,6 +16,9 @@ export const router = createBrowserRouter([
     element: <Register />,
   }
 ]);
+
+
+
 /*
 export const router = createBrowserRouter([
   {

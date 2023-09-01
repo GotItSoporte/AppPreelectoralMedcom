@@ -1,7 +1,8 @@
 import React from "react";
-import { Card } from "../../components";
+import PropTypes from "prop-types";
+import { Card, Verificacion } from "../../components";
 
-export const Home = () => {
+export const Home = ({ mostrarVerificacion, setMostrarVerificacion }) => {
   return (
     <>
       <div className="flex items-center justify-center sm:h-screen  ">
@@ -20,16 +21,28 @@ export const Home = () => {
               nameButton="Click Aqui"
               rute="/Wall/videowall"
             />
-            <div className="lg:col-span-2 lg:row-start-2 lg:self-center mx-auto">
+            <div className="lg:col-span-2 lg:row-start-2 lg:self-center mx-auto" onClick={()=>setMostrarVerificacion(true)}>
               <Card
                 name="REGISTRO CANDIDATOS"
                 nameButton="Click Aqui"
-                rute="/Register"
+                rute=""
               />
             </div>
           </div>
         </div>
       </div>
+      {mostrarVerificacion ? (
+        <div className="fixed inset-0 flex items-center justify-center">
+          <Verificacion setMostrarVerificacion={setMostrarVerificacion} />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
+};
+
+Home.propTypes = {
+  mostrarVerificacion: PropTypes.bool.isRequired,
+  setMostrarVerificacion: PropTypes.func.isRequired,
 };

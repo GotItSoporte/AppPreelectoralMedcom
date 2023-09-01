@@ -90,21 +90,21 @@ export const Form = ({
           )}
           {selectedCorporacion === "DIPUTADOS" ? (
             <>
-            <Dropdown
-              selectedOption={selectedCircuito}
-              setSelectedOption={setSelectedCircuito}
-              setList={
-                listCircuito[selectedProvincia]
-                  ? listCircuito[selectedProvincia]
-                  : []
-              }
-            />
-            <Dropdown
-            selectedOption={selectedPartido}
-            setSelectedOption={setSelectedPartido}
-            setList={listPartido}
-          />
-          </>
+              <Dropdown
+                selectedOption={selectedCircuito}
+                setSelectedOption={setSelectedCircuito}
+                setList={
+                  listCircuito[selectedProvincia]
+                    ? listCircuito[selectedProvincia]
+                    : []
+                }
+              />
+              <Dropdown
+                selectedOption={selectedPartido}
+                setSelectedOption={setSelectedPartido}
+                setList={listPartido}
+              />
+            </>
           ) : (
             <></>
           )}
@@ -152,31 +152,28 @@ export const Form = ({
           <Dropdown
             selectedOption={selectedPosicion}
             setSelectedOption={setSelectedPosicion}
-            setList={selectedListPosicion} 
+            setList={selectedListPosicion}
           />
-          
-          {selectedCorporacion !== "DIPUTADOS"?(
+
+          {selectedCorporacion !== "DIPUTADOS" ? (
             <Dropdown
-            selectedOption={selectedPartido}
-            setSelectedOption={setSelectedPartido}
-            setList={listPartido}
-          />):(<></>)}
+              selectedOption={selectedPartido}
+              setSelectedOption={setSelectedPartido}
+              setList={listPartido}
+            />
+          ) : (
+            <></>
+          )}
 
           <Dropdown
             selectedOption={selectedPartido2}
             setSelectedOption={setSelectedPartido2}
-            setList={[
-              "2º Bandera...",
-              ...new Set(listPartido),
-            ]}
+            setList={["2º Bandera...", ...new Set(listPartido)]}
           />
           <Dropdown
             selectedOption={selectedPartido3}
             setSelectedOption={setSelectedPartido3}
-            setList={[
-              "3º Bandera...",
-              ...new Set(listPartido),
-            ]}
+            setList={["3º Bandera...", ...new Set(listPartido)]}
           />
         </div>
 
@@ -198,7 +195,8 @@ export const Form = ({
               (selectedCorporacion === "DIPUTADOS" &&
                 selectedProvincia === "Provincia...") ||
               (selectedCorporacion === "DIPUTADOS" &&
-                selectedCircuito === "Circuito...")   ? "opacity-30"
+                selectedCircuito === "Circuito...")
+                ? "opacity-30"
                 : ""
             } `}
             type="submit"

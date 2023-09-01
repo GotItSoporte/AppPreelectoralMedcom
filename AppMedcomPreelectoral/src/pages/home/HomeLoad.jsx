@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Home } from "./Home";
 
 export const HomeLoad = () => {
-  return <Home />;
+
+  const [mostrarVerificacion,setMostrarVerificacion] = useState(false);
+
+  return <Home mostrarVerificacion={mostrarVerificacion}setMostrarVerificacion={setMostrarVerificacion}/>;
 };

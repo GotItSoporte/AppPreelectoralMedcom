@@ -71,7 +71,7 @@ export const Table = ({
               </tr>
             ) : (
               <tr>
-                <th scope="col" className="px-6 py-3 text-center"></th>
+                <th scope="col" className="w-screen py-3 text-center"></th>
               </tr>
             )}
           </thead>
