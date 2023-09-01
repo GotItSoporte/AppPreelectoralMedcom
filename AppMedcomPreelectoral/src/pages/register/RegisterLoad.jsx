@@ -53,7 +53,7 @@ export const RegisterLoad = () => {
     if (selectedDistrito !== "Todos los distritos") {
       setDataSend(data.filter((item) => item.distrito === selectedDistrito));
     } else {
-      //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
+      setDataSend(data);
     }
 
     setSelectedPartido("Todos los partidos");
@@ -97,11 +97,17 @@ export const RegisterLoad = () => {
         setDataSend(data.filter((item) => item.partido === selectedPartido));
       }
     } else {
-      if (selectedOption === "ALCALDES") {
+      if (
+        selectedOption === "ALCALDES" &&
+        selectedDistrito !== "Todos los distritos"
+      ) {
         setDataSend(data.filter((item) => item.distrito === selectedDistrito));
-      } else if (selectedOption === "DIPUTADOS") {
+      } else if (
+        selectedOption === "DIPUTADOS" &&
+        selectedCircuito !== "Todos los circuitos"
+      ) {
         setDataSend(data.filter((item) => item.circuito === selectedCircuito));
-      } else{
+      } else {
         setDataSend(data);
       }
 

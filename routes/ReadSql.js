@@ -27,7 +27,7 @@ router.get("/ALCALDES", async function (req, res) {
   try {
     // Ejecutar la consulta y obtener los resultados
     const [rows, fields] = await mysqlRead.query(
-      "SELECT * FROM alcaldes ORDER BY provincia,partido,posicion ASC"
+      "SELECT * FROM alcaldes ORDER BY provincia,distrito,posicion ASC,partido"
     );
 
     res.json(rows);

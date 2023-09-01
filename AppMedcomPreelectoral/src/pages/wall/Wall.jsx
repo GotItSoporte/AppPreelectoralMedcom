@@ -80,7 +80,7 @@ export const Wall = ({
                 </>
               ) : role === "fullscreen" ? (
                 <>
-                  <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl  dark:text-white">
+                  <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl  dark:text-white w-fit mx-auto py-5">
                     ULTIMO ARCHIVO XML GENERADO
                   </h1>
                   <Table
