@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Table,
   Dropdown,
@@ -36,8 +37,20 @@ export const Register = ({
   mostrarEdit,
   setMostrarEdit,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const myVariable = location.state ? location.state.myVariable : null;
 
-  console.log({data})
+  useEffect(() => {
+    // Verifica la variable después de que el componente se haya renderizado
+    if (myVariable !== "medcomvoto24") {
+      //location.pathname !== "/Register#" &&
+
+      navigate("/");
+    }
+  }, []);
+
+  console.log({ myVariable });
   return (
     <>
       <div className="m-5">
@@ -150,7 +163,10 @@ export const Register = ({
           mostrarFormulario ? "" : "hidden"
         }`}
       >
-        <Form setMostrar={setMostrarFormulario} mostrarFormulario={mostrarFormulario}/>
+        <Form
+          setMostrar={setMostrarFormulario}
+          mostrarFormulario={mostrarFormulario}
+        />
       </div>
 
       <div

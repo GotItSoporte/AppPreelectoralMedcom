@@ -11,7 +11,7 @@ export const VerificacionLoad = ({ setMostrarVerificacion }) => {
   const checkValidacion = (e) => {
     e.preventDefault(); // Evita que la página se recargue
     if (nameValidacion === "medcomvoto24") {
-      navigate("/Register");
+      navigate("/Register",{ state: { myVariable: nameValidacion } });
     } else {
         setError(true)
         setNameValidacion("")
