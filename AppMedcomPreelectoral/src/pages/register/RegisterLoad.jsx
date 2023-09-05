@@ -35,7 +35,7 @@ export const RegisterLoad = () => {
     setSelectedDistrito("Todos los distritos");
     setSelectedCircuito("Todos los circuitos");
     setSelectedPartido("Todos los partidos");
-  }, [selectedOption, mostrarDelete, mostrarEdit]);
+  }, [selectedOption, mostrarDelete, mostrarEdit,mostrarFormulario]);
 
   useEffect(() => {
     if (selectedProvincia !== "Todas las provincias") {

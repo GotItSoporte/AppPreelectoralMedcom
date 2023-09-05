@@ -43,7 +43,7 @@ export const Register = ({
 
   useEffect(() => {
     // Verifica la variable después de que el componente se haya renderizado
-    if (myVariable !== "medcomvoto24") {
+    if (myVariable === "medcomvoto24sss") {
       //location.pathname !== "/Register#" &&
 
       navigate("/");

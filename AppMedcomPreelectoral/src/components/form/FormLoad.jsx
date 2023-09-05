@@ -211,9 +211,9 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     "PANAMÁ OESTE": ["13-1", "13-2", "13-3", "13-4"],
   });
 
-  const handleSubmit = async () => {
-    //e.preventDefault(); // Evita que la página se recargue
-
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Evita que la página se recargue
+    setMostrar(false);
     const data = {
       selectedName: selectedName.toUpperCase(),
       selectedId: selectedId,
