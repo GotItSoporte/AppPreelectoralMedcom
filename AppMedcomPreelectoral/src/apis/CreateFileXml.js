@@ -1,6 +1,6 @@
 export const CreateFile = async (data) => {
   try {
-    const response = await fetch('http://http://10.50.50.1:5000/Createxml', {
+    const response = await fetch('http://http://192.168.70.229:5000/Createxml', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
