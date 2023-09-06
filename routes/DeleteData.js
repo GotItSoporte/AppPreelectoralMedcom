@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const oracledb = require("oracledb");
 
-// Configuración de la conexión a la base de datos Oracle
 const dbConfig = {
   user: "INFORMACIONPREELECTORAL",
   password: "@44K7UzZr#1I",
@@ -10,37 +9,24 @@ const dbConfig = {
 };
 
 router.delete("/", async (req, res) => {
+  const candidatoId = req.body.selectId;
+  const corporacion = req.body.corporacion;
+
   try {
-    // Obtener una conexión a la base de datos Oracle
     const connection = await oracledb.getConnection(dbConfig);
 
-    const candidatoId = req.body.selectId;
-    const corporacion = req.body.corporacion;
+    const tableName = corporacion === 'PRESIDENTE' ? 'presidentes' : corporacion;
+    const sql = `DELETE FROM ${tableName} WHERE idgeneral = :1`;
 
-    const sql = `DELETE FROM ${corporacion === "PRESIDENTE" ? "presidentes" : corporacion} WHERE idgeneral = :candidatoId`;
+    const bindParams = [candidatoId];
 
-    const result = await connection.execute(
-      sql,
-      {
-        candidatoId: candidatoId,
-      },
-      { autoCommit: true } // autoCommit:true para confirmar automáticamente la transacción
-    );
+    const result = await connection.execute(sql, bindParams, { autoCommit: true });
 
-    console.log("Elemento eliminado correctamente");
-    res.json({ message: "Elemento eliminado correctamente" });
-  } catch (error) {
-    console.error("Error al eliminar el elemento:", error);
-    res.status(500).json({ error: "Error al eliminar el elemento" });
-  } finally {
-    if (connection) {
-      // Liberar la conexión de Oracle cuando hayas terminado
-      try {
-        await connection.close();
-      } catch (err) {
-        console.error(err);
-      }
-    }
+    console.log('Elemento eliminado correctamente');
+    res.json({ message: 'Elemento eliminado correctamente' });
+  } catch (err) {
+    console.error('Error al eliminar el elemento:', err);
+    res.status(500).json({ error: 'Error al eliminar el elemento' });
   }
 });
 

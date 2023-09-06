@@ -1,7 +1,7 @@
 export const DeleteData = async (deleteData) => {
     console.log({deleteData})
     try {
-      const response = await fetch('http://192.168.0.19:5000/SendDeleteData', {
+      const response = await fetch('http://192.168.70.229:5000/SendDeleteData', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

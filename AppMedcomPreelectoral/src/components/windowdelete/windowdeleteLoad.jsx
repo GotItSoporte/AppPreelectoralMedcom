@@ -21,6 +21,7 @@ export const WindowDeleteLoad = ({
       selectId: selectIdDelete,
     };
     await DeleteData(deleteData);
+    setMostrarDelete(false)
     //window.location.reload();
   };
 

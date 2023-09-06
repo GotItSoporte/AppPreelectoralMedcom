@@ -213,7 +213,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Evita que la página se recargue
-    setMostrar(false);
+    
     const data = {
       selectedName: selectedName.toUpperCase(),
       selectedId: selectedId,
@@ -239,6 +239,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     };
     console.log({ data });
     await SendInfo(data);
+    setMostrar(false);
   };
 
   useEffect(() => {

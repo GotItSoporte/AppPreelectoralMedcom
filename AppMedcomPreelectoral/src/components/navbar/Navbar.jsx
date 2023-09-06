@@ -167,7 +167,7 @@ export const Navbar = ({
             )}
             <ul className="mb-8 text-sm font-medium">
               {nameCorporacion.map((corporacion, idx) => {
-                console.log({data})
+               
                 return (
                   <li key={idx}>
                     <a
