@@ -1,7 +1,7 @@
 export const SendInfo = async (data) => {
 
     try {
-      const response = await fetch('http://192.168.70.229:5000/SendInfoForm', {
+      const response = await fetch('http://192.168.0.19:5000/SendInfoForm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

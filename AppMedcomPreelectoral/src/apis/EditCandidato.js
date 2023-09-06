@@ -1,7 +1,7 @@
 export const EditData = async (editData) => {
     console.log({editData})
     try {
-      const response = await fetch('http://192.168.70.229:5000/SendEditData', {
+      const response = await fetch('http://192.168.0.19:5000/SendEditData', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

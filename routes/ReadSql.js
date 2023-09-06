@@ -2,48 +2,63 @@ const express = require("express");
 const router = express.Router();
 const oracledb = require("oracledb");
 
-// Configuración de la conexión a la base de datos Oracle
+// Configure your Oracle Database connection
 const dbConfig = {
-  user: 'INFORMACIONPREELECTORAL',
-  password: '@44K7UzZr#1I',
-  connectString: '10.26.27.21:1521/medc.medcomsubnet.medcomvcn.oraclevcn.com',
+  user: "INFORMACIONPREELECTORAL",
+  password: "@44K7UzZr#1I",
+  connectString: "10.26.27.21:1521/medc.medcomsubnet.medcomvcn.oraclevcn.com", // Ejemplo: localhost:1521/tu_servicio
 };
+
+// Initialize the Oracle connection pool
+oracledb.createPool(dbConfig);
 
 router.get("/PRESIDENTE", async function (req, res) {
   try {
-    // Obtener una conexión a la base de datos Oracle
-    const connection = await oracledb.getConnection(dbConfig);
+    // Get a connection from the Oracle pool
+    const connection = await oracledb.getConnection();
 
-    // Ejecutar la consulta SQL y obtener los resultados
-    const query =
-      "SELECT * FROM presidentes ORDER BY provincia, posicion ASC, partido";
-    const result = await connection.execute(query);
+    // Execute the Oracle query and fetch results
+    const result = await connection.execute(
+      "SELECT * FROM PRESIDENTES ORDER BY provincia, posicion ASC, partido"
+    );
 
-    // Convertir el resultado a formato JSON y enviarlo como respuesta
-    const rows = result.rows.map((row) => {
-      const data = {};
-      result.metaData.forEach((meta, index) => {
-        data[meta.name] = row[index];
-      });
-      return data;
-    });
+    // Release the connection back to the pool
+    await connection.close();
 
-    res.json(rows);
+    // Send the query results as JSON
+    res.json(result.rows);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error en la base de datos" });
-  } finally {
-    if (connection) {
-      // Liberar la conexión de Oracle cuando hayas terminado
-      try {
-        await connection.close();
-      } catch (err) {
-        console.error(err);
-      }
-    }
+    res.status(500).json({ error: "Database error" });
   }
 });
 
-// Rutas similares para ALCALDES y DIPUTADOS (ajusta las consultas SQL según sea necesario)
+router.get("/ALCALDES", async function (req, res) {
+  try {
+    const connection = await oracledb.getConnection();
+    const result = await connection.execute(
+      "SELECT * FROM alcaldes ORDER BY provincia, distrito, posicion ASC, partido"
+    );
+    await connection.close();
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+router.get("/DIPUTADOS", async function (req, res) {
+  try {
+    const connection = await oracledb.getConnection();
+    const result = await connection.execute(
+      "SELECT * FROM diputados ORDER BY provincia, circuito, partido, posicion ASC"
+    );
+    await connection.close();
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Database error" });
+  }
+});
 
 module.exports = router;

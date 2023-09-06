@@ -49,7 +49,7 @@ export const Register = ({
       navigate("/");
     }
   }, []);
-
+  console.log({data})
   console.log({ myVariable });
   return (
     <>
