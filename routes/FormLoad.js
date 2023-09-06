@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
         selectedPartido3,
         selectedIdPartido3,
         selectedProvincia,
-        selectedCorporacion,
+        "PRESIDENTES",
       ];
     } else if (selectedCorporacion === "ALCALDES") {
       query =
@@ -84,7 +84,7 @@ router.post("/", async (req, res) => {
     const result = await connection.execute(query, bindParams, { autoCommit: true });
 
     console.log("Data inserted successfully");
-    res.status(200).send("Data inserted successfully");
+    res.status(200).json({ mensaje: "Datos insertados exitosamente" });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error al insertar datos en la base de datos");

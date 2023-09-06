@@ -76,7 +76,7 @@ router.get("/ALCALDES", async function (req, res) {
       };
     });
 
-    res.json(rrows);
+    res.json(rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database error" });
