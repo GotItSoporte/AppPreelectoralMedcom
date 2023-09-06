@@ -25,8 +25,25 @@ router.get("/PRESIDENTE", async function (req, res) {
     // Release the connection back to the pool
     await connection.close();
 
+    const rows = result.rows.map((row) => {
+      return {
+        posicion: row[0],
+        nombre: row[1],
+        id: row[2],
+        partido: row[3],
+        idpartido: row[4],
+        partido2: row[5],
+        idpartido2: row[6],
+        partido3: row[7],
+        idpartido3: row[8],
+        provincia: row[9],
+        corporacion: row[10],
+        idgeneral: row[11],
+      };
+    });
+
     // Send the query results as JSON
-    res.json(result.rows);
+    res.json(rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database error" });
@@ -40,7 +57,26 @@ router.get("/ALCALDES", async function (req, res) {
       "SELECT * FROM alcaldes ORDER BY provincia, distrito, posicion ASC, partido"
     );
     await connection.close();
-    res.json(result.rows);
+
+    const rows = result.rows.map((row) => {
+      return {
+        posicion: row[0],
+        nombre: row[1],
+        id: row[2],
+        partido: row[3],
+        idpartido: row[4],
+        partido2: row[5],
+        idpartido2: row[6],
+        partido3: row[7],
+        idpartido3: row[8],
+        provincia: row[9],
+        distrito: row[10],
+        corporacion: row[11],
+        idgeneral: row[12],
+      };
+    });
+
+    res.json(rrows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database error" });
@@ -54,7 +90,28 @@ router.get("/DIPUTADOS", async function (req, res) {
       "SELECT * FROM diputados ORDER BY provincia, circuito, partido, posicion ASC"
     );
     await connection.close();
-    res.json(result.rows);
+
+
+    const rows = result.rows.map((row) => {
+      return {
+        posicion: row[0],
+        nombre: row[1],
+        id: row[2],
+        partido: row[3],
+        idpartido: row[4],
+        partido2: row[5],
+        idpartido2: row[6],
+        partido3: row[7],
+        idpartido3: row[8],
+        provincia: row[9],
+        circuito: row[10],
+        corporacion: row[11],
+        idgeneral: row[12],
+      };
+    });
+
+
+    res.json(rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database error" });
