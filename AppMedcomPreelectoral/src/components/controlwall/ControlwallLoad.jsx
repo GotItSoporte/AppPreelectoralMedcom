@@ -85,7 +85,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
     SendInfoWall(WALL_UDPMessage);
     setCantidad(data.length);
     setDelayButton(false);
-    await delay(1000);
+    await delay(7000);
     setBotonActivado(2);
     setDelayButton(true);
   };
@@ -98,7 +98,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
     };
     SendInfoWall(WALL_UDPMessage);
     setDelayButton(false);
-    await delay(1000);
+    await delay(3000);
     setDelayButton(true);
     setCantidad(cantidad - 1);
     if (cantidad === 1) {
@@ -115,7 +115,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
     setDelayButton(false);
     setMostrarNavbar(true);
     setNavbarActivado(true);
-    await delay(1000);
+    await delay(5000);
     setDelayButton(true);
     setBotonActivado(1);
 
@@ -131,7 +131,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
     setBotonActivado(1);
     setMostrarNavbar(true);
     setNavbarActivado(true);
-    await delay(1000);
+    await delay(5000);
     setDelayButton(true);
 
   };
