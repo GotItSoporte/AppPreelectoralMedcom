@@ -3,9 +3,9 @@ const router = express.Router();
 const oracledb = require("oracledb");
 
 const dbConfig = {
-  user: "your_username",
-  password: "your_password",
-  connectString: "your_connection_string", // e.g., localhost:1521/your_service_name
+  user: "INFORMACIONPREELECTORAL",
+  password: "@44K7UzZr#1I",
+  connectString: "10.26.27.21:1521/medc.medcomsubnet.medcomvcn.oraclevcn.com", // Ejemplo: localhost:1521/tu_servicio
 };
 
 router.post("/", async (req, res) => {

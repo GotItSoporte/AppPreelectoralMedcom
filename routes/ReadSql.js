@@ -4,9 +4,9 @@ const oracledb = require("oracledb");
 
 // Configuración de la conexión a la base de datos Oracle
 const dbConfig = {
-  user: "tu_usuario",
-  password: "tu_contraseña",
-  connectString: "tu_conexion_string", // Ejemplo: localhost:1521/tu_servicio
+  user: 'INFORMACIONPREELECTORAL',
+  password: '@44K7UzZr#1I',
+  connectString: '10.26.27.21:1521/medc.medcomsubnet.medcomvcn.oraclevcn.com',
 };
 
 router.get("/PRESIDENTE", async function (req, res) {
