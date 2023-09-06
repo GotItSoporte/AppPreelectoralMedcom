@@ -26,68 +26,68 @@ router.post("/", async (req, res) => {
   try {
     const connection = await oracledb.getConnection(dbConfig);
 
+    let query;
+    let bindParams;
+
     if (selectedCorporacion === "PRESIDENTE") {
-      const query =
-        "INSERT INTO presidentes (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, corporacion) VALUES (:posicion, :nombre, :id, :partido, :idpartido, :partido2, :idpartido2, :partido3, :idpartido3, :provincia, :corporacion)";
-
-      const result = await connection.execute(query, {
-        posicion: selectedPosicion,
-        nombre: selectedName,
-        id: selectedId,
-        partido: selectedPartido,
-        idpartido: selectedIdPartido,
-        partido2: selectedPartido2,
-        idpartido2: selectedIdPartido2,
-        partido3: selectedPartido3,
-        idpartido3: selectedIdPartido3,
-        provincia: selectedProvincia,
-        corporacion: selectedCorporacion,
-      });
+      query =
+        "INSERT INTO presidentes (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, corporacion) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)";
+      bindParams = [
+        selectedPosicion,
+        selectedName,
+        selectedId,
+        selectedPartido,
+        selectedIdPartido,
+        selectedPartido2,
+        selectedIdPartido2,
+        selectedPartido3,
+        selectedIdPartido3,
+        selectedProvincia,
+        selectedCorporacion,
+      ];
     } else if (selectedCorporacion === "ALCALDES") {
-      const query =
-        "INSERT INTO alcaldes (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, distrito, corporacion) VALUES (:posicion, :nombre, :id, :partido, :idpartido, :partido2, :idpartido2, :partido3, :idpartido3, :provincia, :distrito, :corporacion)";
-
-      const result = await connection.execute(query, {
-        posicion: selectedPosicion,
-        nombre: selectedName,
-        id: selectedId,
-        partido: selectedPartido,
-        idpartido: selectedIdPartido,
-        partido2: selectedPartido2,
-        idpartido2: selectedIdPartido2,
-        partido3: selectedPartido3,
-        idpartido3: selectedIdPartido3,
-        provincia: selectedProvincia,
-        distrito: selectedDistrito,
-        corporacion: selectedCorporacion,
-      });
+      query =
+        "INSERT INTO alcaldes (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, distrito, corporacion) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12)";
+      bindParams = [
+        selectedPosicion,
+        selectedName,
+        selectedId,
+        selectedPartido,
+        selectedIdPartido,
+        selectedPartido2,
+        selectedIdPartido2,
+        selectedPartido3,
+        selectedIdPartido3,
+        selectedProvincia,
+        selectedDistrito,
+        selectedCorporacion,
+      ];
     } else if (selectedCorporacion === "DIPUTADOS") {
-      const query =
-        "INSERT INTO diputados (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, circuito, corporacion) VALUES (:posicion, :nombre, :id, :partido, :idpartido, :partido2, :idpartido2, :partido3, :idpartido3, :provincia, :circuito, :corporacion)";
-
-      const result = await connection.execute(query, {
-        posicion: selectedPosicion,
-        nombre: selectedName,
-        id: selectedId,
-        partido: selectedPartido,
-        idpartido: selectedIdPartido,
-        partido2: selectedPartido2,
-        idpartido2: selectedIdPartido2,
-        partido3: selectedPartido3,
-        idpartido3: selectedIdPartido3,
-        provincia: selectedProvincia,
-        circuito: selectedCircuito,
-        corporacion: selectedCorporacion,
-      });
+      query =
+        "INSERT INTO diputados (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, circuito, corporacion) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12)";
+      bindParams = [
+        selectedPosicion,
+        selectedName,
+        selectedId,
+        selectedPartido,
+        selectedIdPartido,
+        selectedPartido2,
+        selectedIdPartido2,
+        selectedPartido3,
+        selectedIdPartido3,
+        selectedProvincia,
+        selectedCircuito,
+        selectedCorporacion,
+      ];
     }
+
+    const result = await connection.execute(query, bindParams, { autoCommit: true });
 
     console.log("Data inserted successfully");
     res.status(200).send("Data inserted successfully");
   } catch (err) {
     console.error(err);
     res.status(500).send("Error al insertar datos en la base de datos");
-  } finally {
-    connection.close(); // Don't forget to close the connection when you're done.
   }
 });
 
