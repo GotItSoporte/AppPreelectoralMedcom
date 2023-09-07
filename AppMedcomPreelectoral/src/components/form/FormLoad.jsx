@@ -267,6 +267,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     setSelectedPartido3("3º Bandera...");
     setSelectedPosicion("Posicion");
     setSelectedCorporacion("Corporacion...");
+    setSelectedListPosicion([])
   }, [mostrarFormulario]);
 
   useEffect(() => {
