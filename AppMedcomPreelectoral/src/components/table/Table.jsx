@@ -10,7 +10,7 @@ export const Table = ({
 }) => {
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full lg:w-fit  mx-auto">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full lg:w-fit h-[70vh] overflow-y-auto  mx-auto">
         <table className="  text-sm text-left  text-gray-400">
           <thead className="text-xs uppercase bg-gray-50 dark:bg-blue-500 text-white">
             {data.length > 0 ? (

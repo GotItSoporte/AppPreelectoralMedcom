@@ -148,7 +148,7 @@ export const Register = ({
             </a>
           </div>
         </div>
-        <div className="lg:mx-32">
+        <div className="lg:mx-32 ">
           <Table
             admin={true}
             data={dataSend}
