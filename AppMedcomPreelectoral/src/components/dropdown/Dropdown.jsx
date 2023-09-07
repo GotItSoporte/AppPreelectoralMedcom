@@ -12,7 +12,7 @@ export const Dropdown = ({
   return (
     <div>
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-white  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
         type="button"
         onClick={() => setOpen(!open)}
       >
@@ -37,17 +37,17 @@ export const Dropdown = ({
       {open ? (
         <div
           id="dropdown"
-          className="z-10 fixed bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+          className="z-10 fixed ivide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-700"
         >
           <ul
-            className="py-2 text-sm text-gray-700 dark:text-gray-200 max-h-36 overflow-auto"
+            className="py-2 text-sm  text-gray-200 max-h-36 overflow-auto"
             aria-labelledby="dropdownDefaultButton"
           >
             {setList.map((el, idx) => (
               <li key={idx}>
                 <a
                   href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2  hover:bg-gray-600 hover:text-white"
                   onClick={() => {
                     setSelectedOption(el);
                     setOpen(!open);

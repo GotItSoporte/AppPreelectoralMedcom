@@ -5,10 +5,10 @@ export const WindowDelete = ({ eliminarCandidato, setMostrarDelete }) => {
     <>
       <div className="z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0  max-h-full">
         <div className="relative w-full max-w-md max-h-full">
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-900">
+          <div className="relative rounded-lg shadow bg-gray-900">
             <button
               type="button"
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              className="absolute top-3 right-2.5 text-gray-400 bg-transparent  rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
               data-modal-hide="popup-modal"
               onClick={()=>setMostrarDelete(false)}
             >
@@ -31,7 +31,7 @@ export const WindowDelete = ({ eliminarCandidato, setMostrarDelete }) => {
             </button>
             <div className="p-6 text-center">
               <svg
-                className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+                className="mx-auto mb-4 w-12 h-12 text-gray-200"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -59,7 +59,7 @@ export const WindowDelete = ({ eliminarCandidato, setMostrarDelete }) => {
               <button
                 data-modal-hide="popup-modal"
                 type="button"
-                className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                className="focus:ring-4 focus:outline-none  rounded-lg border  text-sm font-medium px-5 py-2.5  focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600 focus:ring-gray-600"
                 onClick={()=>setMostrarDelete(false)}
               >
                 No, cancelar
