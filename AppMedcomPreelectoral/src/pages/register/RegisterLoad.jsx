@@ -23,6 +23,60 @@ export const RegisterLoad = () => {
   const [data, setData] = useState([]);
   const [dataSend, setDataSend] = useState([]);
 
+  const [listProvincia, setListProvincia] = useState([]);
+  const [listDistrito, setListDistrito] = useState([]);
+  const [listCircuito, setListCircuito] = useState([]);
+  const [listPartido, setListPartido] = useState([]);
+
+  useEffect(() => {
+    setListProvincia([
+      "Todas las provincias",
+      ...new Set(data.map((item) => item.provincia)),
+    ]);
+    setListDistrito([
+      "Todos los distritos",
+      ...new Set(
+        data
+          .filter((item) => item.provincia === selectedProvincia)
+          .map((item) => item.distrito)
+      ),
+    ]);
+    setListCircuito([
+      "Todos los circuitos",
+      ...new Set(
+        data
+          .filter((item) => item.provincia === selectedProvincia)
+          .map((item) => item.circuito)
+      ),
+    ]);
+    setListPartido(
+      selectedOption !== "PRESIDENTE"
+        ? [
+            "Todos los partidos",
+            ...new Set(
+              data
+                .filter((item) =>
+                  item.distrito
+                    ? item.distrito === selectedDistrito
+                    : item.circuito
+                    ? item.circuito === selectedCircuito
+                    : null
+                )
+                .map((item) => item.partido)
+            ),
+          ]
+        : ["Todos los partidos", ...new Set(data.map((item) => item.partido))]
+    );
+  }, [
+    selectedOption,
+    mostrarDelete,
+    mostrarEdit,
+    mostrarFormulario,
+    data,
+    selectedDistrito,
+    selectedCircuito,
+  ]);
+
   useEffect(() => {
     const fetchData = async () => {
       const apiData = await fetchApiData(selectedOption);
@@ -35,7 +89,7 @@ export const RegisterLoad = () => {
     setSelectedDistrito("Todos los distritos");
     setSelectedCircuito("Todos los circuitos");
     setSelectedPartido("Todos los partidos");
-  }, [selectedOption, mostrarDelete, mostrarEdit,mostrarFormulario]);
+  }, [selectedOption, mostrarDelete, mostrarEdit, mostrarFormulario]);
 
   useEffect(() => {
     if (selectedProvincia !== "Todas las provincias") {
@@ -140,6 +194,11 @@ export const RegisterLoad = () => {
       //Edit
       mostrarEdit={mostrarEdit}
       setMostrarEdit={setMostrarEdit}
+      //list
+      listProvincia={listProvincia}
+      listDistrito={listDistrito}
+      listCircuito={listCircuito}
+      listPartido={listPartido}
     />
   );
 };
