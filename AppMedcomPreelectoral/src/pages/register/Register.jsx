@@ -36,6 +36,12 @@ export const Register = ({
   //Edit
   mostrarEdit,
   setMostrarEdit,
+
+  //list 
+  listProvincia,
+  listDistrito,
+  listCircuito,
+  listPartido,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -65,10 +71,7 @@ export const Register = ({
               <Dropdown
                 selectedOption={selectedProvincia}
                 setSelectedOption={setSelectedProvincia}
-                setList={[
-                  "Todas las provincias",
-                  ...new Set(data.map((item) => item.provincia)),
-                ]} // const provincias = ['Todas', ...new Set(data.map((item) => item.provincia))];
+                setList={listProvincia} // const provincias = ['Todas', ...new Set(data.map((item) => item.provincia))];
               />
             )}
 
@@ -76,53 +79,20 @@ export const Register = ({
               <Dropdown
                 selectedOption={selectedDistrito}
                 setSelectedOption={setSelectedDistrito}
-                setList={[
-                  "Todos los distritos",
-                  ...new Set(
-                    data
-                      .filter((item) => item.provincia === selectedProvincia)
-                      .map((item) => item.distrito)
-                  ),
-                ]}
+                setList={listDistrito}
               />
             ) : selectedOption === "DIPUTADOS" ? (
               <Dropdown
                 selectedOption={selectedCircuito}
                 setSelectedOption={setSelectedCircuito}
-                setList={[
-                  "Todos los circuitos",
-                  ...new Set(
-                    data
-                      .filter((item) => item.provincia === selectedProvincia)
-                      .map((item) => item.circuito)
-                  ),
-                ]}
+                setList={listCircuito}
               />
             ) : null}
 
             <Dropdown
               selectedOption={selectedPartido}
               setSelectedOption={setSelectedPartido}
-              setList={
-                selectedOption !== "PRESIDENTE"
-                  ? [
-                      "Todos los partidos",
-                      ...new Set(
-                        data
-                          .filter((item) =>
-                            item.distrito
-                              ? item.distrito === selectedDistrito
-                              : item.circuito
-                              ? item.circuito === selectedCircuito
-                              : null
-                          )
-                          .map((item) => item.partido)
-                      ),
-                    ]
-                  : [
-                      "Todos los partidos",
-                      ...new Set(data.map((item) => item.partido)),
-                    ]
+              setList={listPartido
               }
             />
           </div>
@@ -223,4 +193,10 @@ Register.propTypes = {
   //Edit
   mostrarEdit: PropTypes.bool.isRequired,
   setMostrarEdit: PropTypes.func.isRequired,
+
+  //list 
+  listProvincia: PropTypes.array.isRequired,
+  listDistrito: PropTypes.array.isRequired,
+  listCircuito: PropTypes.array.isRequired,
+  listPartido: PropTypes.array.isRequired,
 };
