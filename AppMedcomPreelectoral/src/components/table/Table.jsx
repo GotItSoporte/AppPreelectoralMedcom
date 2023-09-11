@@ -12,7 +12,7 @@ export const Table = ({
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full md:w-fit max-h-[70vh] overflow-y-auto  mx-auto">
         <table className="  text-sm text-left  text-gray-400 ">
-          <thead className="text-xs uppercase bg-gray-50 dark:bg-blue-500 text-white">
+          <thead className="text-xs uppercase  bg-blue-500 text-white">
             {data.length > 0 ? (
               <tr>
                 <th scope="col" className="px-6 py-3 text-center">
