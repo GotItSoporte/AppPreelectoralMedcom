@@ -10,9 +10,9 @@ export const Table = ({
 }) => {
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full lg:w-fit max-h-[70vh] overflow-y-auto  mx-auto">
-        <table className="  text-sm text-left  text-gray-400">
-          <thead className="text-xs uppercase bg-blue-500 text-white">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full md:w-fit max-h-[70vh] overflow-y-auto  mx-auto">
+        <table className="  text-sm text-left  text-gray-400 ">
+          <thead className="text-xs uppercase bg-gray-50 dark:bg-blue-500 text-white">
             {data.length > 0 ? (
               <tr>
                 <th scope="col" className="px-6 py-3 text-center">
@@ -37,30 +37,34 @@ export const Table = ({
                 <th scope="col" className="px-6 py-3 text-center">
                   3º Bandera
                 </th>
-                {data ? (
-                  data[0].corporacion !== "PRESIDENTE" ? (
-                    <th scope="col" className="px-6 py-3 text-center">
-                      Provincia
-                    </th>
-                  ) : (
-                    <></>
-                  )
-                ) : null}
-                {data ? (
-                  data[0].corporacion === "ALCALDES" ? (
-                    <th scope="col" className="px-6 py-3 text-center">
-                      Distrito
-                    </th>
-                  ) : data[0].corporacion === "DIPUTADOS" ? (
-                    <th scope="col" className="px-6 py-3 text-center">
-                      Circuito
-                    </th>
-                  ) : null
-                ) : null}
+                {admin && (
+                  <>
+                    {data ? (
+                      data[0].corporacion !== "PRESIDENTE" ? (
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Provincia
+                        </th>
+                      ) : (
+                        <></>
+                      )
+                    ) : null}
+                    {data ? (
+                      data[0].corporacion === "ALCALDES" ? (
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Distrito
+                        </th>
+                      ) : data[0].corporacion === "DIPUTADOS" ? (
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Circuito
+                        </th>
+                      ) : null
+                    ) : null}
 
-                <th scope="col" className="px-6 py-3 text-center">
-                  Corporación
-                </th>
+                    <th scope="col" className="px-6 py-3 text-center">
+                      Corporación
+                    </th>
+                  </>
+                )}
                 {admin ? (
                   <th scope="col" className="px-6 py-3 ">
                     <span className="sr-only ">Edit</span>
@@ -91,21 +95,30 @@ export const Table = ({
                     <td className="px-6 py-4 text-center">{data.partido}</td>
                     <td className="px-6 py-4 text-center">{data.partido2}</td>
                     <td className="px-6 py-4 text-center">{data.partido3}</td>
-                    {data.corporacion !== "PRESIDENTE" ? (
-                      <td className="px-6 py-4 text-center">
-                        {data.provincia}
-                      </td>
-                    ) : (
-                      <></>
+                    {admin && (
+                      <>
+                        {data.corporacion !== "PRESIDENTE" ? (
+                          <td className="px-6 py-4 text-center">
+                            {data.provincia}
+                          </td>
+                        ) : (
+                          <></>
+                        )}
+
+                        {data.corporacion === "ALCALDES" ? (
+                          <td className="px-6 py-4 text-center">
+                            {data.distrito}
+                          </td>
+                        ) : data.corporacion === "DIPUTADOS" ? (
+                          <td className="px-6 py-4 text-center">
+                            {data.circuito}
+                          </td>
+                        ) : null}
+                        <td className="px-6 py-4 text-center">
+                          {data.corporacion}
+                        </td>
+                      </>
                     )}
-                    {data.corporacion === "ALCALDES" ? (
-                      <td className="px-6 py-4 text-center">{data.distrito}</td>
-                    ) : data.corporacion === "DIPUTADOS" ? (
-                      <td className="px-6 py-4 text-center">{data.circuito}</td>
-                    ) : null}
-                    <td className="px-6 py-4 text-center">
-                      {data.corporacion}
-                    </td>
                     {admin ? (
                       <td className="px-6 py-4 text-center">
                         <a

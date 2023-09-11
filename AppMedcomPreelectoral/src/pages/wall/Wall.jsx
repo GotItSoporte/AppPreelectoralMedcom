@@ -56,6 +56,18 @@ export const Wall = ({
             {
               dataSelect.length > 0 ? (
                 <>
+                  <h1 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl  dark:text-white w-fit mx-auto py-5">
+                    {dataSelect[0].corporacion}{" "}
+                    {dataSelect[0].corporacion !== "PRESIDENTE" ? (
+                      <>-</>
+                    ) : (
+                      <></>
+                    )}{" "}
+                    {dataSelect[0].distrito && dataSelect[0].distrito}{" "}
+                    {dataSelect[0].circuito && (
+                      <>CIRCUITO {dataSelect[0].circuito}</>
+                    )}
+                  </h1>
                   <Table
                     admin={false}
                     data={dataSelect}
