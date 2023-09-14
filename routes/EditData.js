@@ -13,14 +13,21 @@ router.put("/", async (req, res) => {
   const corporacion = req.body.corporacion;
   const name = req.body.name;
   const id = req.body.id;
+  const partido = req.body.partido;
+  const idpartido = req.body.idpartido;
+  const partido2 = req.body.partido2;
+  const idpartido2 = req.body.idpartido2;
+  const partido3 = req.body.partido3;
+  const idpartido3 = req.body.idpartido3;
+
 
   try {
     const connection = await oracledb.getConnection(dbConfig);
 
     const tableName = corporacion === 'PRESIDENTE' ? 'presidentes' : corporacion;
-    const sql = `UPDATE ${tableName} SET nombre = :1, id = :2 WHERE idgeneral = :3`;
+    const sql = `UPDATE ${tableName} SET nombre = :1, id = :2, partido = :3, idpartido = :4, partido2 = :5, idpartido2 = :6, partido3 = :7, idpartido3 = :8 WHERE idgeneral = :9`;
 
-    const bindParams = [name, id, candidatoId];
+    const bindParams = [name, id,partido,idpartido,partido2,idpartido2,partido3,idpartido3, candidatoId];
 
     const result = await connection.execute(sql, bindParams, { autoCommit: true });
 
