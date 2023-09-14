@@ -1,21 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Dropdown } from "../dropdown";
 export const WindowEdit = ({
   handleSubmit,
   selectedName,
   setSelectedName,
   selectedId,
   setSelectedId,
+  selectedPartido,
+  setSelectedPartido,
+  selectedPartido2,
+  setSelectedPartido2,
+  selectedPartido3,
+  setSelectedPartido3,
   setMostrarEdit,
+  listPartido,
 }) => {
+
+
   return (
     <>
       <div className="z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0  max-h-full">
         <div className="relative w-full max-w-xl max-h-full">
-          <div className="relative rounded-lg shadow bg-gray-900 ">
+          <div className="relative  rounded-lg shadow bg-gray-900 ">
             <button
               type="button"
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
+              className="absolute top-3 right-2.5 text-gray-400 bg-transparent  rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
               data-modal-hide="popup-modal"
               onClick={() => setMostrarEdit(false)}
             >
@@ -82,19 +92,35 @@ export const WindowEdit = ({
                       id="id"
                       value={selectedId}
                       onChange={(e) => setSelectedId(e.target.value)}
-                      className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white :border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0  peer"
+                      className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2  appearance-none text-white border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0  peer"
                       placeholder=" "
                       required
                     />
                     <label
                       htmlFor="id"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Id (123-456-7890)
                     </label>
                   </div>
                 </div>
-
+                <div className="flex w-fit mx-auto space-x-10 mb-16">
+                  <Dropdown
+                  selectedOption={selectedPartido}
+                  setSelectedOption={setSelectedPartido}
+                  setList={listPartido}
+                  />
+                                <Dropdown
+                  selectedOption={selectedPartido2}
+                  setSelectedOption={setSelectedPartido2}
+                  setList={["NO APLICA", ...new Set(listPartido)]}
+                />
+                              <Dropdown
+                  selectedOption={selectedPartido3}
+                  setSelectedOption={setSelectedPartido3}
+                  setList={["NO APLICA", ...new Set(listPartido)]}
+                />
+              </div>
                 <button
                   data-modal-hide="popup-modal"
                   type="submit"
@@ -105,7 +131,7 @@ export const WindowEdit = ({
                 <button
                   data-modal-hide="popup-modal"
                   type="button"
-                  className="  focus:ring-4 focus:outline-none rounded-lg border  text-sm font-medium px-5 py-2.5 focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600 focus:ring-gray-600"
+                  className=" focus:ring-4 focus:outline-none rounded-lg border text-sm font-medium px-5 py-2.5  focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600 focus:ring-gray-600"
                   onClick={() => setMostrarEdit(false)}
                 >
                   No, cancelar
@@ -124,6 +150,13 @@ WindowEdit.propTypes = {
   setSelectedName: PropTypes.func.isRequired,
   selectedId: PropTypes.string.isRequired,
   setSelectedId: PropTypes.func.isRequired,
+  selectedPartido: PropTypes.string.isRequired,
+  setSelectedPartido: PropTypes.func.isRequired,
+  selectedPartido2: PropTypes.string.isRequired,
+  setSelectedPartido2: PropTypes.func.isRequired,
+  selectedPartido3: PropTypes.string.isRequired,
+  setSelectedPartido3: PropTypes.func.isRequired,
   setMostrarEdit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  listPartido: PropTypes.array.isRequired,
 };

@@ -12,6 +12,35 @@ export const WindowEditLoad = ({
 }) => {
   const [selectedName, setSelectedName] = useState("");
   const [selectedId, setSelectedId] = useState("");
+  const [selectedPartido, setSelectedPartido] = useState("");
+  const [selectedPartido2, setSelectedPartido2] = useState("");
+  const [selectedPartido3, setSelectedPartido3] = useState("");
+
+  const [listPartido] = useState([
+    "CD",
+    "LIBRE POST.",
+    "MOL",
+    "MOCA",
+    "PA",
+    "PAIS",
+    "PAN",
+    "PP",
+    "PRD",
+    "RM",
+  ]);
+
+  const partidoIdMap = {
+    CD: 1,
+    "LIBRE POST.": 2,
+    MOL: 3,
+    MOCA: 4,
+    PA: 5,
+    PAIS: 6,
+    PAN: 7,
+    PP: 8,
+    PRD: 9,
+    RM: 10,
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Evita que la página se recargue
@@ -24,6 +53,12 @@ export const WindowEditLoad = ({
       corporacion: deleteCandidatos.toUpperCase(),
       name: selectedName.toUpperCase(),
       id: selectedId,
+      partido:selectedPartido,
+      idpartido: partidoIdMap[selectedPartido],
+      partido2:selectedPartido2,
+      idpartido2: selectedPartido2 === "NO APLICA"? "0": partidoIdMap[selectedPartido2],
+      partido3:selectedPartido3,
+      idpartido3: selectedPartido3 === "NO APLICA"? "0": partidoIdMap[selectedPartido3],
       selectId: selectIdDelete,
     };
 
@@ -44,6 +79,27 @@ export const WindowEditLoad = ({
         .map((item) => item.id)
         .toString()
     );
+    setSelectedPartido(
+      data
+        .filter((candidato) => candidato.idgeneral === selectIdDelete)
+        .map((item) => item.partido)
+        .toString()
+    );
+    setSelectedPartido2(
+      data
+        .filter((candidato) => candidato.idgeneral === selectIdDelete)
+        .map((item) => item.partido2)
+        .toString()
+    );
+    setSelectedPartido3(
+      data
+        .filter((candidato) => candidato.idgeneral === selectIdDelete)
+        .map((item) => item.partido3)
+        .toString()
+    );
+
+
+
   }, [selectIdDelete, mostrarEdit]);
 
   return (
@@ -51,10 +107,16 @@ export const WindowEditLoad = ({
       handleSubmit={handleSubmit}
       selectedName={selectedName}
       setSelectedName={setSelectedName}
-      selectIdDelete={selectIdDelete}
       selectedId={selectedId}
       setSelectedId={setSelectedId}
+      selectedPartido={selectedPartido}
+      setSelectedPartido={setSelectedPartido}
+      selectedPartido2={selectedPartido2}
+      setSelectedPartido2={setSelectedPartido2}
+      selectedPartido3={selectedPartido3}
+      setSelectedPartido3={setSelectedPartido3}
       setMostrarEdit={setMostrarEdit}
+      listPartido={listPartido}
     />
   );
 };
