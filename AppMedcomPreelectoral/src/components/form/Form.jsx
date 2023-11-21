@@ -22,6 +22,8 @@ export const Form = ({
   setSelectedPartido2,
   selectedPartido3,
   setSelectedPartido3,
+  setSelectedPartido4,
+  selectedPartido4,
   listPartido,
   selectedProvincia,
   setSelectedProvincia,
@@ -175,6 +177,16 @@ export const Form = ({
             setSelectedOption={setSelectedPartido3}
             setList={["3º Bandera...", ...new Set(listPartido)]}
           />
+          {selectedCorporacion === "DIPUTADOS" ? (
+              <Dropdown
+              selectedOption={selectedPartido4}
+              setSelectedOption={setSelectedPartido4}
+              setList={["4º Bandera...", ...new Set(listPartido)]}
+            />
+          ):(
+            <></>
+          )}
+
         </div>
 
         <div className="flex justify-center mt-20 cursor-pointer">
@@ -242,6 +254,8 @@ Form.propTypes = {
   setSelectedPartido2: PropTypes.func.isRequired,
   selectedPartido3: PropTypes.string.isRequired,
   setSelectedPartido3: PropTypes.func.isRequired,
+  selectedPartido4: PropTypes.string.isRequired,
+  setSelectedPartido4: PropTypes.func.isRequired,
   listPartido: PropTypes.array.isRequired,
   selectedProvincia: PropTypes.string.isRequired,
   setSelectedProvincia: PropTypes.func.isRequired,

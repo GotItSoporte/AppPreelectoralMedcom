@@ -13,8 +13,11 @@ export const WindowEdit = ({
   setSelectedPartido2,
   selectedPartido3,
   setSelectedPartido3,
+  selectedPartido4,
+  setSelectedPartido4,
   setMostrarEdit,
   listPartido,
+  data
 }) => {
 
 
@@ -120,6 +123,12 @@ export const WindowEdit = ({
                   setSelectedOption={setSelectedPartido3}
                   setList={["NO APLICA", ...new Set(listPartido)]}
                 />
+                {data && data[0]?.corporacion==='DIPUTADOS'?(
+                <Dropdown
+                  selectedOption={selectedPartido4}
+                  setSelectedOption={setSelectedPartido4}
+                  setList={["NO APLICA", ...new Set(listPartido)]}
+                />):null}
               </div>
                 <button
                   data-modal-hide="popup-modal"
@@ -156,7 +165,10 @@ WindowEdit.propTypes = {
   setSelectedPartido2: PropTypes.func.isRequired,
   selectedPartido3: PropTypes.string.isRequired,
   setSelectedPartido3: PropTypes.func.isRequired,
+  selectedPartido4: PropTypes.string.isRequired,
+  setSelectedPartido4: PropTypes.func.isRequired,
   setMostrarEdit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   listPartido: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };

@@ -15,6 +15,7 @@ export const WindowEditLoad = ({
   const [selectedPartido, setSelectedPartido] = useState("");
   const [selectedPartido2, setSelectedPartido2] = useState("");
   const [selectedPartido3, setSelectedPartido3] = useState("");
+  const [selectedPartido4, setSelectedPartido4] = useState("");
 
   const [listPartido] = useState([
     "CD",
@@ -59,6 +60,8 @@ export const WindowEditLoad = ({
       idpartido2: selectedPartido2 === "NO APLICA"? "0": partidoIdMap[selectedPartido2],
       partido3:selectedPartido3,
       idpartido3: selectedPartido3 === "NO APLICA"? "0": partidoIdMap[selectedPartido3],
+      partido4:selectedPartido4,
+      idpartido4: selectedPartido4 === "NO APLICA"? "0": partidoIdMap[selectedPartido4],
       selectId: selectIdDelete,
     };
 
@@ -97,11 +100,18 @@ export const WindowEditLoad = ({
         .map((item) => item.partido3)
         .toString()
     );
+    setSelectedPartido4(
+      data
+        .filter((candidato) => candidato.idgeneral === selectIdDelete)
+        .map((item) => item.partido4)
+        .toString()
+    );
 
 
 
   }, [selectIdDelete, mostrarEdit]);
 
+  console.log({data})
   return (
     <WindowEdit
       handleSubmit={handleSubmit}
@@ -115,8 +125,11 @@ export const WindowEditLoad = ({
       setSelectedPartido2={setSelectedPartido2}
       selectedPartido3={selectedPartido3}
       setSelectedPartido3={setSelectedPartido3}
+      selectedPartido4={selectedPartido4}
+      setSelectedPartido4={setSelectedPartido4}
       setMostrarEdit={setMostrarEdit}
       listPartido={listPartido}
+      data={data}
     />
   );
 };

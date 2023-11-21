@@ -16,6 +16,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
   const [selectedPartido, setSelectedPartido] = useState("1º Bandera...");
   const [selectedPartido2, setSelectedPartido2] = useState("2º Bandera...");
   const [selectedPartido3, setSelectedPartido3] = useState("3º Bandera...");
+  const [selectedPartido4, setSelectedPartido4] = useState("4º Bandera...");
 
   const [selectedProvincia, setSelectedProvincia] = useState("Provincia...");
   const [selectedDistrito, setSelectedDistrito] = useState("Distrito...");
@@ -232,6 +233,12 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
         selectedPartido3 === "3º Bandera..."
           ? "0"
           : partidoIdMap[selectedPartido3],
+      selectedPartido4:
+        selectedPartido4 === "4º Bandera..." ? "NO APLICA" : selectedPartido4,
+      selectedIdPartido4:
+        selectedPartido4 === "4º Bandera..."
+          ? "0"
+          : partidoIdMap[selectedPartido4],
       selectedProvincia: selectedProvincia,
       selectedDistrito: selectedDistrito,
       selectedCircuito: selectedCircuito,
@@ -266,6 +273,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     setSelectedPartido("1º Bandera...");
     setSelectedPartido2("2º Bandera...");
     setSelectedPartido3("3º Bandera...");
+    setSelectedPartido4("4º Bandera...");
     setSelectedPosicion("Posicion");
     setSelectedCorporacion("Corporacion...");
     setSelectedListPosicion([]);
@@ -360,6 +368,8 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
       setSelectedPartido2={setSelectedPartido2}
       selectedPartido3={selectedPartido3}
       setSelectedPartido3={setSelectedPartido3}
+      selectedPartido4={selectedPartido4}
+      setSelectedPartido4={setSelectedPartido4}
       listPartido={listPartido}
       selectedProvincia={selectedProvincia}
       setSelectedProvincia={setSelectedProvincia}

@@ -8,6 +8,7 @@ export const Table = ({
   setMostrarDelete,
   setMostrarEdit,
 }) => {
+  console.log({data})
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full md:w-fit max-h-[70vh] overflow-y-auto  mx-auto">
@@ -37,6 +38,15 @@ export const Table = ({
                 <th scope="col" className="px-6 py-3 text-center">
                   3º Bandera
                 </th>
+                {data ? (
+                      data[0].corporacion === "DIPUTADOS" ? (
+                        <th scope="col" className="px-6 py-3 text-center">
+                        4º Bandera
+                      </th>
+                      ) : (
+                        <></>
+                      )
+                    ) : null}
                 {admin && (
                   <>
                     {data ? (
@@ -95,6 +105,11 @@ export const Table = ({
                     <td className="px-6 py-4 text-center">{data.partido}</td>
                     <td className="px-6 py-4 text-center">{data.partido2}</td>
                     <td className="px-6 py-4 text-center">{data.partido3}</td>
+                    {data.corporacion === "DIPUTADOS" ? (
+                        <td className="px-6 py-4 text-center">{data.partido4}</td>
+                        ) : (
+                          <></>
+                        )}
                     {admin && (
                       <>
                         {data.corporacion !== "PRESIDENTE" ? (
