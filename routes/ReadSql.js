@@ -39,6 +39,8 @@ router.get("/PRESIDENTE", async function (req, res) {
         provincia: row[9],
         corporacion: row[10],
         idgeneral: row[11],
+        partido4: 'NO APLICA',
+        idpartido4: 0,
       };
     });
 
@@ -73,6 +75,8 @@ router.get("/ALCALDES", async function (req, res) {
         distrito: row[10],
         corporacion: row[11],
         idgeneral: row[12],
+        partido4: 'NO APLICA',
+        idpartido4: 0,
       };
     });
 
@@ -107,6 +111,8 @@ router.get("/DIPUTADOS", async function (req, res) {
         circuito: row[10],
         corporacion: row[11],
         idgeneral: row[12],
+        partido4: row[13],
+        idpartido4: row[14],
       };
     });
 

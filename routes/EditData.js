@@ -19,15 +19,18 @@ router.put("/", async (req, res) => {
   const idpartido2 = req.body.idpartido2;
   const partido3 = req.body.partido3;
   const idpartido3 = req.body.idpartido3;
-
+  const partido4 = req.body.partido4;
+  const idpartido4 = req.body.idpartido4;
 
   try {
     const connection = await oracledb.getConnection(dbConfig);
 
     const tableName = corporacion === 'PRESIDENTE' ? 'presidentes' : corporacion;
-    const sql = `UPDATE ${tableName} SET nombre = :1, id = :2, partido = :3, idpartido = :4, partido2 = :5, idpartido2 = :6, partido3 = :7, idpartido3 = :8 WHERE idgeneral = :9`;
-
-    const bindParams = [name, id,partido,idpartido,partido2,idpartido2,partido3,idpartido3, candidatoId];
+    const sql = corporacion !== 'DIPUTADOS' ? `UPDATE ${tableName} SET nombre = :1, id = :2, partido = :3, idpartido = :4, partido2 = :5, idpartido2 = :6, partido3 = :7, idpartido3 = :8 WHERE idgeneral = :9` :
+    `UPDATE ${tableName} SET nombre = :1, id = :2, partido = :3, idpartido = :4, partido2 = :5, idpartido2 = :6, partido3 = :7, idpartido3 = :8, partido4 = :9, idpartido4 = :10 WHERE idgeneral = :11`;
+    const bindParams = corporacion !== 'DIPUTADOS' ? [name, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, candidatoId] : 
+    [name, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3,partido4, idpartido4, candidatoId];
+    
 
     const result = await connection.execute(sql, bindParams, { autoCommit: true });
 

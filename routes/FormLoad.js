@@ -18,6 +18,8 @@ router.post("/", async (req, res) => {
   const selectedIdPartido2 = req.body.selectedIdPartido2;
   const selectedPartido3 = req.body.selectedPartido3;
   const selectedIdPartido3 = req.body.selectedIdPartido3;
+  const selectedPartido4 = req.body.selectedPartido4;
+  const selectedIdPartido4 = req.body.selectedIdPartido4;
   const selectedProvincia = req.body.selectedProvincia;
   const selectedDistrito = req.body.selectedDistrito;
   const selectedCircuito = req.body.selectedCircuito;
@@ -64,7 +66,7 @@ router.post("/", async (req, res) => {
       ];
     } else if (selectedCorporacion === "DIPUTADOS") {
       query =
-        "INSERT INTO diputados (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, circuito, corporacion) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12)";
+        "INSERT INTO diputados (posicion, nombre, id, partido, idpartido, partido2, idpartido2, partido3, idpartido3, provincia, circuito, corporacion,partido4,idpartido4) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)";
       bindParams = [
         selectedPosicion,
         selectedName,
@@ -78,6 +80,8 @@ router.post("/", async (req, res) => {
         selectedProvincia,
         selectedCircuito,
         selectedCorporacion,
+        selectedPartido4,
+        selectedIdPartido4,
       ];
     }
 

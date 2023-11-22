@@ -17,7 +17,7 @@ function SendUDPMessages(msg, ip) {
     });
   }
 
-const IP_ENGINE_WALL = "192.168.0.228"//"192.168.0.228";
+const IP_ENGINE_WALL = "192.168.70.116"
 
 router.post("/", function (req, res, next) {
     try {

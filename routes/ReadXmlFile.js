@@ -6,7 +6,7 @@ const fs = require("fs"); // Importa el módulo fs
 router.get("/", (req, res) => {
   // Lee el contenido del archivo XML utilizando fs.readFile
   fs.readFile(
-    "W:/PreelectoralMedcom/XML/fullScreen.xml",
+    "Z:/Voto24/OFERTAELECTORAL/fullScreen.xml",
     "utf8",
     (err, xmlData) => {
       if (err) {

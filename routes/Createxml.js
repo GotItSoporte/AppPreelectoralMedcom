@@ -6,7 +6,7 @@ var convert = require("xml-js");
 const CreateXMLFullScreen = async (data) => {
   return new Promise((resolve, reject) => {
     fs.writeFile(
-      "W:/PreelectoralMedcom/XML/fullScreen.xml",
+      "Z:/Voto24/OFERTAELECTORAL/fullScreen.xml",
       data.data,
       function (err) {
         if (err) {

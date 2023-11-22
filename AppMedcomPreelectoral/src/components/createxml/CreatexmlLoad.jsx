@@ -79,10 +79,9 @@ export const CreatexmlLoad = ({ data }) => {
       element.ele("idpartido2",dataSelect.idpartido2);
       element.ele("partido3", dataSelect.partido3);
       element.ele("idpartido3",dataSelect.idpartido3);
-      if(dataSelect.corporacion==="DIPUTADOS"){
-        element.ele("partido4", dataSelect.partido4);
-        element.ele("idpartido4",dataSelect.idpartido4);
-      }
+      element.ele("partido4", dataSelect.partido4?dataSelect.partido4:'NO APLICA');
+      element.ele("idpartido4",dataSelect.idpartido4?dataSelect.idpartido4:0);
+    
 
       if(dataSelect.corporacion!=="PRESIDENTE"){
       element.ele("provincia", dataSelect.provincia);
