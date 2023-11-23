@@ -28,6 +28,7 @@ export const RegisterLoad = () => {
   const [listCircuito, setListCircuito] = useState([]);
   const [listPartido, setListPartido] = useState([]);
 
+
   useEffect(() => {
     setListProvincia([
       "Todas las provincias",
@@ -75,6 +76,8 @@ export const RegisterLoad = () => {
     data,
     selectedDistrito,
     selectedCircuito,
+    selectedProvincia
+   
   ]);
 
   useEffect(() => {
@@ -106,7 +109,9 @@ export const RegisterLoad = () => {
   useEffect(() => {
     if (selectedDistrito !== "Todos los distritos") {
       setDataSend(data.filter((item) => item.distrito === selectedDistrito));
-    } else {
+    } else if(selectedProvincia!=="Todas las provincias") {
+      setDataSend(data.filter((item) => item.provincia === selectedProvincia));
+    } else { 
       setDataSend(data);
     }
 
@@ -116,9 +121,12 @@ export const RegisterLoad = () => {
   useEffect(() => {
     if (selectedCircuito !== "Todos los circuitos") {
       setDataSend(data.filter((item) => item.circuito === selectedCircuito));
-    } else {
-      //setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
+    } else if(selectedProvincia!=="Todas las provincias")  {
+      setDataSend(data.filter((item)=>item.provincia === selectedProvincia));
+    }else { 
+      setDataSend(data);
     }
+    setSelectedPartido("Todos los partidos")
   }, [selectedCircuito]);
 
   /*useEffect(() => {
@@ -161,7 +169,10 @@ export const RegisterLoad = () => {
         selectedCircuito !== "Todos los circuitos"
       ) {
         setDataSend(data.filter((item) => item.circuito === selectedCircuito));
+      } else if (selectedProvincia!=="Todas las provincias") {
+        setDataSend(data.filter((item) => item.provincia === selectedProvincia));
       } else {
+      
         setDataSend(data);
       }
 

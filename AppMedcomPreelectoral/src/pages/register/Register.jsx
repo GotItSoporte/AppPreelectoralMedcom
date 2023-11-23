@@ -56,7 +56,7 @@ export const Register = ({
     }
   }, []);
 
-  console.log({ myVariable });
+  console.log({ listDistrito });
   return (
     <>
       <div className="m-5">
