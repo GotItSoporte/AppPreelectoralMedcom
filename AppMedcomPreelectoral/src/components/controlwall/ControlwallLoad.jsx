@@ -77,7 +77,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
             .join(";")}}}`
       )
       .join(";");
-    const WALLMessage = `${formattedData};corporacion='PRESIDENTE';EntradaDataWALL=1;Curules=${curules[data[0].circuito]};PartidoCompleto=${partidoCompleto[data[0].partido]};READER_NUM_RECORDS=${data.length}`;
+    const WALLMessage = `${formattedData};corporacion=""PRESIDENTE"";EntradaDataWALL=1;Curules=${curules[data[0].circuito]};PartidoCompleto=${partidoCompleto[data[0].partido]};READER_NUM_RECORDS=${data.length}`;
 
     const WALL_UDPMessage = {
       data: WALLMessage,
@@ -91,7 +91,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
     setDelayButton(true);
   };
 
-  console.log({ cantidad });
+ 
   const Continue = async () => {
     const WALLMessage = "ContinueDataWALL=1";
     const WALL_UDPMessage = {
@@ -138,7 +138,7 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
     setDelayButton(true);
 
   };
-  console.log({botonActivado})
+  
 
   return (
     <ControlWall

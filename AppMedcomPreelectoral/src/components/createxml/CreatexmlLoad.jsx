@@ -62,7 +62,12 @@ export const CreatexmlLoad = ({ data }) => {
     "PRD": "PARTIDO REVOLUCIONARIO DEMOCRÁTICO",
     "RM": "REALIZANDO METAS",
   };
-  console.log({data})
+  
+  const partidosingular ={
+    "PRESIDENTES":"PRESIDENTE",
+    "ALCALDES":"ALCALDE",
+    "DIPUTADOS":"DIPUTADO"
+  }
 
   async function CreateFileXml() {
     const tickerfeed = xmlbuilder.create("data");
@@ -99,7 +104,7 @@ export const CreatexmlLoad = ({ data }) => {
       if(dataSelect.corporacion==="DIPUTADOS"){
         element.ele("partidocompleto", partidoCompleto[dataSelect.partido]);
       }
-      element.ele("corporacion", dataSelect.corporacion);
+      element.ele("corporacion", partidosingular[dataSelect.corporacion]);
     });
     const xml = tickerfeed.end({ pretty: true }).toString();
     await CreateFile(xml);
