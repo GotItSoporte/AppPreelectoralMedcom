@@ -267,15 +267,15 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
   useEffect(() => {
     setSelectedName(""),
     setSelectedId(""),
-    setSelectedProvincia("Provincia...");
-    setSelectedCircuito("Circuito...");
-    setSelectedDistrito("Distrito...");
+    //setSelectedProvincia("Provincia...");
+    //setSelectedCircuito("Circuito...");
+    //setSelectedDistrito("Distrito...");
     setSelectedPartido("1º Bandera...");
     setSelectedPartido2("2º Bandera...");
     setSelectedPartido3("3º Bandera...");
     setSelectedPartido4("4º Bandera...");
     setSelectedPosicion("Posicion");
-    setSelectedCorporacion("Corporacion...");
+    //setSelectedCorporacion("Corporacion...");
     setSelectedListPosicion([]);
   }, [mostrarFormulario]);
 
@@ -287,7 +287,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
       };
       fetchData();
     }
-  }, [selectedCorporacion]);
+  }, [selectedCorporacion, selectedListPosicion]);
 
   useEffect(() => {
     if (selectedCorporacion !== "Corporacion...") {

@@ -79,19 +79,23 @@ export const RegisterLoad = () => {
     selectedProvincia
    
   ]);
-
+  
   useEffect(() => {
+    if(mostrarDelete===false && mostrarEdit ===false){
     const fetchData = async () => {
       const apiData = await fetchApiData(selectedOption);
       setData(apiData);
       setDataSend(apiData);
     };
     fetchData();
-
+    
+    
+     
     setSelectedProvincia("Todas las provincias");
     setSelectedDistrito("Todos los distritos");
     setSelectedCircuito("Todos los circuitos");
     setSelectedPartido("Todos los partidos");
+    }
   }, [selectedOption, mostrarDelete, mostrarEdit, mostrarFormulario]);
 
   useEffect(() => {

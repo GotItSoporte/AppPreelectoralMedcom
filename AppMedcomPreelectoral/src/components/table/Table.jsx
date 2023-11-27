@@ -8,7 +8,7 @@ export const Table = ({
   setMostrarDelete,
   setMostrarEdit,
 }) => {
-  console.log({data})
+
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg  w-full md:w-fit max-h-[70vh] overflow-y-auto  mx-auto">

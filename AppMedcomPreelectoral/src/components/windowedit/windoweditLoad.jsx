@@ -111,7 +111,7 @@ export const WindowEditLoad = ({
 
   }, [selectIdDelete, mostrarEdit]);
 
-  console.log({data})
+ 
   return (
     <WindowEdit
       handleSubmit={handleSubmit}
