@@ -52,7 +52,9 @@ export const Navbar = ({
     PANAMÁ: {},
     "PANAMÁ OESTE": {},
     VERAGUAS: {},
+    "KUNA YALA": {},
     "NGÖBE BUGLÉ": {},
+    
   };
 
   const PartidoRepetido = {
@@ -86,6 +88,8 @@ export const Navbar = ({
     "9-2": {},
     "9-3": {},
     "9-4": {},
+    "10-1":{},
+    "10-2":{},
     "12-1": {},
     "12-2": {},
     "12-3": {},

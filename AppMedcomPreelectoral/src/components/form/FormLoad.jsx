@@ -110,6 +110,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     "PANAMÁ OESTE",
     "VERAGUAS",
     "NGÖBE BUGLÉ",
+    "KUNA YALA"
   ]);
   const [listDistrito] = useState({
     "BOCAS DEL TORO": [
@@ -208,6 +209,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     "LOS SANTOS": ["7-1", "7-2"],
     PANAMÁ: ["8-1", "8-2", "8-3", "8-4", "8-5", "8-6"],
     VERAGUAS: ["9-1", "9-2", "9-3", "9-4"],
+    "KUNA YALA":["10-1","10-2"],
     "NGÖBE BUGLÉ": ["12-1", "12-2", "12-3"],
     "PANAMÁ OESTE": ["13-1", "13-2", "13-3", "13-4"],
   });
