@@ -74,6 +74,8 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
   const [listPartido] = useState([
     "CD",
     "LIBRE POST.",
+    "LIBRE POST 2.",
+    "LIBRE POST 3.",
     "MOL",
     "MOCA",
     "PA",
@@ -86,6 +88,8 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
   const partidoIdMap = {
     CD: 1,
     "LIBRE POST.": 2,
+    "LIBRE POST 2.": 2,
+    "LIBRE POST 3.": 2,
     MOL: 3,
     MOCA: 4,
     PA: 5,

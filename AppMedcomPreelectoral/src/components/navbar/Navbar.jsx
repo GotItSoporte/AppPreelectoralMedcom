@@ -110,7 +110,7 @@ export const Navbar = ({
           }`}
         >
           {role==="videowall"?(
-          <div className="flex justify-end mr-3 mb-3 cursor-pointer ">
+          <div className="flex justify-end mr-3 mb-3 cursor-pointer sticky top-0 ">
             {mostrarNavbar ? (
               <svg
                 className="h-12 w-12 text-white"

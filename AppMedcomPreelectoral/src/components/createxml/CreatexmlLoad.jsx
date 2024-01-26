@@ -53,6 +53,8 @@ export const CreatexmlLoad = ({ data }) => {
   const partidoCompleto = {
     "CD": "CAMBIO DEMOCRÁTICO",
     "LIBRE POST.": "LIBRE POSTULACIÓN",
+    "LIBRE POST 2.": "LIBRE POSTULACIÓN 2",
+    "LIBRE POST 3.": "LIBRE POSTULACIÓN 3",
     "MOL": "MOLIRENA",
     "MOCA":"MOVIMIENTO OTRO CAMINO",
     "PA":"PARTIDO ALIANZA",
@@ -64,7 +66,7 @@ export const CreatexmlLoad = ({ data }) => {
   };
   
   const partidosingular ={
-    "PRESIDENTES":"PRESIDENTE",
+    "PRESIDENTE":"PRESIDENTE",
     "ALCALDES":"ALCALDE",
     "DIPUTADOS":"DIPUTADO"
   }

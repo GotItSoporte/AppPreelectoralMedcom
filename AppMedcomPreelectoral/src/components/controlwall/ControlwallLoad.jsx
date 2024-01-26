@@ -55,6 +55,8 @@ export const ControlWallLoad = ({ data, setMostrarNavbar,setNavbarActivado }) =>
   const partidoCompleto = {
     "CD": "CAMBIO DEMOCRÁTICO",
     "LIBRE POST.": "LIBRE POSTULACIÓN",
+    "LIBRE POST 2.": "LIBRE POSTULACIÓN 2",
+    "LIBRE POST 3.": "LIBRE POSTULACIÓN 3",
     "MOL": "MOLIRENA",
     "MOCA":"MOVIMIENTO OTRO CAMINO",
     "PA":"PARTIDO ALIANZA",
