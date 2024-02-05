@@ -91,7 +91,7 @@ export const FormLoad = ({ setMostrar, mostrarFormulario }) => {
     MOL: 3,
     PAN: 7,
     CD: 1,
-    PA: 5,
+    ALIANZA: 5,
     RM: 10,
     PAIS: 6,   
     MOCA: 4,
