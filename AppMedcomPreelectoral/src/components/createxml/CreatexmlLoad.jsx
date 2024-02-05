@@ -51,18 +51,18 @@ export const CreatexmlLoad = ({ data }) => {
   };
 
   const partidoCompleto = {
+    "PRD": "PARTIDO REVOLUCIONARIO DEMOCRÁTICO",
+    "PP": "PARTIDO POPULAR",
+    "MOL": "MOLIRENA",
+    "PAN": "PARTIDO PANAMEÑISTA",
     "CD": "CAMBIO DEMOCRÁTICO",
+    "ALIANZA":"PARTIDO ALIANZA",
+    "RM": "REALIZANDO METAS",
+    "PAIS": "PAÍS",
+    "MOCA":"MOVIMIENTO OTRO CAMINO",
     "LIBRE POST.": "LIBRE POSTULACIÓN",
     "LIBRE POST 2.": "LIBRE POSTULACIÓN 2",
     "LIBRE POST 3.": "LIBRE POSTULACIÓN 3",
-    "MOL": "MOLIRENA",
-    "MOCA":"MOVIMIENTO OTRO CAMINO",
-    "PA":"PARTIDO ALIANZA",
-    "PAIS": "PAÍS",
-    "PAN": "PARTIDO PANAMEÑISTA",
-    "PP": "PARTIDO POPULAR",
-    "PRD": "PARTIDO REVOLUCIONARIO DEMOCRÁTICO",
-    "RM": "REALIZANDO METAS",
   };
   
   const partidosingular ={

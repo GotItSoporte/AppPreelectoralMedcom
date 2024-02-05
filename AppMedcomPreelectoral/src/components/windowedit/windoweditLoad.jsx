@@ -18,33 +18,33 @@ export const WindowEditLoad = ({
   const [selectedPartido4, setSelectedPartido4] = useState("");
 
   const [listPartido] = useState([
+    "PRD",
+    "PP",
+    "MOL",
+    "PAN",
     "CD",
+    "ALIANZA",
+    "RM",
+    "PAIS",
+    "MOCA",
     "LIBRE POST.",
     "LIBRE POST 2.",
     "LIBRE POST 3.",
-    "MOL",
-    "MOCA",
-    "PA",
-    "PAIS",
-    "PAN",
-    "PP",
-    "PRD",
-    "RM",
   ]);
 
   const partidoIdMap = {
+    PRD: 9,
+    PP: 8,
+    MOL: 3,
+    PAN: 7,
     CD: 1,
+    PA: 5,
+    RM: 10,
+    PAIS: 6,   
+    MOCA: 4,
     "LIBRE POST.": 2,
     "LIBRE POST 2.": 2,
     "LIBRE POST 3.": 2,
-    MOL: 3,
-    MOCA: 4,
-    PA: 5,
-    PAIS: 6,
-    PAN: 7,
-    PP: 8,
-    PRD: 9,
-    RM: 10,
   };
 
   const handleSubmit = async (e) => {
